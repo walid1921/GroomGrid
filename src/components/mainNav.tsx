@@ -1,10 +1,11 @@
+import { NavLink } from "react-router-dom";
 import {
+  HiOutlineCalendarDays,
+  HiOutlineCog6Tooth,
   HiOutlineHome,
   HiOutlineScissors,
   HiOutlineUsers,
-} from "react-icons/hi";
-import { HiOutlineCalendarDays, HiOutlineCog6Tooth } from "react-icons/hi2";
-import { NavLink } from "react-router-dom";
+} from "react-icons/hi2";
 
 //! navLinks
 const navLinks = [
@@ -45,7 +46,7 @@ export default function MainNav() {
               to={link.to}
               className="flex items-center gap-3 hover:bg-[#f9fafb] py-2 px-4 "
             >
-              <link.icon size={20} />
+              <link.icon size={25} />
               <span className="text-[14px]">{link.name}</span>
             </NavLink>
           </li>

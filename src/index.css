@@ -87,6 +87,6 @@
   }
 
   .active {
-    @apply text-primary bg-secondary border-l-2 border-primary font-semibold;
+    @apply text-primary bg-secondary border-l-2 border-primary font-bold;
   }
 }
