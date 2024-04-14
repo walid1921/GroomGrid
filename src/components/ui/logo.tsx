@@ -2,7 +2,7 @@ const Logo = () => {
   return (
     <div className="text-center">
       <div className="w-auto">
-        <img src="../../../public/BARBERSHOP.svg" alt="logo" />
+        <img src="../../../public/logoMain.svg" alt="logo" />
       </div>
     </div>
   );
