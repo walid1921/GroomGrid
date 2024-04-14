@@ -8,25 +8,38 @@ import Users from "./pages/users";
 import Services from "./pages/services";
 import Bookings from "./pages/bookings";
 import AppLayout from "./components/appLayout";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const App = () => {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<AppLayout />}>
-          <Route index element={<Navigate replace to="dashboard" />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="bookings" element={<Bookings />} />
-          <Route path="services" element={<Services />} />
-          <Route path="users" element={<Users />} />
-          <Route path="settings" element={<Settings />} />
-          <Route path="account" element={<Account />} />
-        </Route>
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 1000 * 60,
+      },
+    },
+  });
 
-        <Route path="login" element={<Login />} />
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
-    </BrowserRouter>
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={true} />
+      <BrowserRouter>
+        <Routes>
+          <Route element={<AppLayout />}>
+            <Route index element={<Navigate replace to="dashboard" />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="bookings" element={<Bookings />} />
+            <Route path="services" element={<Services />} />
+            <Route path="users" element={<Users />} />
+            <Route path="settings" element={<Settings />} />
+            <Route path="account" element={<Account />} />
+          </Route>
+
+          <Route path="login" element={<Login />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 };
 
