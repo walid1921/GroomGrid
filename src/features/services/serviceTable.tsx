@@ -7,6 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+
 import { deleteService, getServices } from "@/services/apiServices";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Spinner from "@/components/ui/spinner";
@@ -40,6 +41,7 @@ const ServiceTable = () => {
   });
 
   if (isPending) return <Spinner />;
+  if (error) return <div>An error occurred: {error.message}</div>; //! you can create a custom error component
 
   return (
     <div className="w-full">

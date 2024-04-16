@@ -1,4 +1,5 @@
 import { Row } from "@/components/row";
+import { CreateServiceForm } from "@/features/services/createServiceForm";
 import ServiceTable from "@/features/services/serviceTable";
 
 // import { getServices } from "@/services/apiServices";
@@ -17,8 +18,11 @@ function Services() {
         <h1>Services</h1>
         <p>Filter / sort</p>
       </Row>
-      <Row>
+      <Row variant="vertical">
         <ServiceTable />
+        <div className="flex justify-center">
+          <CreateServiceForm />
+        </div>
       </Row>
     </>
   );
