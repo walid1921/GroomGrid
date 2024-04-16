@@ -10,3 +10,14 @@ export async function getServices() {
 
   return data;
 }
+
+export async function deleteService(id: { id: number }) {
+  const { data, error } = await supabase.from("services").delete().eq("id", id);
+
+  if (error) {
+    console.error(error);
+    throw new Error("An error occurred while deleting service");
+  }
+
+  return data;
+}

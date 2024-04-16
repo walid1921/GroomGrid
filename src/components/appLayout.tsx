@@ -8,7 +8,9 @@ const AppLayout = () => {
       <Header />
       <Sidebar />
       <main className="p-16 bg-gray-50">
-        <Outlet />
+        <div className="max-w-[120rem] mx-0 my-auto flex flex-col gap-14">
+          <Outlet />
+        </div>
       </main>
     </div>
   );
