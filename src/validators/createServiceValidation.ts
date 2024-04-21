@@ -4,7 +4,7 @@ export const createServiceSchema = z.object({
   name: z
     .string()
     .min(2, {
-      message: "Service name must be at least 2 characters.",
+      message: "You should have to select a service.",
     })
     .max(50),
   maxCapacity: z
@@ -12,7 +12,9 @@ export const createServiceSchema = z.object({
     .min(1, {
       message: "Capacity must be at least 1.",
     })
-    .max(2)
+    .max(2, {
+      message: "Capacity must be maximum 2.",
+    })
     .refine((value) => !isNaN(value as unknown as number), {
       message: "Capacity must be a number.",
     }),
@@ -26,6 +28,9 @@ export const createServiceSchema = z.object({
   discount: z
     .string()
     .min(0, { message: "Discount must be at least 0." })
+    .max(100, {
+      message: "Capacity must be maximum 2.",
+    })
     .refine((value) => !isNaN(value as unknown as number), {
       message: "Discount must be a number.",
     }),

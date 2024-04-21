@@ -54,6 +54,7 @@ const ServiceTable = () => {
             <TableHead>Capacity</TableHead>
             <TableHead>Price</TableHead>
             <TableHead>Discount</TableHead>
+            <TableHead>Description</TableHead>
           </TableRow>
         </TableHeader>
 
@@ -61,7 +62,7 @@ const ServiceTable = () => {
           <TableBody key={service.id}>
             <TableRow>
               <TableCell>
-                <img src={service.image} alt={service.name} />
+                <img src={service.image} alt="Image" />
               </TableCell>
               <TableCell>{service.name}</TableCell>
               <TableCell>{service.maxCapacity}</TableCell>
@@ -69,7 +70,7 @@ const ServiceTable = () => {
               <TableCell className="text-primary">
                 {formatCurrency(service.discount)}
               </TableCell>
-              <TableCell>{service.amount}</TableCell>
+              <TableCell className="px-0">{service.description}</TableCell>
               <TableCell>
                 <Button
                   variant="destructive"

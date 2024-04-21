@@ -1,6 +1,5 @@
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -16,6 +15,13 @@ import {
   FormMessage,
   FormDescription,
 } from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { z } from "zod";
@@ -34,7 +40,7 @@ interface CreateServiceFieldProps {
   placeholder: string;
   description?: string;
   inputType?: string;
-  formControl?: Control<InputType, any>;
+  formControl?: Control<InputType, unknown>;
 }
 const CreateServiceField: React.FC<CreateServiceFieldProps> = ({
   formControl,
@@ -102,14 +108,12 @@ export function CreateServiceForm() {
   });
 
   const onSubmit = (values: InputType) => {
-    const parsedValues: InputType = {
-      ...values,
-      maxCapacity: parseFloat(values.maxCapacity),
-      regularPrice: parseFloat(values.regularPrice),
-      discount: parseFloat(values.discount),
-    };
-    mutate(parsedValues);
-    console.log(parsedValues);
+    if (parseFloat(values.discount) >= parseFloat(values.regularPrice)) {
+      toast.error("Discount must be less than the regular price");
+      return;
+    }
+    mutate(values);
+    console.log(values);
   };
 
   return (
@@ -133,24 +137,94 @@ export function CreateServiceForm() {
               onSubmit={form.handleSubmit(onSubmit)}
               className="flex flex-col gap-8 mt-10"
             >
-              <CreateServiceField
+              <FormField
+                control={form.control}
                 name="name"
-                label="name"
-                placeholder="Service name"
-                formControl={form.control}
-              />
-              <CreateServiceField
-                name="maxCapacity"
-                label="Maximum capacity"
-                placeholder="Maximum capacity"
-                formControl={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Service name</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a service" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {[
+                          "Haircut",
+                          "Hair & Beard",
+                          "Long hair",
+                          "Beard",
+                          "Kid",
+                        ].map((price) => (
+                          <SelectItem key={price} value={price.toString()}>
+                            {price}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
 
-              <CreateServiceField
+              <FormField
+                control={form.control}
+                name="maxCapacity"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Maximum capacity</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a how many person" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {[1, 2].map((person) => (
+                          <SelectItem key={person} value={person.toString()}>
+                            {person}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
                 name="regularPrice"
-                label="Regular Price"
-                placeholder="Regular Price"
-                formControl={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Regular Price</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a price" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {[20, 25, 30, 35, 50].map((price) => (
+                          <SelectItem key={price} value={price.toString()}>
+                            {price}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
 
               <CreateServiceField
@@ -173,11 +247,10 @@ export function CreateServiceForm() {
                 placeholder="Image"
                 formControl={form.control}
               />
-              <SheetClose asChild>
-                <Button type="submit" disabled={isCreating}>
-                  Submit
-                </Button>
-              </SheetClose>
+
+              <Button type="submit" disabled={isCreating}>
+                Submit
+              </Button>
             </form>
           </Form>
         </SheetContent>
