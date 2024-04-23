@@ -59,12 +59,16 @@ const CreateServiceField: React.FC<CreateServiceFieldProps> = ({
           <FormLabel>{label}</FormLabel>
           <FormControl>
             <Input
-              type={inputType || " text"}
+              type={inputType || "text"}
               placeholder={placeholder}
               {...field}
             />
           </FormControl>
-          {description && <FormDescription>{description}</FormDescription>}
+          {description && (
+            <FormDescription className="text-[12px]">
+              {description}
+            </FormDescription>
+          )}
           <FormMessage />
         </FormItem>
       )}
@@ -76,8 +80,7 @@ export function CreateServiceForm() {
   const form = useForm<InputType>({
     resolver: zodResolver(createServiceSchema),
     defaultValues: {
-      name: "",
-      maxCapacity: "1",
+      name: "Haircut",
       regularPrice: "30",
       discount: "0",
       description: "",
@@ -93,12 +96,10 @@ export function CreateServiceForm() {
       queryClient.invalidateQueries({ queryKey: ["service"] });
       toast.success("New service added successfully");
       form.reset({
-        name: "",
-        maxCapacity: "1",
+        name: "Haircut",
         regularPrice: "30",
         discount: "0",
         description: "",
-        image: "",
       });
     },
     onError: (error) => {
@@ -112,7 +113,7 @@ export function CreateServiceForm() {
       toast.error("Discount must be less than the regular price");
       return;
     }
-    mutate(values);
+    mutate({ ...values, image: values.name });
     console.log(values);
   };
 
@@ -120,7 +121,7 @@ export function CreateServiceForm() {
     <>
       <Sheet>
         <SheetTrigger asChild>
-          <Button size="sm">Add</Button>
+          <Button size="sm">New service</Button>
         </SheetTrigger>
 
         <SheetContent>
@@ -153,45 +154,13 @@ export function CreateServiceForm() {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {[
-                          "Haircut",
-                          "Hair & Beard",
-                          "Long hair",
-                          "Beard",
-                          "Kid",
-                        ].map((price) => (
-                          <SelectItem key={price} value={price.toString()}>
-                            {price}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="maxCapacity"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Maximum capacity</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select a how many person" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {[1, 2].map((person) => (
-                          <SelectItem key={person} value={person.toString()}>
-                            {person}
-                          </SelectItem>
-                        ))}
+                        {["Haircut", "Hair & Beard", "Long hair", "Beard"].map(
+                          (price) => (
+                            <SelectItem key={price} value={price.toString()}>
+                              {price}
+                            </SelectItem>
+                          )
+                        )}
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -231,6 +200,7 @@ export function CreateServiceForm() {
                 name="discount"
                 label="Discount"
                 placeholder="Discount"
+                description="Discount must be less than the regular price"
                 formControl={form.control}
               />
 
@@ -238,13 +208,6 @@ export function CreateServiceForm() {
                 name="description"
                 label="Description"
                 placeholder="Description"
-                formControl={form.control}
-              />
-
-              <CreateServiceField
-                name="image"
-                label="Image"
-                placeholder="Image"
                 formControl={form.control}
               />
 

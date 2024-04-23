@@ -1,4 +1,12 @@
-import supabase from "./supabase";
+import supabase, { supabaseUrl } from "./supabase";
+
+type NewServiceType = {
+  name: string;
+  description: string;
+  regularPrice: string;
+  discount: string;
+  image: string;
+};
 
 //! Get all services
 export async function getServices() {
@@ -12,6 +20,26 @@ export async function getServices() {
   return data;
 }
 
+//! Create service
+export async function createService(newService: NewServiceType) {
+  const imageName = newService.image;
+
+  console.log("newService", newService);
+
+    const imagePath = `${supabaseUrl}/storage/v1/object/public/service-images/${imageName}.png`;
+
+  const { data, error } = await supabase
+    .from("services")
+    .insert([{ ...newService, image: imagePath }]);
+
+  if (error) {
+    console.error(error);
+    throw new Error("An error occurred while creating service");
+  }
+
+  return data;
+}
+
 //! Delete service
 export async function deleteService(id: { id: number }) {
   const { data, error } = await supabase.from("services").delete().eq("id", id);
@@ -19,18 +47,6 @@ export async function deleteService(id: { id: number }) {
   if (error) {
     console.error(error);
     throw new Error("An error occurred while deleting service");
-  }
-
-  return data;
-}
-
-//! Create service
-export async function createService(newService) {
-  const { data, error } = await supabase.from("services").insert([newService]);
-
-  if (error) {
-    console.error(error);
-    throw new Error("An error occurred while creating service");
   }
 
   return data;

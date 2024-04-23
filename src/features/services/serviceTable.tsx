@@ -49,9 +49,8 @@ const ServiceTable = () => {
         <TableCaption>A list of your recent invoices.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px]">Img</TableHead>
+            <TableHead className="w-[100px]">Image</TableHead>
             <TableHead>Service</TableHead>
-            <TableHead>Capacity</TableHead>
             <TableHead>Price</TableHead>
             <TableHead>Discount</TableHead>
             <TableHead>Description</TableHead>
@@ -65,9 +64,12 @@ const ServiceTable = () => {
                 <img src={service.image} alt="Image" />
               </TableCell>
               <TableCell>{service.name}</TableCell>
-              <TableCell>{service.maxCapacity}</TableCell>
               <TableCell>{formatCurrency(service.regularPrice)}</TableCell>
-              <TableCell className="text-primary">
+              <TableCell
+                className={`${
+                  service.discount > 0 ? "text-primary font-bold" : ""
+                }`}
+              >
                 {formatCurrency(service.discount)}
               </TableCell>
               <TableCell className="px-0">{service.description}</TableCell>

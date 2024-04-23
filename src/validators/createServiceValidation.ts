@@ -7,17 +7,6 @@ export const createServiceSchema = z.object({
       message: "You should have to select a service.",
     })
     .max(50),
-  maxCapacity: z
-    .string()
-    .min(1, {
-      message: "Capacity must be at least 1.",
-    })
-    .max(2, {
-      message: "Capacity must be maximum 2.",
-    })
-    .refine((value) => !isNaN(value as unknown as number), {
-      message: "Capacity must be a number.",
-    }),
   regularPrice: z
     .string()
     .min(1, { message: "Price must be at least 1." })
