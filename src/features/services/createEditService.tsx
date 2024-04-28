@@ -22,34 +22,37 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Control, FieldPath, useForm } from "react-hook-form";
-import { createServiceSchema } from "@/validators/createServiceValidation";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createService } from "@/services/apiServices";
 import toast from "react-hot-toast";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { Control, FieldPath, useForm } from "react-hook-form";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { createServiceSchema } from "@/validators/createServiceValidation";
+import { createService, updateService } from "@/services/apiServices";
 
 type InputType = z.infer<typeof createServiceSchema>;
 
-interface CreateServiceFieldProps {
+type CreateServiceFieldProps = {
   name: FieldPath<InputType>;
   label: string;
   placeholder: string;
   description?: string;
   inputType?: string;
   formControl?: Control<InputType, unknown>;
-}
-const CreateServiceField: React.FC<CreateServiceFieldProps> = ({
+};
+
+//! Create service field
+const CreateServiceField = ({
   formControl,
   name,
   label,
   placeholder,
   description,
   inputType,
-}) => {
+}: CreateServiceFieldProps) => {
   return (
     <FormField
       control={formControl}
@@ -76,21 +79,44 @@ const CreateServiceField: React.FC<CreateServiceFieldProps> = ({
   );
 };
 
-export function CreateServiceForm() {
+export function CreateEditService({
+  name,
+  title,
+  description,
+  serviceToEdit = {},
+}: {
+  name: string;
+  title: string;
+  description: string;
+  serviceToEdit?: {
+    id: number;
+    name: string;
+    regularPrice?: string;
+    discount?: string;
+    image: string;
+    description: string;
+  };
+}) {
+  const { id: editId, ...editValues } = serviceToEdit;
+  const isEditSession = Boolean(editId);
+
   const form = useForm<InputType>({
     resolver: zodResolver(createServiceSchema),
-    defaultValues: {
-      name: "Haircut",
-      regularPrice: "30",
-      discount: "0",
-      description: "",
-      image: "",
-    },
+    defaultValues: isEditSession
+      ? editValues
+      : {
+          name: "Haircut",
+          regularPrice: "30",
+          discount: "0",
+          description: "",
+          image: "",
+        },
   });
 
   const queryClient = useQueryClient();
 
-  const { isPending: isCreating, mutate } = useMutation({
+  //! Create service
+  const { isPending: isCreating, mutate: create } = useMutation({
     mutationFn: createService,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["service"] });
@@ -100,6 +126,7 @@ export function CreateServiceForm() {
         regularPrice: "30",
         discount: "0",
         description: "",
+        image: "",
       });
     },
     onError: (error) => {
@@ -108,29 +135,44 @@ export function CreateServiceForm() {
     },
   });
 
-  const onSubmit = (values: InputType) => {
-    if (parseFloat(values.discount) >= parseFloat(values.regularPrice)) {
+  //! Edit service
+  const { isPending: isUpdating, mutate: update } = useMutation({
+    mutationFn: updateService,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["service"] });
+      toast.success("Service updated successfully");
+    },
+    onError: (error) => {
+      toast.error("An error occurred while updating service");
+      console.error(error);
+    },
+  });
+
+  const isWorking = isCreating || isUpdating;
+
+  //! Submit form
+  const onSubmit = (data: InputType) => {
+    if (parseFloat(data.discount) >= parseFloat(data.regularPrice)) {
       toast.error("Discount must be less than the regular price");
       return;
     }
-    mutate({ ...values, image: values.name });
-    console.log(values);
+    if (isEditSession)
+      update({ updatedService: { ...data, image: data.name }, id: editId });
+    else create({ ...data, image: data.name });
+    console.log(data);
   };
 
   return (
     <>
       <Sheet>
         <SheetTrigger asChild>
-          <Button size="sm">New service</Button>
+          <Button size="sm">{name}</Button>
         </SheetTrigger>
 
         <SheetContent>
           <SheetHeader>
-            <SheetTitle>Create a new service</SheetTitle>
-            <SheetDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
-            </SheetDescription>
+            <SheetTitle>{title}</SheetTitle>
+            <SheetDescription>{description}</SheetDescription>
           </SheetHeader>
 
           <Form {...form}>
@@ -155,9 +197,12 @@ export function CreateServiceForm() {
                       </FormControl>
                       <SelectContent>
                         {["Haircut", "Hair & Beard", "Long hair", "Beard"].map(
-                          (price) => (
-                            <SelectItem key={price} value={price.toString()}>
-                              {price}
+                          (service) => (
+                            <SelectItem
+                              key={service}
+                              value={service.toString()}
+                            >
+                              {service}
                             </SelectItem>
                           )
                         )}
@@ -168,32 +213,12 @@ export function CreateServiceForm() {
                 )}
               />
 
-              <FormField
-                control={form.control}
+              <CreateServiceField
                 name="regularPrice"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Regular Price</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select a price" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {[20, 25, 30, 35, 50].map((price) => (
-                          <SelectItem key={price} value={price.toString()}>
-                            {price}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                label="Regular Price"
+                placeholder="Regular Price"
+                description="Price must be a number"
+                formControl={form.control}
               />
 
               <CreateServiceField
@@ -211,8 +236,8 @@ export function CreateServiceForm() {
                 formControl={form.control}
               />
 
-              <Button type="submit" disabled={isCreating}>
-                Submit
+              <Button type="submit" disabled={isWorking}>
+                {isEditSession ? "Edit Service" : "Create New Service"}
               </Button>
             </form>
           </Form>

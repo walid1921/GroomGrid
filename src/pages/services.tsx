@@ -1,5 +1,5 @@
 import { Row } from "@/components/row";
-import { CreateServiceForm } from "@/features/services/createServiceForm";
+import { CreateEditService } from "@/features/services/createEditService";
 import ServiceTable from "@/features/services/serviceTable";
 
 // import { getServices } from "@/services/apiServices";
@@ -21,7 +21,12 @@ function Services() {
       <Row variant="vertical">
         <ServiceTable />
         <div className="flex justify-center">
-          <CreateServiceForm />
+          <CreateEditService
+            name="New service"
+            title="Create a new service"
+            description="Please fill out the form below to create a new service. Once
+              submitted, the service will be added to your account."
+          />
         </div>
       </Row>
     </>

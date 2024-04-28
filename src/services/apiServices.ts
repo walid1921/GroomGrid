@@ -23,14 +23,13 @@ export async function getServices() {
 //! Create service
 export async function createService(newService: NewServiceType) {
   const imageName = newService.image;
-
-  console.log("newService", newService);
-
-    const imagePath = `${supabaseUrl}/storage/v1/object/public/service-images/${imageName}.png`;
+  const imagePath = `${supabaseUrl}/storage/v1/object/public/service-images/${imageName}.png`;
 
   const { data, error } = await supabase
     .from("services")
-    .insert([{ ...newService, image: imagePath }]);
+    .insert([{ ...newService, image: imagePath }])
+    .select()
+    .single();
 
   if (error) {
     console.error(error);
@@ -47,6 +46,30 @@ export async function deleteService(id: { id: number }) {
   if (error) {
     console.error(error);
     throw new Error("An error occurred while deleting service");
+  }
+
+  return data;
+}
+
+//! Update service
+export async function updateService({
+  id,
+  updatedService,
+}: {
+  id: number;
+  updatedService: NewServiceType;
+}) {
+  const imageName = updatedService.image;
+  const imagePath = `${supabaseUrl}/storage/v1/object/public/service-images/${imageName}.png`;
+
+  const { data, error } = await supabase
+    .from("services")
+    .update({ ...updatedService, image: imagePath })
+    .eq("id", id);
+
+  if (error) {
+    console.error(error);
+    throw new Error("An error occurred while updating service");
   }
 
   return data;
