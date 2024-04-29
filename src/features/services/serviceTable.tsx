@@ -17,8 +17,9 @@ import toast from "react-hot-toast";
 import { CreateEditService } from "./createEditService";
 
 const ServiceTable = () => {
-  //! Fetching services
   const queryClient = useQueryClient();
+  
+  //! Fetching services
   const {
     isPending,
     data: services,

@@ -1,5 +1,6 @@
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -44,7 +45,7 @@ type CreateServiceFieldProps = {
   formControl?: Control<InputType, unknown>;
 };
 
-//! Create service field
+//! CreateServiceField component
 const CreateServiceField = ({
   formControl,
   name,
@@ -83,7 +84,14 @@ export function CreateEditService({
   name,
   title,
   description,
-  serviceToEdit = {},
+  serviceToEdit = {
+    id: 0,
+    name: "",
+    regularPrice: "",
+    discount: "",
+    image: "",
+    description: "",
+  },
 }: {
   name: string;
   title: string;
@@ -156,9 +164,12 @@ export function CreateEditService({
       toast.error("Discount must be less than the regular price");
       return;
     }
-    if (isEditSession)
+
+    if (isEditSession) {
       update({ updatedService: { ...data, image: data.name }, id: editId });
-    else create({ ...data, image: data.name });
+    } else {
+      create({ ...data, image: data.name });
+    }
     console.log(data);
   };
 
@@ -236,9 +247,11 @@ export function CreateEditService({
                 formControl={form.control}
               />
 
-              <Button type="submit" disabled={isWorking}>
-                {isEditSession ? "Edit Service" : "Create New Service"}
-              </Button>
+              <SheetClose className="mt-10">
+                <Button type="submit" disabled={isWorking}>
+                  {isEditSession ? "Edit Service" : "Create New Service"}
+                </Button>
+              </SheetClose>
             </form>
           </Form>
         </SheetContent>
