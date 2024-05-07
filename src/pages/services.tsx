@@ -1,6 +1,7 @@
 import { Row } from "@/components/row";
 import { CreateEditService } from "@/features/services/createEditService";
 import ServiceTable from "@/features/services/serviceTable";
+import { HiPlus } from "react-icons/hi";
 
 // import { getServices } from "@/services/apiServices";
 
@@ -22,7 +23,7 @@ function Services() {
         <ServiceTable />
         <div className="flex justify-center">
           <CreateEditService
-            name="New service"
+            text={<HiPlus size={20} />}
             title="Create a new service"
             description="Please fill out the form below to create a new service. Once
               submitted, the service will be added to your account."

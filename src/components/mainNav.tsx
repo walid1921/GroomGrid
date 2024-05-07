@@ -6,6 +6,7 @@ import {
   HiOutlineScissors,
   HiOutlineUsers,
 } from "react-icons/hi2";
+import useServices from "@/features/services/useServices";
 
 //! navLinks
 const navLinks = [
@@ -37,6 +38,8 @@ const navLinks = [
 ];
 
 export default function MainNav() {
+  const { services } = useServices();
+
   return (
     <nav>
       <ul className="flex flex-col gap-7">
@@ -47,7 +50,12 @@ export default function MainNav() {
               className="flex items-center gap-3 hover:bg-[#f9fafb] py-2 px-4 "
             >
               <link.icon size={25} />
-              <span className="text-[14px]">{link.name}</span>
+              <div className="text-[14px] flex justify-between items-center w-full">
+                {link.name}
+
+                {link.name === "Services" &&
+                <span className="border px-2 rounded-full">{services?.length}</span>}
+              </div>
             </NavLink>
           </li>
         ))}

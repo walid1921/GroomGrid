@@ -32,7 +32,8 @@ import { Control, FieldPath, useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { createServiceSchema } from "@/validators/createServiceValidation";
-import { createService, updateService } from "@/services/apiServices";
+import { createService } from "@/services/apiServices";
+import useUpdateService from "./useUpdateService";
 
 type InputType = z.infer<typeof createServiceSchema>;
 
@@ -81,7 +82,7 @@ const CreateServiceField = ({
 };
 
 export function CreateEditService({
-  name,
+  text,
   title,
   description,
   serviceToEdit = {
@@ -93,7 +94,7 @@ export function CreateEditService({
     description: "",
   },
 }: {
-  name: string;
+  text: React.ReactNode;
   title: string;
   description: string;
   serviceToEdit?: {
@@ -144,17 +145,7 @@ export function CreateEditService({
   });
 
   //! Edit service
-  const { isPending: isUpdating, mutate: update } = useMutation({
-    mutationFn: updateService,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["service"] });
-      toast.success("Service updated successfully");
-    },
-    onError: (error) => {
-      toast.error("An error occurred while updating service");
-      console.error(error);
-    },
-  });
+  const { isUpdating, updateService } = useUpdateService();
 
   const isWorking = isCreating || isUpdating;
 
@@ -166,7 +157,10 @@ export function CreateEditService({
     }
 
     if (isEditSession) {
-      update({ updatedService: { ...data, image: data.name }, id: editId });
+      updateService({
+        updatedService: { ...data, image: data.name },
+        id: editId,
+      });
     } else {
       create({ ...data, image: data.name });
     }
@@ -177,7 +171,7 @@ export function CreateEditService({
     <>
       <Sheet>
         <SheetTrigger asChild>
-          <Button size="sm">{name}</Button>
+          <Button size="sm">{text}</Button>
         </SheetTrigger>
 
         <SheetContent>
