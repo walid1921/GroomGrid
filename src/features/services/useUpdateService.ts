@@ -1,4 +1,4 @@
-import { updateService as updateServiceApi } from "@/services/apiServices";
+import { updateService as updateServiceApi } from "@/api/apiServices";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 

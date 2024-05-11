@@ -26,14 +26,13 @@ import {
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Control, FieldPath, useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { createServiceSchema } from "@/validators/createServiceValidation";
-import { createService } from "@/services/apiServices";
 import useUpdateService from "./useUpdateService";
+import useCreateService from "./useCreateService";
 
 type InputType = z.infer<typeof createServiceSchema>;
 
@@ -81,7 +80,7 @@ const CreateServiceField = ({
   );
 };
 
-export function CreateEditService({
+export function CreateEditForm({
   text,
   title,
   description,
@@ -122,27 +121,8 @@ export function CreateEditService({
         },
   });
 
-  const queryClient = useQueryClient();
-
   //! Create service
-  const { isPending: isCreating, mutate: create } = useMutation({
-    mutationFn: createService,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["service"] });
-      toast.success("New service added successfully");
-      form.reset({
-        name: "Haircut",
-        regularPrice: "30",
-        discount: "0",
-        description: "",
-        image: "",
-      });
-    },
-    onError: (error) => {
-      toast.error("An error occurred while adding service");
-      console.error(error);
-    },
-  });
+  const { isCreating, createService } = useCreateService();
 
   //! Edit service
   const { isUpdating, updateService } = useUpdateService();
@@ -162,9 +142,8 @@ export function CreateEditService({
         id: editId,
       });
     } else {
-      create({ ...data, image: data.name });
+      createService({ ...data, image: data.name });
     }
-    console.log(data);
   };
 
   return (

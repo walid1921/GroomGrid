@@ -1,4 +1,4 @@
-import { deleteService as deleteServiceApi } from "@/services/apiServices";
+import { deleteService as deleteServiceApi } from "@/api/apiServices";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 

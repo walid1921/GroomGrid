@@ -20,12 +20,14 @@ import {
 
 import Spinner from "@/components/ui/spinner";
 import { formatCurrency } from "../../utils/helpers";
-import { CreateEditService } from "./createEditService";
+import { CreateEditForm } from "./createEditForm";
 
 import { Button } from "@/components/ui/button";
 import useDeleteService from "./useDeleteService";
 import useServices from "./useServices";
 import { HiPencil, HiTrash } from "react-icons/hi";
+import { HiSquare2Stack } from "react-icons/hi2";
+import useCreateService from "./useCreateService";
 
 const ServiceTable = () => {
   //! Fetching services
@@ -33,6 +35,9 @@ const ServiceTable = () => {
 
   //! Deletion of service
   const { isDeleting, deleteService } = useDeleteService();
+
+  //! Duplicate service
+  const { isCreating, createService } = useCreateService();
 
   return (
     <div className="w-full">
@@ -98,12 +103,27 @@ const ServiceTable = () => {
                         </DialogFooter>
                       </DialogContent>
                     </Dialog>
-                    <CreateEditService
+                    <CreateEditForm
                       serviceToEdit={service}
                       text={<HiPencil size={20} />}
                       title="Edit service details"
                       description="Edit the service details below to update the service."
                     />
+                    <Button
+                      variant={"outline"}
+                      disabled={isCreating}
+                      onClick={() =>
+                        createService({
+                          name: service.name,
+                          regularPrice: service.regularPrice,
+                          discount: service.discount,
+                          description: service.description,
+                          image: service.image,
+                        })
+                      }
+                    >
+                      <HiSquare2Stack size={20} />
+                    </Button>
                   </div>
                 </TableCell>
               </TableRow>

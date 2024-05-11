@@ -22,8 +22,10 @@ export async function getServices() {
 
 //! Create service
 export async function createService(newService: NewServiceType) {
-  const imageName = newService.image;
-  const imagePath = `${supabaseUrl}/storage/v1/object/public/service-images/${imageName}.png`;
+  let imagePath = newService.image;
+  if (!imagePath.startsWith(supabaseUrl)) {
+    imagePath = `${supabaseUrl}/storage/v1/object/public/service-images/${imagePath}.png`;
+  }
 
   const { data, error } = await supabase
     .from("services")

@@ -1,4 +1,4 @@
-import { getServices } from "@/services/apiServices";
+import { getServices } from "@/api/apiServices";
 import { useQuery } from "@tanstack/react-query";
 
 function useServices() {
