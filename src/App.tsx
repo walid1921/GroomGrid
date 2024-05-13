@@ -11,6 +11,7 @@ import AppLayout from "./components/appLayout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
+import { ThemeProvider } from "./components/theme-provider";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,42 +23,44 @@ const queryClient = new QueryClient({
 
 const App = () => {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={true} />
-      <BrowserRouter>
-        <Routes>
-          <Route element={<AppLayout />}>
-            <Route index element={<Navigate replace to="dashboard" />} />
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="bookings" element={<Bookings />} />
-            <Route path="services" element={<Services />} />
-            <Route path="users" element={<Users />} />
-            <Route path="settings" element={<Settings />} />
-            <Route path="account" element={<Account />} />
-          </Route>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={true} />
+        <BrowserRouter>
+          <Routes>
+            <Route element={<AppLayout />}>
+              <Route index element={<Navigate replace to="dashboard" />} />
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="bookings" element={<Bookings />} />
+              <Route path="services" element={<Services />} />
+              <Route path="users" element={<Users />} />
+              <Route path="settings" element={<Settings />} />
+              <Route path="account" element={<Account />} />
+            </Route>
 
-          <Route path="login" element={<Login />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-      </BrowserRouter>
+            <Route path="login" element={<Login />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </BrowserRouter>
 
-      <Toaster
-        position="top-center"
-        gutter={12}
-        containerStyle={{ margin: "8px" }}
-        toastOptions={{
-          success: { duration: 3000 },
-          error: { duration: 5000 },
-          style: {
-            fontSize: "14px",
-            maxWidth: "400px",
-            padding: "14px 20px",
-            backgroundColor: "#ffffff",
-            color: "#898989",
-          },
-        }}
-      />
-    </QueryClientProvider>
+        <Toaster
+          position="top-center"
+          gutter={12}
+          containerStyle={{ margin: "8px" }}
+          toastOptions={{
+            success: { duration: 3000 },
+            error: { duration: 5000 },
+            style: {
+              fontSize: "14px",
+              maxWidth: "400px",
+              padding: "14px 20px",
+              backgroundColor: "#ffffff",
+              color: "#898989",
+            },
+          }}
+        />
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 };
 

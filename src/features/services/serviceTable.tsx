@@ -43,7 +43,7 @@ const ServiceTable = () => {
     <div className="w-full">
       {!isPending ? (
         <Table>
-          <TableCaption>A list of your recent invoices.</TableCaption>
+          <TableCaption>A list of your recent services.</TableCaption>
           <TableHeader>
             <TableRow>
               <TableHead className="w-[100px]">Image</TableHead>
@@ -58,7 +58,7 @@ const ServiceTable = () => {
             <TableBody key={service.id}>
               <TableRow>
                 <TableCell>
-                  <img src={service.image} alt="Image" />
+                  <img src={service.image} alt="Image" className="bg-servicePic rounded-lg" />
                 </TableCell>
                 <TableCell>{service.name}</TableCell>
                 <TableCell>{formatCurrency(service.regularPrice)}</TableCell>

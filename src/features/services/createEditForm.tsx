@@ -14,7 +14,6 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-  FormDescription,
 } from "@/components/ui/form";
 import {
   Select,
@@ -26,58 +25,23 @@ import {
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import toast from "react-hot-toast";
-import { Control, FieldPath, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { createServiceSchema } from "@/validators/createServiceValidation";
 import useUpdateService from "./useUpdateService";
 import useCreateService from "./useCreateService";
+import ServiceFormInput from "./serviceFormInput";
 
 type InputType = z.infer<typeof createServiceSchema>;
 
-type CreateServiceFieldProps = {
-  name: FieldPath<InputType>;
-  label: string;
-  placeholder: string;
-  description?: string;
-  inputType?: string;
-  formControl?: Control<InputType, unknown>;
-};
-
-//! CreateServiceField component
-const CreateServiceField = ({
-  formControl,
-  name,
-  label,
-  placeholder,
-  description,
-  inputType,
-}: CreateServiceFieldProps) => {
-  return (
-    <FormField
-      control={formControl}
-      name={name}
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel>{label}</FormLabel>
-          <FormControl>
-            <Input
-              type={inputType || "text"}
-              placeholder={placeholder}
-              {...field}
-            />
-          </FormControl>
-          {description && (
-            <FormDescription className="text-[12px]">
-              {description}
-            </FormDescription>
-          )}
-          <FormMessage />
-        </FormItem>
-      )}
-    />
-  );
+type serviceToEditProps = {
+  id: number;
+  name: string;
+  regularPrice?: string;
+  discount?: string;
+  image: string;
+  description: string;
 };
 
 export function CreateEditForm({
@@ -96,14 +60,7 @@ export function CreateEditForm({
   text: React.ReactNode;
   title: string;
   description: string;
-  serviceToEdit?: {
-    id: number;
-    name: string;
-    regularPrice?: string;
-    discount?: string;
-    image: string;
-    description: string;
-  };
+  serviceToEdit?: serviceToEditProps;
 }) {
   const { id: editId, ...editValues } = serviceToEdit;
   const isEditSession = Boolean(editId);
@@ -197,7 +154,7 @@ export function CreateEditForm({
                 )}
               />
 
-              <CreateServiceField
+              <ServiceFormInput
                 name="regularPrice"
                 label="Regular Price"
                 placeholder="Regular Price"
@@ -205,7 +162,7 @@ export function CreateEditForm({
                 formControl={form.control}
               />
 
-              <CreateServiceField
+              <ServiceFormInput
                 name="discount"
                 label="Discount"
                 placeholder="Discount"
@@ -213,7 +170,7 @@ export function CreateEditForm({
                 formControl={form.control}
               />
 
-              <CreateServiceField
+              <ServiceFormInput
                 name="description"
                 label="Description"
                 placeholder="Description"
