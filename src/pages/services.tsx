@@ -23,7 +23,7 @@ function Services() {
         <ServiceTable />
         <div className="flex justify-center">
           <CreateEditForm
-            text={<HiPlus size={20} />}
+            icon={<HiPlus size={20} />}
             title="Create a new service"
             description="Please fill out the form below to create a new service. Once
               submitted, the service will be added to your account."

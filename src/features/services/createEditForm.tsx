@@ -45,6 +45,7 @@ type serviceToEditProps = {
 };
 
 export function CreateEditForm({
+  icon,
   text,
   title,
   description,
@@ -57,7 +58,8 @@ export function CreateEditForm({
     description: "",
   },
 }: {
-  text: React.ReactNode;
+  icon: React.ReactNode;
+  text?: string;
   title: string;
   description: string;
   serviceToEdit?: serviceToEditProps;
@@ -107,7 +109,9 @@ export function CreateEditForm({
     <>
       <Sheet>
         <SheetTrigger asChild>
-          <Button size="sm">{text}</Button>
+          <Button size="sm" variant="ghost" className="flex justify-start text-left gap-2 w-full">
+            <span>{icon}</span> {text}
+          </Button>
         </SheetTrigger>
 
         <SheetContent>
