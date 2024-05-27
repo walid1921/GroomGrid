@@ -26,12 +26,20 @@ import { CreateEditForm } from "./createEditForm";
 import useDeleteService from "./useDeleteService";
 import useServices from "./useServices";
 import useCreateService from "./useCreateService";
-
+import { useSearchParams } from "react-router-dom";
 
 const ServiceTable = () => {
-
   //! Fetching services
   const { isPending, services, error } = useServices();
+  const [searchParams] = useSearchParams();
+  const filterValue = searchParams.get("discount") || "all";
+
+  let filteredServices;
+  if (filterValue === "all") filteredServices = services;
+  if (filterValue === "no-discount")
+    filteredServices = services?.filter((service) => service.discount === 0);
+  if (filterValue === "with-discount")
+    filteredServices = services?.filter((service) => service.discount > 0);
 
   //! Deletion of service
   const { isDeleting, deleteService } = useDeleteService();
@@ -55,7 +63,7 @@ const ServiceTable = () => {
               </TableRow>
             </TableHeader>
 
-            {services?.map((service) => (
+            {filteredServices?.map((service) => (
               <TableBody key={service.id}>
                 <TableRow>
                   <TableCell>
@@ -76,7 +84,6 @@ const ServiceTable = () => {
                   </TableCell>
                   <TableCell className="px-0">{service.description}</TableCell>
                   <TableCell>
-
                     {/* ----------------------------- Menu ----------------------------- */}
                     <DropdownMenu>
                       <DropdownMenuTrigger>
@@ -118,7 +125,6 @@ const ServiceTable = () => {
                       </DropdownMenuContent>
                     </DropdownMenu>
                     {/* ----------------------------- Menu ----------------------------- */}
-
                   </TableCell>
                 </TableRow>
               </TableBody>

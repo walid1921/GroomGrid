@@ -1,6 +1,7 @@
 import { Row } from "@/components/row";
 import { CreateEditForm } from "@/features/services/createEditForm";
 import ServiceTable from "@/features/services/serviceTable";
+import FilterOperations from "@/features/services/filterOperations";
 import { HiPlus } from "react-icons/hi";
 
 // import { getServices } from "@/services/apiServices";
@@ -17,7 +18,14 @@ function Services() {
     <>
       <Row>
         <h1>Services</h1>
-        <p>Filter / sort</p>
+        <FilterOperations
+          filterName="discount"
+          options={[
+            { value: "all", label: "All" },
+            { value: "no-discount", label: "No discount" },
+            { value: "with-discount", label: "With discount" },
+          ]}
+        />
       </Row>
       <Row variant="vertical">
         <ServiceTable />
