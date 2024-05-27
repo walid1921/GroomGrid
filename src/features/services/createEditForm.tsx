@@ -109,8 +109,12 @@ export function CreateEditForm({
     <>
       <Sheet>
         <SheetTrigger asChild>
-          <Button size="sm" variant="ghost" className="flex justify-start text-left gap-2 w-full">
-            <span>{icon}</span> {text}
+          <Button
+            size="sm"
+            variant="ghost"
+            className="flex justify-start text-left gap-2 w-full"
+          >
+            {icon} {text}
           </Button>
         </SheetTrigger>
 
