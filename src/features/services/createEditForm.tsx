@@ -45,6 +45,7 @@ type serviceToEditProps = {
 };
 
 export function CreateEditForm({
+  bgPrimary,
   icon,
   text,
   title,
@@ -62,6 +63,7 @@ export function CreateEditForm({
   text?: string;
   title: string;
   description: string;
+  bgPrimary?: string;
   serviceToEdit?: serviceToEditProps;
 }) {
   const { id: editId, ...editValues } = serviceToEdit;
@@ -112,7 +114,7 @@ export function CreateEditForm({
           <Button
             size="sm"
             variant="ghost"
-            className="flex justify-start text-left gap-2 w-full"
+            className={`flex justify-start text-left gap-2 w-full ${bgPrimary}`}
           >
             {icon} {text}
           </Button>
