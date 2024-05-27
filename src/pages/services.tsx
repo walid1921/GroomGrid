@@ -18,25 +18,25 @@ function Services() {
     <>
       <Row>
         <h1>Services</h1>
-        <FilterOperations
-          filterName="discount"
-          options={[
-            { value: "all", label: "All" },
-            { value: "no-discount", label: "No discount" },
-            { value: "with-discount", label: "With discount" },
-          ]}
-        />
-      </Row>
-      <Row variant="vertical">
-        <ServiceTable />
-        <div className="flex justify-center">
+        <div className="flex justify-center items-center gap-4 ">
           <CreateEditForm
             icon={<HiPlus size={20} />}
             title="Create a new service"
             description="Please fill out the form below to create a new service. Once
               submitted, the service will be added to your account."
           />
+          <FilterOperations
+            filterName="discount"
+            options={[
+              { value: "all", label: "All" },
+              { value: "no-discount", label: "No discount" },
+              { value: "with-discount", label: "With discount" },
+            ]}
+          />
         </div>
+      </Row>
+      <Row variant="vertical">
+        <ServiceTable />
       </Row>
     </>
   );

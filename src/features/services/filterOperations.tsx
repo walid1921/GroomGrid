@@ -18,7 +18,7 @@ type FilterOptions = {
 const FilterOperations = ({ filterName, options }: FilterOptions) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // to get the current filter value from the URL and make it checked 
+  // to get the current filter value from the URL and make it checked
   const currentFilter = searchParams.get(filterName) || options[0].value;
 
   const handleClick = (value: string) => {

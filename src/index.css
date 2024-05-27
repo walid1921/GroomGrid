@@ -101,6 +101,6 @@
   }
 
   .active {
-    @apply text-primary bg-secondary border-l-2 border-primary font-bold;
+    @apply text-primary bg-bgMain border-l-2 border-primary rounded-md font-bold;
   }
 }
