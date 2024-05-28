@@ -29,8 +29,10 @@ import useCreateService from "./useCreateService";
 import { useSearchParams } from "react-router-dom";
 
 const ServiceTable = () => {
-  //! Fetching services
+  //! Fetching services + Filtering
   const { isPending, services, error } = useServices();
+
+  // Filtering services
   const [searchParams] = useSearchParams();
   const filterValue = searchParams.get("discount") || "all";
 
@@ -40,6 +42,19 @@ const ServiceTable = () => {
     filteredServices = services?.filter((service) => service.discount === 0);
   if (filterValue === "with-discount")
     filteredServices = services?.filter((service) => service.discount > 0);
+
+  // Sorting services
+  const sortBy = searchParams.get("sortBy") || "startDate-asc";
+  const [field, direction] = sortBy.split("-");
+  const modifier = direction === "asc" ? 1 : -1;
+
+  const sortedServices = filteredServices?.sort((a, b) => {
+    if (typeof a[field] === "string" && typeof b[field] === "string") {
+      return a[field].localeCompare(b[field]) * modifier;
+    } else {
+      return (a[field] - b[field]) * modifier;
+    }
+  });
 
   //! Deletion of service
   const { isDeleting, deleteService } = useDeleteService();
@@ -63,7 +78,7 @@ const ServiceTable = () => {
               </TableRow>
             </TableHeader>
 
-            {filteredServices?.map((service) => (
+            {sortedServices?.map((service) => (
               <TableBody key={service.id}>
                 <TableRow>
                   <TableCell>
