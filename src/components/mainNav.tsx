@@ -7,6 +7,7 @@ import {
   HiOutlineUsers,
 } from "react-icons/hi2";
 import useServices from "@/features/services/useServices";
+import useBookings from "@/features/bookings/useBookings";
 
 //! navLinks
 const navLinks = [
@@ -39,6 +40,7 @@ const navLinks = [
 
 export default function MainNav() {
   const { services } = useServices();
+  const { bookings } = useBookings();
 
   return (
     <nav>
@@ -53,11 +55,9 @@ export default function MainNav() {
               <div className="text-[14px] flex justify-between items-center w-full">
                 {link.name}
 
-                {link.name === "Services" && (
-                  <span className="border px-2 rounded-full">
-                    {services?.length}
-                  </span>
-                )}
+                {link.name === "Services" && <span>{services?.length}</span>}
+
+                {link.name === "Bookings" && <span>{bookings?.length}</span>}
               </div>
             </NavLink>
           </li>

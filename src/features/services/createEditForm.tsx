@@ -114,7 +114,7 @@ export function CreateEditForm({
           <Button
             size="sm"
             variant="ghost"
-            className={`flex justify-start text-left gap-2 w-full ${bgPrimary}`}
+            className={`flex justify-start text-left gap-2  ${bgPrimary}`}
           >
             {icon} {text}
           </Button>

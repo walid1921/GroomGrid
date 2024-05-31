@@ -1,9 +1,9 @@
 import { Row } from "@/components/row";
 import { CreateEditForm } from "@/features/services/createEditForm";
 import ServiceTable from "@/features/services/serviceTable";
-import FilterOperations from "@/features/services/filterOperations";
+import FilterOperations from "@/components/filterOperations";
 import { HiPlus } from "react-icons/hi";
-import SortBy from "@/components/ui/sortBy";
+import SortBy from "@/components/sortBy";
 
 // import { getServices } from "@/services/apiServices";
 
@@ -19,10 +19,9 @@ function Services() {
     <>
       <Row>
         <h1>Services</h1>
-        <div className="flex justify-center items-center gap-4 ">
+        <div className="flex items-center gap-4 ">
           <CreateEditForm
-            text="New service"
-            bgPrimary="bg-primary"
+            bgPrimary="bg-primary "
             icon={<HiPlus size={20} />}
             title="Create a new service"
             description="Please fill out the form below to create a new service. Once

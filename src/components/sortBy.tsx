@@ -23,7 +23,7 @@ import {
   
     return (
       <Select value={sortBy} onValueChange={handleChange}>
-        <SelectTrigger className="w-[400px] bg-transparent">
+        <SelectTrigger className="w-[200px] bg-transparent">
           <SelectValue placeholder="Sort" className="text-white" />
         </SelectTrigger>
         <SelectContent {...props}>
