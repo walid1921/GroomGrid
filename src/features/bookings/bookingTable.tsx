@@ -66,13 +66,14 @@ function BookingTable() {
               <TableCell className="font-medium">
                 {booking.services?.name}
               </TableCell>
-              <TableCell className="flex flex-col gap-1">
-                <span className="font-bold">{booking.clients.fullName}</span>
-                <span className=" text-gray-400">{booking.clients.email}</span>
-                <span className=" text-gray-400">
-                  {booking.clients.phoneNumber}
-                </span>
-              </TableCell>
+            
+               <TableCell className="flex flex-col gap-1">
+                 <span className="font-bold">{booking.clients.fullName}</span>
+                 <span className=" text-gray-400">{booking.clients.email}</span>
+                 <span className=" text-gray-400">
+                   {booking.clients.phoneNumber}
+                 </span>
+               </TableCell>
               <TableCell>
                 <div className="flex flex-col gap-1">
                   <span>

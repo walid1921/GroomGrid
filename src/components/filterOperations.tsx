@@ -16,12 +16,12 @@ type FilterOperationsTypes = {
 };
 
 const FilterOperations = ({ filterName, options }: FilterOperationsTypes) => {
-  const [searchParams, setSearchParams] = useSearchParams(); // its a hook to get the search params from the URL
+  const [searchParams, setSearchParams] = useSearchParams(); // its a hook to get and set the search params from the URL
 
   const currentFilter = searchParams.get(filterName) || options[0].value; // to get the current filter value from the URL and make it checked
 
   const handleClick = (value: string) => {
-    searchParams.set(filterName, value); // filterName is the key and value can be (all, no-discount, with-discount)
+    searchParams.set(filterName, value); // filterName is the key and value can be (all, option 1, option 2...) this will Update the URL search parameter with the new filter value
     setSearchParams(searchParams);
   };
   return (
