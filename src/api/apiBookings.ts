@@ -1,9 +1,10 @@
 // import { getToday } from "../utils/helpers";
+import { PAGE_SIZE } from "@/utils/constants";
 import supabase from "./supabase";
 
 type BookingsTypes = {
   filter: {
-    method: string;
+    method: "eq" | "gte" | "lte" | "neq" | "gt" | "lt"; // all the possible methods
     field: string;
     value: string;
   } | null;
@@ -11,18 +12,23 @@ type BookingsTypes = {
     field: string;
     direction: string;
   } | null;
+  page: number;
 };
 
-export async function getBookings({ filter, sortBy }: BookingsTypes) {
+export async function getBookings({ filter, sortBy, page }: BookingsTypes) {
   let query = supabase
     .from("bookings")
     .select(
-      "id, created_at, startTime, endTime, numClients, status, totalPrice, services(name), clients(fullName, email, phoneNumber)"
+      "id, created_at, startTime, endTime, numClients, status, totalPrice, services(name), clients(fullName, email, phoneNumber)",
+      { count: "exact" }
     );
 
   //! Filter
-  if (filter !== null) {
-    query = query[filter.method || "eq"](filter.field, filter.value);
+  if (filter) {
+    query = query[filter.method || "eq"](
+      filter.field,
+      filter.value
+    ) as typeof query; // Type assertion to ensure TS knows this is a valid method
   }
 
   //! Sort
@@ -31,14 +37,21 @@ export async function getBookings({ filter, sortBy }: BookingsTypes) {
       ascending: sortBy.direction === "asc",
     });
 
-  const { data, error } = await query;
+  //! Pagination
+  if (page) {
+    const from = (page - 1) * PAGE_SIZE;
+    const to = page * PAGE_SIZE - 1;
+    query = query.range(from, to);
+  }
+
+  const { data, error, count } = await query;
 
   if (error) {
     console.error(error);
     throw new Error("An error occurred while fetching bookings");
   }
 
-  return data;
+  return { data, count };
 }
 
 // export async function getBooking(id) {

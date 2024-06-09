@@ -2,6 +2,7 @@ import {
   Table,
   TableBody,
   TableCell,
+  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
@@ -15,6 +16,7 @@ import { format, isToday } from "date-fns";
 import useBookings from "./useBookings";
 import { formatCurrency, formatDistanceFromNow } from "@/utils/helpers";
 import Spinner from "@/components/ui/spinner";
+import PaginationOpr from "@/components/paginationOpr";
 
 type BookingTypes = {
   id: number;
@@ -31,9 +33,16 @@ function BookingTable() {
     bookings,
     isPending,
     error,
-  }: { bookings: BookingTypes[] | undefined; isPending: boolean; error: Error | null } =
-    useBookings();
+    count,
+  }: {
+    bookings: BookingTypes[] | undefined;
+    isPending: boolean;
+    error: Error | null;
+    count: number | null | undefined;
+  } = useBookings();  // It uses the useBookings hook to fetch the bookings data
 
+
+  //! Conditional Rendering: Spinner, Empty, Error, and Table
   if (isPending) return <Spinner />;
   if (!bookings?.length) return <Empty resourceName="bookings" />;
   if (error)
@@ -52,7 +61,9 @@ function BookingTable() {
               Service
             </TableHead>
             <TableHead className="font-bold text-[15px]">Client</TableHead>
-            <TableHead className="font-bold text-[15px] hidden sm:table-cell">Dates</TableHead>
+            <TableHead className="font-bold text-[15px] hidden sm:table-cell">
+              Dates
+            </TableHead>
             <TableHead className="font-bold text-[15px]">Status</TableHead>
             <TableHead className="text-right font-bold text-[15px]">
               Amount
@@ -66,14 +77,14 @@ function BookingTable() {
               <TableCell className="font-medium">
                 {booking.services?.name}
               </TableCell>
-            
-               <TableCell className="flex flex-col gap-1">
-                 <span className="font-bold">{booking.clients.fullName}</span>
-                 <span className=" text-gray-400">{booking.clients.email}</span>
-                 <span className=" text-gray-400">
-                   {booking.clients.phoneNumber}
-                 </span>
-               </TableCell>
+
+              <TableCell className="flex flex-col gap-1">
+                <span className="font-bold">{booking.clients.fullName}</span>
+                <span className=" text-gray-400">{booking.clients.email}</span>
+                <span className=" text-gray-400">
+                  {booking.clients.phoneNumber}
+                </span>
+              </TableCell>
               <TableCell className="hidden sm:table-cell">
                 <div className="flex flex-col gap-1">
                   <span>
@@ -118,6 +129,14 @@ function BookingTable() {
             </TableRow>
           </TableBody>
         ))}
+
+        <TableFooter>
+          <TableRow>
+            <TableCell colSpan={5} className="pt-6">
+              <PaginationOpr count={count ?? 0} />
+            </TableCell>
+          </TableRow>
+        </TableFooter>
       </Table>
     </Menus>
   );
