@@ -12,7 +12,7 @@ function Bookings() {
       <Row className="flex-col sm:flex-row items-start gap-[1.6rem]">
         <h1>
           All bookings{" "}
-          <span className="font-normal text-[16px]">({bookings?.length})</span>
+          <span className="font-normal text-[16px] sm:hidden">({bookings?.length})</span>
         </h1>
         <div className="flex items-center gap-4 ">
           <FilterOperations

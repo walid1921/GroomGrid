@@ -11,7 +11,7 @@ function Dashboard() {
   return (
     <>
       <Row variant="vertical">
-        <h1>walid</h1>
+        <h1>Dashboard</h1>
         <p className="muted">safasf</p>
         <TooltipProvider>
           <Tooltip>

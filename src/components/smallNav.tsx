@@ -39,18 +39,18 @@ const navLinks = [
 
 const SmallNav = () => {
   return (
-    <ul className="flex items-center  gap-5">
+    <ul className="flex justify-center items-center gap-6">
       {navLinks.map((link) => (
         <li key={link.to}>
           <NavLink
             to={link.to}
-            className="flex items-center gap-3 hover:bg-bgMain hover:rounded-md py-2 px-2"
+            className="flex hover:bg-bgMain hover:rounded-md py-2 px-2"
           >
             <link.icon size={25} />
           </NavLink>
         </li>
       ))}
-      <ModeToggle />
+
     </ul>
   );
 };

@@ -1,3 +1,4 @@
+import { ModeToggle } from "@/components/mode-toggle";
 import UpdateSettingsForm from "@/features/settings/UpdateSettingsForm";
 
 function Settings() {
@@ -5,6 +6,7 @@ function Settings() {
     <>
       <h1>Settings</h1>
       <UpdateSettingsForm />
+      <ModeToggle />
     </>
   );
 }
