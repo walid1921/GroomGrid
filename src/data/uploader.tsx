@@ -14,6 +14,7 @@ import supabase from "@/api/supabase";
 //   breakfastPrice: 15,
 // };
 
+//! Delete all
 async function deleteClients() {
   const { error } = await supabase.from("clients").delete().gt("id", 0);
   if (error) console.log(error.message);
@@ -29,6 +30,7 @@ async function deleteBookings() {
   if (error) console.log(error.message);
 }
 
+//! Create all
 async function createClients() {
   const { error } = await supabase.from("clients").insert(clients);
   if (error) console.log(error.message);
@@ -152,7 +154,7 @@ function Uploader() {
     <div
       style={{
         marginTop: "auto",
-        backgroundColor: "#e0e7ff",
+        backgroundColor: "#313131",
         padding: "8px",
         borderRadius: "5px",
         textAlign: "center",

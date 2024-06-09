@@ -32,9 +32,9 @@ import Empty from "@/components/ui/Empty";
 const ServiceTable = () => {
   //! Fetching services + Filtering
   const { isPending, services, error } = useServices();
+  const [searchParams] = useSearchParams();
 
   // Filtering services
-  const [searchParams] = useSearchParams();
   const filterValue = searchParams.get("discount") || "all";
 
   let filteredServices;
@@ -46,6 +46,7 @@ const ServiceTable = () => {
 
   // Sorting services
   const sortBy = searchParams.get("sortBy") || "startDate-asc";
+
   const [field, direction] = sortBy.split("-");
   const modifier = direction === "asc" ? 1 : -1;
 
@@ -82,10 +83,14 @@ const ServiceTable = () => {
               <TableHead className="w-[100px] font-bold text-[15px]">
                 Image
               </TableHead>
-              <TableHead className="font-bold text-[15px]">Service</TableHead>
+              <TableHead className="font-bold text-[15px] hidden sm:table-cell">
+                Service
+              </TableHead>
               <TableHead className="font-bold text-[15px]">Price</TableHead>
-              <TableHead className="font-bold text-[15px]">Discount</TableHead>
               <TableHead className="font-bold text-[15px]">
+                Discount
+              </TableHead>
+              <TableHead className="font-bold text-[15px] hidden sm:table-cell">
                 Description
               </TableHead>
             </TableRow>
@@ -101,16 +106,20 @@ const ServiceTable = () => {
                     className="bg-servicePic rounded-lg"
                   />
                 </TableCell>
-                <TableCell>{service.name}</TableCell>
+                <TableCell className="hidden sm:table-cell">
+                  {service.name}
+                </TableCell>
                 <TableCell>{formatCurrency(service.regularPrice)}</TableCell>
                 <TableCell
                   className={`${
-                    service.discount > 0 ? "text-primary font-bold" : ""
+                    service.discount > 0
+                      ? "text-primary font-bold"
+                      : ""
                   }`}
                 >
                   {service.discount ? formatCurrency(service.discount) : "-"}
                 </TableCell>
-                <TableCell className="px-0">{service.description}</TableCell>
+                <TableCell className="px-0 hidden sm:table-cell">{service.description}</TableCell>
                 <TableCell>
                   {/* ----------------------------- Menu ----------------------------- */}
                   <DropdownMenu>

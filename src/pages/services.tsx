@@ -4,6 +4,7 @@ import ServiceTable from "@/features/services/serviceTable";
 import FilterOperations from "@/components/filterOperations";
 import { HiPlus } from "react-icons/hi";
 import SortBy from "@/components/sortBy";
+import useServices from "@/features/services/useServices";
 
 // import { getServices } from "@/services/apiServices";
 
@@ -15,10 +16,15 @@ import SortBy from "@/components/sortBy";
 // beard : We shave with shaving foam, towel, after shave and beard care.
 
 function Services() {
+  const { services } = useServices();
+
   return (
     <>
-      <Row>
-        <h1>Services</h1>
+      <Row className="flex-col sm:flex-row items-start gap-[1.6rem]">
+        <h1>
+          Services{" "}
+          <span className="font-normal text-[16px]">({services?.length})</span>
+        </h1>
         <div className="flex items-center gap-4 ">
           <CreateEditForm
             bgPrimary="bg-primary "
@@ -37,12 +43,12 @@ function Services() {
           />
           <SortBy
             options={[
-              { value: "name-asc", label: "Sort by name (A-Z)" },
-              { value: "name-desc", label: "Sort by name (Z-A)" },
-              { value: "regularPrice-asc", label: "Sort by price (low first)" },
+              { value: "name-asc", label: "Name (A-Z)" },
+              { value: "name-desc", label: "Name (Z-A)" },
+              { value: "regularPrice-asc", label: "Low price" },
               {
                 value: "regularPrice-desc",
-                label: "Sort by price (high first)",
+                label: "High price",
               },
             ]}
           />

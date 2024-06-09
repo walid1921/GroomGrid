@@ -52,7 +52,7 @@ function BookingTable() {
               Service
             </TableHead>
             <TableHead className="font-bold text-[15px]">Client</TableHead>
-            <TableHead className="font-bold text-[15px]">Dates</TableHead>
+            <TableHead className="font-bold text-[15px] hidden sm:table-cell">Dates</TableHead>
             <TableHead className="font-bold text-[15px]">Status</TableHead>
             <TableHead className="text-right font-bold text-[15px]">
               Amount
@@ -74,7 +74,7 @@ function BookingTable() {
                    {booking.clients.phoneNumber}
                  </span>
                </TableCell>
-              <TableCell>
+              <TableCell className="hidden sm:table-cell">
                 <div className="flex flex-col gap-1">
                   <span>
                     {isToday(new Date(booking.startTime))
@@ -92,7 +92,7 @@ function BookingTable() {
                 <span
                   className={`${
                     booking.status === "unconfirmed"
-                      ? "text-blue-800 bg-blue-200 font-bold"
+                      ? "text-blue-800 bg-blue-200 font-bold "
                       : ""
                   } ${
                     booking.status === "checked-in"
@@ -102,7 +102,7 @@ function BookingTable() {
                     booking.status === "checked-out"
                       ? " text-slate-800 bg-slate-300 font-bold"
                       : ""
-                  }  border px-3 py-1 rounded-full`}
+                  }  px-3 py-[5px] rounded-full`}
                 >
                   {" "}
                   {booking.status}

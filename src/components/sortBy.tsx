@@ -12,6 +12,7 @@ type SortByTypes = {
 };
 
 const SortBy = ({ options, ...props }: SortByTypes) => {
+  // ...props is used to pass the rest of the props and you can pass them down to the SelectContent component by spreading the props {...props}
   const [searchParams, setSearchParams] = useSearchParams();
 
   const currentSort = searchParams.get("sortBy") || "";
@@ -23,7 +24,7 @@ const SortBy = ({ options, ...props }: SortByTypes) => {
 
   return (
     <Select value={currentSort} onValueChange={handleChange}>
-      <SelectTrigger className="w-[200px] bg-transparent">
+      <SelectTrigger className="w-[150px] bg-transparent">
         <SelectValue placeholder="Sort" className="text-white" />
       </SelectTrigger>
       <SelectContent {...props}>

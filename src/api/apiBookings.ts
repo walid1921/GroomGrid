@@ -1,10 +1,19 @@
 // import { getToday } from "../utils/helpers";
 import supabase from "./supabase";
 
-export async function getBookings({
-  filter,
-  sortBy,
-}) {
+type BookingsTypes = {
+  filter: {
+    method: string;
+    field: string;
+    value: string;
+  } | null;
+  sortBy: {
+    field: string;
+    direction: string;
+  } | null;
+};
+
+export async function getBookings({ filter, sortBy }: BookingsTypes) {
   let query = supabase
     .from("bookings")
     .select(
