@@ -189,7 +189,7 @@ export function CreateEditForm({
 
               <SheetClose className="mt-10">
                 <Button type="submit" disabled={isWorking}>
-                  {isEditSession ? "Edit Service" : "Create New Service"}
+                  {isEditSession ? "Save Changes" : "Create New Service"}
                 </Button>
               </SheetClose>
             </form>

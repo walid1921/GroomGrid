@@ -2,11 +2,18 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 // import BookingRow from "./BookingRow";
 // import Table from "../../ui/Table";
@@ -17,6 +24,9 @@ import useBookings from "./useBookings";
 import { formatCurrency, formatDistanceFromNow } from "@/utils/helpers";
 import Spinner from "@/components/ui/spinner";
 import PaginationOpr from "@/components/paginationOpr";
+import { HiDotsVertical, HiEye, HiTrash } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
+import Tag from "@/components/tag";
 
 type BookingTypes = {
   id: number;
@@ -39,8 +49,9 @@ function BookingTable() {
     isPending: boolean;
     error: Error | null;
     count: number | null | undefined;
-  } = useBookings();  // It uses the useBookings hook to fetch the bookings data
+  } = useBookings(); // It uses the useBookings hook to fetch the bookings data
 
+  const navigate = useNavigate();
 
   //! Conditional Rendering: Spinner, Empty, Error, and Table
   if (isPending) return <Spinner />;
@@ -78,10 +89,10 @@ function BookingTable() {
                 {booking.services?.name}
               </TableCell>
 
-              <TableCell className="flex flex-col gap-1">
+              <TableCell className="flex flex-col gap-1 ">
                 <span className="font-bold">{booking.clients.fullName}</span>
                 <span className=" text-gray-400">{booking.clients.email}</span>
-                <span className=" text-gray-400">
+                <span className=" text-gray-400 ">
                   {booking.clients.phoneNumber}
                 </span>
               </TableCell>
@@ -99,25 +110,7 @@ function BookingTable() {
                 </div>
               </TableCell>
               <TableCell>
-                {" "}
-                <span
-                  className={`${
-                    booking.status === "unconfirmed"
-                      ? "text-blue-800 bg-blue-200 font-bold "
-                      : ""
-                  } ${
-                    booking.status === "checked-in"
-                      ? "text-green-800 bg-green-200 font-bold"
-                      : ""
-                  } ${
-                    booking.status === "checked-out"
-                      ? " text-slate-800 bg-slate-300 font-bold"
-                      : ""
-                  }  px-3 py-[5px] rounded-full`}
-                >
-                  {" "}
-                  {booking.status}
-                </span>
+                <Tag status={booking.status} />
               </TableCell>
               <TableCell
                 className={`${
@@ -126,18 +119,33 @@ function BookingTable() {
               >
                 {booking.totalPrice ? formatCurrency(booking.totalPrice) : "-"}
               </TableCell>
+              <TableCell>
+                {/* ----------------------------- Menu ----------------------------- */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger>
+                    <HiDotsVertical size={25} />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuItem
+                      className="flex justify-start gap-2 w-full cursor-pointer"
+                      onClick={() => navigate(`/bookings/${booking.id}`)}
+                    >
+                      <HiEye size={20} /> See details
+                    </DropdownMenuItem>
+
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem className="flex justify-start gap-2 w-full  text-destructive  cursor-pointer">
+                      <HiTrash size={20} /> Delete
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+                {/* ----------------------------- Menu ----------------------------- */}
+              </TableCell>
             </TableRow>
           </TableBody>
         ))}
-
-        <TableFooter>
-          <TableRow>
-            <TableCell colSpan={5} className="pt-6">
-              <PaginationOpr count={count ?? 0} />
-            </TableCell>
-          </TableRow>
-        </TableFooter>
       </Table>
+      <PaginationOpr count={count ?? 0} />
     </Menus>
   );
 }

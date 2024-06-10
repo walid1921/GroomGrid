@@ -1,10 +1,12 @@
 import { getBookings } from "@/api/apiBookings";
-import { useQuery } from "@tanstack/react-query";
+import { PAGE_SIZE } from "@/utils/constants";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 
 type FilterMethod = "eq" | "gte" | "lte" | "neq" | "gt" | "lt";
 
 function useBookings() {
+  const queryClient = useQueryClient();
   const [searchParams] = useSearchParams();
 
   //! Filter
@@ -22,9 +24,9 @@ function useBookings() {
   const sortBy = { field, direction };
 
   //! Pagination
-
   const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
 
+  //! Query
   const {
     isPending,
     data: { data: bookings, count } = {},
@@ -34,7 +36,21 @@ function useBookings() {
     queryFn: () => getBookings({ filter, sortBy, page }),
   });
 
- 
+  //! Pre-fetching
+  const pageCount = Math.ceil(count / PAGE_SIZE);
+
+  if (page < pageCount)
+    // to avoid an error loading unexcited data after the last page. it means we stop it in the last page
+    queryClient.prefetchQuery({
+      queryKey: ["bookings", filter, sortBy, page + 1],
+      queryFn: () => getBookings({ filter, sortBy, page: page + 1 }),
+    });
+
+  if (page > 1)
+    queryClient.prefetchQuery({
+      queryKey: ["bookings", filter, sortBy, page - 1],
+      queryFn: () => getBookings({ filter, sortBy, page: page - 1 }),
+    });
 
   return { isPending, bookings, error, count };
 }
