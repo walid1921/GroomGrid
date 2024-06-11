@@ -27,6 +27,12 @@ function BookingDetail() {
       </Row>
 
       <BookingCardInfo booking={booking} />
+
+      {/* <ButtonGroup>
+        <Button variation="secondary" onClick={moveBack}>
+          Back
+        </Button>
+      </ButtonGroup> */}
     </>
   );
 }
