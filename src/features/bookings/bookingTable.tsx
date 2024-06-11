@@ -89,7 +89,10 @@ function BookingTable() {
                 {booking.services?.name}
               </TableCell>
 
-              <TableCell className="flex flex-col gap-1 ">
+              <TableCell
+                className="flex flex-col gap-1 cursor-pointer "
+                onClick={() => navigate(`/bookings/${booking.id}`)}
+              >
                 <span className="font-bold">{booking.clients.fullName}</span>
                 <span className=" text-gray-400">{booking.clients.email}</span>
                 <span className=" text-gray-400 ">
