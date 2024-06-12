@@ -11,8 +11,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
-import { HiOutlineCalendarDays, HiOutlineCheckCircle } from "react-icons/hi2";
+import {
+  HiArrowDownOnSquare,
+  HiOutlineCalendarDays,
+  HiOutlineCheckCircle,
+} from "react-icons/hi2";
 import { HiOutlineCurrencyDollar } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
 
 const BookingCardInfo = ({ booking }) => {
   const {
@@ -29,6 +34,8 @@ const BookingCardInfo = ({ booking }) => {
     clients: { fullName, email, phoneNumber },
     services: { name: serviceName },
   } = booking;
+
+  const navigate = useNavigate();
 
   return (
     <Card>
@@ -115,10 +122,12 @@ const BookingCardInfo = ({ booking }) => {
         </div>
       </CardContent>
       <CardFooter>
-        <Button>
-          <Check className="mr-2 h-4 w-4" /> Mark all as read
-        </Button>
-        <div className="text-sm text-gray-500 text-right w-full">
+        {booking.status === "unconfirmed" && (
+          <Button variant={"outline"} onClick={() => navigate(`/checkin/${booking.id}`)}>
+            <HiArrowDownOnSquare size={25} /> Check in
+          </Button>
+        )}
+        <div className="text-sm text-muted-foreground text-right w-full">
           <p>Booked {format(new Date(created_at), "EEE, MMM dd yyyy, p")}</p>
         </div>
       </CardFooter>

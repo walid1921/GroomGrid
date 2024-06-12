@@ -23,7 +23,9 @@ function BookingDetail() {
           </h1>
           <Tag status={booking?.status} />
         </div>
-        <Button onClick={moveBack}>&larr; Back</Button>
+        <Button variant={"outline"} onClick={moveBack}>
+          &larr; Back
+        </Button>
       </Row>
 
       <BookingCardInfo booking={booking} />

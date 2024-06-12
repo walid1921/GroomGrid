@@ -27,6 +27,7 @@ import PaginationOpr from "@/components/paginationOpr";
 import { HiDotsVertical, HiEye, HiTrash } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import Tag from "@/components/tag";
+import { HiArrowDownOnSquare } from "react-icons/hi2";
 
 type BookingTypes = {
   id: number;
@@ -135,6 +136,14 @@ function BookingTable() {
                     >
                       <HiEye size={20} /> See details
                     </DropdownMenuItem>
+                    {booking.status === "unconfirmed" && (
+                      <DropdownMenuItem
+                        className="flex justify-start gap-2 w-full cursor-pointer"
+                        onClick={() => navigate(`/checkin/${booking.id}`)}
+                      >
+                        <HiArrowDownOnSquare size={20} /> Check in
+                      </DropdownMenuItem>
+                    )}
 
                     <DropdownMenuSeparator />
                     <DropdownMenuItem className="flex justify-start gap-2 w-full  text-destructive  cursor-pointer">

@@ -64,7 +64,7 @@ export async function getBooking(id: number) {
     .single();
 
   console.log(data);
-  
+
   if (error) {
     console.error(error);
     throw new Error("Booking not found");
@@ -127,20 +127,21 @@ export async function getBooking(id: number) {
 //   return data;
 // }
 
-// export async function updateBooking(id, obj) {
-//   const { data, error } = await supabase
-//     .from("bookings")
-//     .update(obj)
-//     .eq("id", id)
-//     .select()
-//     .single();
+//! Update a booking
+export async function updateBooking(id, obj) {
+  const { data, error } = await supabase
+    .from("bookings")
+    .update(obj)
+    .eq("id", id)
+    .select()
+    .single();
 
-//   if (error) {
-//     console.error(error);
-//     throw new Error("Booking could not be updated");
-//   }
-//   return data;
-// }
+  if (error) {
+    console.error(error);
+    throw new Error("Booking could not be updated");
+  }
+  return data;
+}
 
 // export async function deleteBooking(id) {
 //   // REMEMBER RLS POLICIES
