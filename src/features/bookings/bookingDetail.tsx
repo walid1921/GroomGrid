@@ -18,8 +18,7 @@ function BookingDetail() {
       <Row className="flex-col sm:flex-row items-start gap-[1.6rem] ">
         <div className="flex justify-between items-center w-full">
           <h1 className="flex flex-col sm:flex-row sm:gap-6 text-3xl sm:text-4xl">
-            <span>{booking?.clients.fullName}</span>{" "}
-            <span>Booking #{booking?.id} </span>
+          Booking #{booking?.id} <span className="text-[20px]">{booking?.clients.fullName}</span>
           </h1>
           <Tag status={booking?.status} />
         </div>
