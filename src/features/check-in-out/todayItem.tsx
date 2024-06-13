@@ -15,6 +15,3 @@ const StyledTodayItem = styled.li`
   }
 `;
 
-const Guest = styled.div`
-  font-weight: 500;
-`;
