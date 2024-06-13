@@ -42,7 +42,7 @@ const BookingCardInfo = ({ booking }) => {
       <CardHeader>
         <CardTitle className="flex text-lg sm:text-2xl sm:items-center gap-4">
           <HiOutlineCalendarDays size={30} />
-          {numClients} clients in Service {serviceName}
+          {numClients} client coming for a {serviceName}
         </CardTitle>
         <CardDescription className="text-[12px] sm:text-sm">
           {format(new Date(startTime), "EEE, MMM dd yyyy")} (
