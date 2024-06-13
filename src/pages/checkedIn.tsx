@@ -1,4 +1,4 @@
-import CheckinBooking from "@/features/check-in-out/CheckInBooking";
+import CheckinBooking from "@/features/check-in-out/CheckinBooking";
 
 const CheckedIn = () => {
   return <CheckinBooking />;
