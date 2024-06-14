@@ -1,7 +1,6 @@
 import { BellRing } from "lucide-react";
 import { formatDistanceFromNow, formatCurrency } from "../../utils/helpers";
 import { format, isToday } from "date-fns";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -11,13 +10,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
-import {
-  HiArrowDownOnSquare,
-  HiOutlineCalendarDays,
-  HiOutlineCheckCircle,
-} from "react-icons/hi2";
+import { HiOutlineCalendarDays, HiOutlineCheckCircle } from "react-icons/hi2";
 import { HiOutlineCurrencyDollar } from "react-icons/hi";
-import { useNavigate } from "react-router-dom";
 
 type BookingCardInfoTypes = {
   booking: {
@@ -46,7 +40,6 @@ type BookingCardInfoTypes = {
 
 const BookingCardInfo = ({ booking }: BookingCardInfoTypes) => {
   const {
-    id,
     created_at,
     startTime,
     endTime,
@@ -57,12 +50,9 @@ const BookingCardInfo = ({ booking }: BookingCardInfoTypes) => {
     hasProduct,
     observations,
     isPaid,
-    status,
     clients: { fullName, email, phoneNumber },
     services: { name: serviceName },
   } = booking;
-
-  const navigate = useNavigate();
 
   return (
     <Card>
@@ -80,7 +70,7 @@ const BookingCardInfo = ({ booking }: BookingCardInfoTypes) => {
         </CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4">
-        <div className="flex gap-10">
+        <div className="flex sm:gap-10">
           <div className="mb-4 grid grid-cols-[25px_1fr] items-start last:mb-0 last:pb-0">
             <span className="flex h-2 w-2 translate-y-1 rounded-full bg-gray-500" />
             <div className="space-y-1">
@@ -118,16 +108,18 @@ const BookingCardInfo = ({ booking }: BookingCardInfoTypes) => {
                 : "border-yellow-800  text-yellow-400 bg-yellow-900/30"
             }`}
           >
-            <div className="flex flex-col sm:flex-row items-center gap-3 sm:text-sm">
+            <div className="flex flex-col sm:flex-row items-center gap-3  sm:text-sm">
               <p className="flex gap-2 font-bold underline">
                 <HiOutlineCurrencyDollar size={30} />
                 Total price
               </p>
-              {formatCurrency(totalPrice)}
-              {hasProduct &&
-                ` (${formatCurrency(servicePrice)} service + ${formatCurrency(
-                  extrasPrice
-                )} product)`}{" "}
+              <span className="text-[12px]">
+                {formatCurrency(totalPrice)}
+                {hasProduct &&
+                  ` (${formatCurrency(servicePrice)} service + ${formatCurrency(
+                    extrasPrice
+                  )} product)`}{" "}
+              </span>
             </div>
             <span className="flex items-center gap-1 uppercase text-sm font-semibold ml-4">
               <HiOutlineCheckCircle size={20} />

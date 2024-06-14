@@ -23,7 +23,7 @@ function Services() {
       <Row className="flex-col sm:flex-row items-start gap-[1.6rem]">
         <h1>
           Services{" "}
-          <span className="font-normal text-[16px] sm:hidden">({services?.length})</span>
+          <span className="font-normal text-[16px] sm:hidden ml-3">({services?.length})</span>
         </h1>
         <div className="flex items-center gap-4 ">
           <CreateEditForm
