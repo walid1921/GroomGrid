@@ -1,4 +1,4 @@
-import { BellRing, Check } from "lucide-react";
+import { BellRing } from "lucide-react";
 import { formatDistanceFromNow, formatCurrency } from "../../utils/helpers";
 import { format, isToday } from "date-fns";
 import { Button } from "@/components/ui/button";
@@ -19,8 +19,34 @@ import {
 import { HiOutlineCurrencyDollar } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 
-const BookingCardInfo = ({ booking }) => {
+type BookingCardInfoTypes = {
+  booking: {
+    id: number;
+    created_at: string;
+    startTime: string;
+    endTime: string;
+    numClients: number;
+    servicePrice: number;
+    extrasPrice: number;
+    totalPrice: number;
+    hasProduct: boolean;
+    observations: string;
+    isPaid: boolean;
+    status: string;
+    clients: {
+      fullName: string;
+      email: string;
+      phoneNumber: string;
+    };
+    services: {
+      name: string;
+    };
+  };
+};
+
+const BookingCardInfo = ({ booking }: BookingCardInfoTypes) => {
   const {
+    id,
     created_at,
     startTime,
     endTime,
@@ -31,6 +57,7 @@ const BookingCardInfo = ({ booking }) => {
     hasProduct,
     observations,
     isPaid,
+    status,
     clients: { fullName, email, phoneNumber },
     services: { name: serviceName },
   } = booking;
@@ -122,11 +149,6 @@ const BookingCardInfo = ({ booking }) => {
         </div>
       </CardContent>
       <CardFooter>
-        {booking.status === "unconfirmed" && (
-          <Button variant={"outline"} onClick={() => navigate(`/checkin/${booking.id}`)}>
-            <HiArrowDownOnSquare size={25} /> Check in
-          </Button>
-        )}
         <div className="text-sm text-muted-foreground text-right w-full">
           <p>Booked {format(new Date(created_at), "EEE, MMM dd yyyy, p")}</p>
         </div>
