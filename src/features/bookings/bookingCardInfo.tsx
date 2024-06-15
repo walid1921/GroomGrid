@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { HiOutlineCalendarDays, HiOutlineCheckCircle } from "react-icons/hi2";
-import { HiOutlineCurrencyDollar } from "react-icons/hi";
+import { PiCoins } from "react-icons/pi";
 
 type BookingCardInfoTypes = {
   booking: {
@@ -109,20 +109,20 @@ const BookingCardInfo = ({ booking }: BookingCardInfoTypes) => {
             }`}
           >
             <div className="flex flex-col sm:flex-row items-center gap-3  sm:text-sm">
-              <p className="flex gap-2 font-bold underline">
-                <HiOutlineCurrencyDollar size={30} />
-                Total price
+              <p className="flex gap-2  ">
+                <PiCoins size={25} />
+                Total price : {formatCurrency(totalPrice)}
               </p>
-              <span className="text-[12px]">
-                {formatCurrency(totalPrice)}
+              <span>
+                
                 {hasProduct &&
                   ` (${formatCurrency(servicePrice)} service + ${formatCurrency(
                     extrasPrice
                   )} product)`}{" "}
               </span>
             </div>
-            <span className="flex items-center gap-1 uppercase text-sm font-semibold ml-4">
-              <HiOutlineCheckCircle size={20} />
+            <span className="flex items-center gap-1 uppercase text-sm ml-4">
+              <HiOutlineCheckCircle size={25} />
               {isPaid ? "Paid" : "Will pay at property"}
             </span>
           </div>
