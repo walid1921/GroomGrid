@@ -14,9 +14,7 @@ function useBooking() {
     queryFn: () => getBooking(bookingId),
     retry: false,
   });
-
-  console.log(booking);
-
+  
   return { isPending, booking, error };
 }
 

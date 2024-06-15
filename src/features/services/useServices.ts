@@ -4,14 +4,14 @@ import { useQuery } from "@tanstack/react-query";
 function useServices() {
   const {
     isPending,
-    data: services,
+    data: { data: services, count } = {},
     error,
   } = useQuery({
     queryKey: ["service"],
     queryFn: getServices,
   });
 
-  return { isPending, services, error };
+  return { isPending, services, error, count };
 }
 
 export default useServices;

@@ -15,8 +15,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-// import BookingRow from "./BookingRow";
-// import Table from "../../ui/Table";
 import Menus from "@/components/ui/menus";
 import Empty from "@/components/ui/Empty";
 import { format, isToday } from "date-fns";
@@ -24,10 +22,13 @@ import useBookings from "./useBookings";
 import { formatCurrency, formatDistanceFromNow } from "@/utils/helpers";
 import Spinner from "@/components/ui/spinner";
 import PaginationOpr from "@/components/paginationOpr";
-import { HiDotsVertical, HiEye, HiTrash } from "react-icons/hi";
+import { HiDotsVertical, HiEye } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import Tag from "@/components/tag";
-import { HiArrowDownOnSquare } from "react-icons/hi2";
+import { HiArrowDownOnSquare, HiArrowUpOnSquare } from "react-icons/hi2";
+import { useCheckout } from "../check-in-out/useCheckout";
+import useDeleteBooking from "./ useDeleteBooking";
+import ConfirmDelete from "@/components/confirmDelete";
 
 type BookingTypes = {
   id: number;
@@ -53,6 +54,8 @@ function BookingTable() {
   } = useBookings(); // It uses the useBookings hook to fetch the bookings data
 
   const navigate = useNavigate();
+  const { checkout, isCheckingOut } = useCheckout();
+  const { isDeleting, deleteBooking } = useDeleteBooking();
 
   //! Conditional Rendering: Spinner, Empty, Error, and Table
   if (isPending) return <Spinner />;
@@ -144,11 +147,23 @@ function BookingTable() {
                         <HiArrowDownOnSquare size={20} /> Check in
                       </DropdownMenuItem>
                     )}
-
+                    {booking.status === "checked-in" && (
+                      <DropdownMenuItem
+                        className="flex justify-start gap-2 w-full cursor-pointer"
+                        onClick={() => checkout({ bookingId: booking.id })}
+                        disabled={isCheckingOut}
+                      >
+                        <HiArrowUpOnSquare size={20} /> Check out
+                      </DropdownMenuItem>
+                    )}
+                   
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem className="flex justify-start gap-2 w-full  text-destructive  cursor-pointer">
-                      <HiTrash size={20} /> Delete
-                    </DropdownMenuItem>
+                    <ConfirmDelete
+                      id={"booking"}
+                      disabled={isDeleting}
+                      onConfirm={() => deleteBooking(booking.id)}
+                      resourceName={booking.id}
+                    />
                   </DropdownMenuContent>
                 </DropdownMenu>
                 {/* ----------------------------- Menu ----------------------------- */}

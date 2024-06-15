@@ -39,8 +39,8 @@ const navLinks = [
 ];
 
 export default function MainNav() {
-  const { services } = useServices();
-  const { bookings } = useBookings();
+  const { count : countServices } = useServices();
+  const { count : countBookings } = useBookings();
 
   return (
     <nav>
@@ -55,9 +55,9 @@ export default function MainNav() {
               <div className="text-[14px] flex justify-between items-center w-full">
                 {link.name}
 
-                {link.name === "Services" && <span>{services?.length}</span>}
+                {link.name === "Services" && <span>{countServices}</span>}
 
-                {link.name === "Bookings" && <span>{bookings?.length}</span>}
+                {link.name === "Bookings" && <span>{countBookings}</span>}
               </div>
             </NavLink>
           </li>

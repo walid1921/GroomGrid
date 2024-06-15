@@ -16,14 +16,16 @@ import useServices from "@/features/services/useServices";
 // beard : We shave with shaving foam, towel, after shave and beard care.
 
 function Services() {
-  const { services } = useServices();
+  const { count: countServices } = useServices();
 
   return (
     <>
       <Row className="flex-col sm:flex-row items-start gap-[1.6rem]">
         <h1>
           Services{" "}
-          <span className="font-normal text-[16px] sm:hidden ml-3">({services?.length})</span>
+          <span className="font-normal text-[16px] sm:hidden ml-3">
+            ({countServices})
+          </span>
         </h1>
         <div className="flex items-center gap-4 ">
           <CreateEditForm

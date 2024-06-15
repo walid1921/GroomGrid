@@ -56,14 +56,11 @@ export async function getBookings({ filter, sortBy, page }: BookingsTypes) {
 
 //! Get a single booking
 export async function getBooking(id: number) {
-  console.log(id);
   const { data, error } = await supabase
     .from("bookings")
     .select("*, services(*), clients(*)")
     .eq("id", id)
     .single();
-
-  console.log(data);
 
   if (error) {
     console.error(error);
@@ -128,7 +125,13 @@ export async function getBooking(id: number) {
 // }
 
 //! Update a booking
-export async function updateBooking(id, obj) {
+type objTypes = {
+  status: string;
+  isPaid: boolean;
+  product: { hasProduct: boolean; extrasPrice: number; totalPrice: number };
+};
+
+export async function updateBooking(id: number, obj: objTypes) {
   const { data, error } = await supabase
     .from("bookings")
     .update(obj)
@@ -143,13 +146,15 @@ export async function updateBooking(id, obj) {
   return data;
 }
 
-// export async function deleteBooking(id) {
-//   // REMEMBER RLS POLICIES
-//   const { data, error } = await supabase.from("bookings").delete().eq("id", id);
+//! Delete a booking
 
-//   if (error) {
-//     console.error(error);
-//     throw new Error("Booking could not be deleted");
-//   }
-//   return data;
-// }
+export async function deleteBooking(id: number) {
+  // REMEMBER RLS POLICIES
+  const { data, error } = await supabase.from("bookings").delete().eq("id", id);
+
+  if (error) {
+    console.error(error);
+    throw new Error("Booking could not be deleted");
+  }
+  return data;
+}

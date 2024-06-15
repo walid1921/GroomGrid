@@ -6,7 +6,6 @@ import {
   HiOutlineUsers,
 } from "react-icons/hi2";
 import { NavLink } from "react-router-dom";
-import { ModeToggle } from "./mode-toggle";
 
 //! navLinks
 const navLinks = [
