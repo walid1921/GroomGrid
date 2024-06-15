@@ -22,6 +22,7 @@ const FilterOperations = ({ filterName, options }: FilterOperationsTypes) => {
 
   const handleClick = (value: string) => {
     searchParams.set(filterName, value); // filterName is the key and value can be (all, option 1, option 2...) this will Update the URL search parameter with the new filter value
+    if (searchParams.get("page")) searchParams.set("page", "1");
     setSearchParams(searchParams);
   };
   return (
