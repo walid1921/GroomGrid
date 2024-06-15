@@ -6,10 +6,10 @@ import Spinner from "@/components/ui/spinner";
 import useBooking from "../bookings/useBooking";
 import { useEffect, useState } from "react";
 import { CheckBoxConfirm } from "@/features/check-in-out/checkBoxConfirm";
-import { useChecking } from "./useChecking";
 import UseSettings from "../settings/useSettings";
 import UpdateSettingsForm from "../settings/UpdateSettingsForm";
 import { format } from "date-fns";
+import { useChecking } from "./useChecking";
 
 function CheckinBooking() {
   const moveBack = useMoveBack();

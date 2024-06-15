@@ -10,14 +10,16 @@ type NewServiceType = {
 
 //! Get all services
 export async function getServices() {
-  const { data, error } = await supabase.from("services").select("*");
+  const { data, error, count } = await supabase
+    .from("services")
+    .select("*", { count: "exact" });
 
   if (error) {
     console.error(error);
     throw new Error("An error occurred while fetching services");
   }
 
-  return data;
+  return { data, count };
 }
 
 //! Create service

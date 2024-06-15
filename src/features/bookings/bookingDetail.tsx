@@ -6,11 +6,16 @@ import Spinner from "@/components/ui/spinner";
 import Tag from "@/components/tag";
 import BookingCardInfo from "./bookingCardInfo";
 import { format } from "date-fns";
-import { HiArrowDownOnSquare } from "react-icons/hi2";
+import { HiArrowDownOnSquare, HiArrowUpOnSquare } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
+import { useCheckout } from "../check-in-out/useCheckout";
+import { HiTrash } from "react-icons/hi";
+import useDeleteBooking from "./ useDeleteBooking";
 
 function BookingDetail() {
   const { booking, isPending } = useBooking();
+  const { checkout, isCheckingOut } = useCheckout();
+  const { isDeleting, deleteBooking } = useDeleteBooking();
 
   const moveBack = useMoveBack();
   const navigate = useNavigate();
@@ -43,6 +48,26 @@ function BookingDetail() {
               <HiArrowDownOnSquare size={25} /> Check in
             </Button>
           )}
+          {booking.status === "checked-in" && (
+            <Button
+              className="flex justify-start gap-2 w-full cursor-pointer"
+              onClick={() => checkout({ bookingId: booking.id })}
+              disabled={isCheckingOut}
+            >
+              <HiArrowUpOnSquare size={20} /> Check out
+            </Button>
+          )}
+          <Button
+            variant={"destructive"}
+            onClick={() => {
+              deleteBooking(booking.id);
+              navigate(`/bookings`);
+            }}
+            disabled={isDeleting}
+            className="flex justify-start gap-2 w-full  cursor-pointer"
+          >
+            <HiTrash size={20} /> Delete
+          </Button>
           <Button variant={"outline"} onClick={moveBack}>
             &larr; Back
           </Button>

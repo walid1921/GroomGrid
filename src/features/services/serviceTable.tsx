@@ -1,4 +1,4 @@
-import { HiDotsVertical, HiPencil, HiTrash } from "react-icons/hi";
+import { HiDotsVertical, HiPencil } from "react-icons/hi";
 import { HiSquare2Stack } from "react-icons/hi2";
 import {
   Table,
@@ -28,6 +28,7 @@ import useServices from "./useServices";
 import useCreateService from "./useCreateService";
 import { useSearchParams } from "react-router-dom";
 import Empty from "@/components/ui/Empty";
+import ConfirmDelete from "@/components/confirmDelete";
 
 const ServiceTable = () => {
   //! Fetching services + Filtering
@@ -87,9 +88,7 @@ const ServiceTable = () => {
                 Service
               </TableHead>
               <TableHead className="font-bold text-[15px]">Price</TableHead>
-              <TableHead className="font-bold text-[15px]">
-                Discount
-              </TableHead>
+              <TableHead className="font-bold text-[15px]">Discount</TableHead>
               <TableHead className="font-bold text-[15px] hidden sm:table-cell">
                 Description
               </TableHead>
@@ -112,14 +111,14 @@ const ServiceTable = () => {
                 <TableCell>{formatCurrency(service.regularPrice)}</TableCell>
                 <TableCell
                   className={`${
-                    service.discount > 0
-                      ? "text-primary font-bold"
-                      : ""
+                    service.discount > 0 ? "text-primary font-bold" : ""
                   }`}
                 >
                   {service.discount ? formatCurrency(service.discount) : "-"}
                 </TableCell>
-                <TableCell className="px-0 hidden sm:table-cell">{service.description}</TableCell>
+                <TableCell className="px-0 hidden sm:table-cell">
+                  {service.description}
+                </TableCell>
                 <TableCell>
                   {/* ----------------------------- Menu ----------------------------- */}
                   <DropdownMenu>
@@ -153,13 +152,13 @@ const ServiceTable = () => {
                       />
 
                       <DropdownMenuSeparator />
-                      <DropdownMenuItem
-                        onClick={() => deleteService(service.id)}
+
+                      <ConfirmDelete
+                        id={"service"}
                         disabled={isDeleting}
-                        className="flex justify-start gap-2 w-full  text-destructive  cursor-pointer"
-                      >
-                        <HiTrash size={20} /> Delete
-                      </DropdownMenuItem>
+                        onConfirm={() => deleteService(service.id)}
+                        resourceName={service.name}
+                      />
                     </DropdownMenuContent>
                   </DropdownMenu>
                   {/* ----------------------------- Menu ----------------------------- */}
