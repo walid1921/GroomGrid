@@ -125,13 +125,16 @@ export async function getBooking(id: number) {
 // }
 
 //! Update a booking
-type objTypes = {
-  status: string;
-  isPaid: boolean;
-  product: { hasProduct: boolean; extrasPrice: number; totalPrice: number };
-};
+// type updateBookingTypes = {
+//   id: number;
+//   obj: {
+//     status: string;
+//     isPaid: boolean;
+//     product: { hasProduct: boolean; extrasPrice: number; totalPrice: number };
+//   };
+// };
 
-export async function updateBooking(id: number, obj: objTypes) {
+export async function updateBooking(id, obj) {
   const { data, error } = await supabase
     .from("bookings")
     .update(obj)

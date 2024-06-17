@@ -36,12 +36,16 @@ function ConfirmDelete({
               `Are you sure you want to delete booking #${resourceName}?`}
             {id === "service" &&
               `Are you sure you want to delete service (${resourceName})?`}
+            {id === "client" &&
+              `Are you sure you want to delete client "${resourceName}"?`}
           </DialogTitle>
           <DialogDescription className="py-4">
             {id === "booking" &&
               `This action cannot be undone. This will permanently delete (booking #${resourceName}) and remove it from our servers.`}
             {id === "service" &&
               `This action cannot be undone. This will permanently delete (service ${resourceName}) and remove it from our servers.`}
+            {id === "client" &&
+              `This action cannot be undone. This will permanently delete client "${resourceName}" and remove it from our servers.`}
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
@@ -50,8 +54,9 @@ function ConfirmDelete({
               variant={"destructive"}
               disabled={disabled}
               onClick={onConfirm}
+              className="flex items-center gap-2"
             >
-              Delete
+              <HiTrash size={20} /> Delete
             </Button>
           </DialogClose>
           <DialogClose asChild>
