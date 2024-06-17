@@ -18,7 +18,9 @@ import { CreateForm } from "./createForm";
 import { HiPlus } from "react-icons/hi";
 
 const ClientTable = () => {
+  //! Search query
   const [query, setQuery] = useState("");
+
   const { clients, error, isPending, count } = useClients(query);
   const navigate = useNavigate();
 
@@ -48,9 +50,10 @@ const ClientTable = () => {
               {error.message}
             </p>
           )}
-          {!isPending && (!clients || clients.length === 0) && (
-            <Empty resourceName="clients" />
-          )}
+          {!isPending &&
+            (!clients || clients.length === 0) && ( //  ensures we handle both undefined and empty array cases for clients
+              <Empty resourceName="clients" />
+            )}
           {!isPending && clients && clients.length > 0 && (
             <Table>
               <TableHeader>
