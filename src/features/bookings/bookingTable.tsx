@@ -72,15 +72,19 @@ function BookingTable() {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[100px] font-bold text-[15px]">
+            <TableHead className="text-start font-bold text-[15px]">
               Service
             </TableHead>
-            <TableHead className="font-bold text-[15px]">Client</TableHead>
-            <TableHead className="font-bold text-[15px] hidden sm:table-cell">
+            <TableHead className="text-start font-bold text-[15px]">
+              Client
+            </TableHead>
+            <TableHead className="text-start font-bold text-[15px] hidden sm:table-cell">
               Dates
             </TableHead>
-            <TableHead className="font-bold text-[15px]">Status</TableHead>
-            <TableHead className="text-right font-bold text-[15px]">
+            <TableHead className="text-start font-bold text-[15px]">
+              Status
+            </TableHead>
+            <TableHead className="text-start  font-bold text-[15px]">
               Amount
             </TableHead>
           </TableRow>
@@ -89,7 +93,7 @@ function BookingTable() {
         {bookings?.map((booking) => (
           <TableBody key={booking.id}>
             <TableRow>
-              <TableCell className="font-medium">
+              <TableCell className="font-medium text-start">
                 {booking.services?.name}
               </TableCell>
 
@@ -97,13 +101,17 @@ function BookingTable() {
                 className="flex flex-col gap-1 cursor-pointer "
                 onClick={() => navigate(`/bookings/${booking.id}`)}
               >
-                <span className="font-bold">{booking.clients.fullName}</span>
-                <span className=" text-gray-400">{booking.clients.email}</span>
-                <span className=" text-gray-400 ">
+                <span className="text-start font-bold">
+                  {booking.clients.fullName}
+                </span>
+                <span className="text-start text-gray-400">
+                  {booking.clients.email}
+                </span>
+                <span className="text-start text-gray-400 ">
                   {booking.clients.phoneNumber}
                 </span>
               </TableCell>
-              <TableCell className="hidden sm:table-cell">
+              <TableCell className="text-start hidden sm:table-cell">
                 <div className="flex flex-col gap-1">
                   <span>
                     {isToday(new Date(booking.startTime))
@@ -116,14 +124,10 @@ function BookingTable() {
                   </span>
                 </div>
               </TableCell>
-              <TableCell>
+              <TableCell className="text-start">
                 <Tag status={booking.status} />
               </TableCell>
-              <TableCell
-                className={`${
-                  booking.totalPrice > 0 ? "font-bold text-right" : ""
-                }`}
-              >
+              <TableCell className="text-start">
                 {booking.totalPrice ? formatCurrency(booking.totalPrice) : "-"}
               </TableCell>
               <TableCell>
@@ -156,7 +160,7 @@ function BookingTable() {
                         <HiArrowUpOnSquare size={20} /> Check out
                       </DropdownMenuItem>
                     )}
-                   
+
                     <DropdownMenuSeparator />
                     <ConfirmDelete
                       id={"booking"}

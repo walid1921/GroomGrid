@@ -51,7 +51,10 @@ function BookingDetail() {
           {booking.status === "checked-in" && (
             <Button
               className="flex justify-start gap-2 w-full cursor-pointer"
-              onClick={() => checkout({ bookingId: booking.id })}
+              onClick={() => {
+                checkout({ bookingId: booking.id });
+                navigate(`/bookings`);
+              }}
               disabled={isCheckingOut}
             >
               <HiArrowUpOnSquare size={20} /> Check out

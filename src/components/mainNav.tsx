@@ -4,10 +4,12 @@ import {
   HiOutlineCog6Tooth,
   HiOutlineHome,
   HiOutlineScissors,
+  HiOutlineUserGroup,
   HiOutlineUsers,
 } from "react-icons/hi2";
 import useServices from "@/features/services/useServices";
 import useBookings from "@/features/bookings/useBookings";
+import useClients from "@/features/clients/useClients";
 
 //! navLinks
 const navLinks = [
@@ -27,6 +29,11 @@ const navLinks = [
     to: "/services",
   },
   {
+    name: "Clients",
+    icon: HiOutlineUserGroup,
+    to: "/clients",
+  },
+  {
     name: "Users",
     icon: HiOutlineUsers,
     to: "/users",
@@ -39,8 +46,9 @@ const navLinks = [
 ];
 
 export default function MainNav() {
-  const { count : countServices } = useServices();
-  const { count : countBookings } = useBookings();
+  const { count: countServices } = useServices();
+  const { count: countBookings } = useBookings();
+  const { count: countClients } = useClients();
 
   return (
     <nav>
@@ -56,6 +64,7 @@ export default function MainNav() {
                 {link.name}
 
                 {link.name === "Services" && <span>{countServices}</span>}
+                {link.name === "Clients" && <span>{countClients}</span>}
 
                 {link.name === "Bookings" && <span>{countBookings}</span>}
               </div>

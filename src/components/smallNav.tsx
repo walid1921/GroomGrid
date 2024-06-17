@@ -3,6 +3,7 @@ import {
   HiOutlineCog6Tooth,
   HiOutlineHome,
   HiOutlineScissors,
+  HiOutlineUserGroup,
   HiOutlineUsers,
 } from "react-icons/hi2";
 import { NavLink } from "react-router-dom";
@@ -23,6 +24,11 @@ const navLinks = [
     name: "Services",
     icon: HiOutlineScissors,
     to: "/services",
+  },
+  {
+    name: "Clients",
+    icon: HiOutlineUserGroup,
+    to: "/clients",
   },
   {
     name: "Users",
@@ -49,7 +55,6 @@ const SmallNav = () => {
           </NavLink>
         </li>
       ))}
-
     </ul>
   );
 };
