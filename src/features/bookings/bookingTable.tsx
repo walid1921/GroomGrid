@@ -90,9 +90,9 @@ function BookingTable() {
           </TableRow>
         </TableHeader>
 
-        {bookings?.map((booking) => (
-          <TableBody key={booking.id}>
-            <TableRow>
+        <TableBody>
+          {bookings?.map((booking) => (
+            <TableRow key={booking.id}>
               <TableCell className="font-medium text-start">
                 {booking.services?.name}
               </TableCell>
@@ -173,8 +173,8 @@ function BookingTable() {
                 {/* ----------------------------- Menu ----------------------------- */}
               </TableCell>
             </TableRow>
-          </TableBody>
-        ))}
+          ))}
+        </TableBody>
       </Table>
       <PaginationOpr count={count ?? 0} />
     </Menus>

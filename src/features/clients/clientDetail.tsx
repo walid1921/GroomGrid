@@ -3,11 +3,10 @@ import { useMoveBack } from "../../hooks/useMoveBack";
 import { Row } from "@/components/row";
 import Spinner from "@/components/ui/spinner";
 import { useNavigate } from "react-router-dom";
-
-import useClient from "./useclient";
 import useDeleteClient from "./useDeleteClient";
 import ClientCardInfo from "./clientCardInfo";
-import ConfirmDelete from "@/components/confirmDelete";
+import useClient from "./useClient";
+import { HiTrash } from "react-icons/hi";
 
 function ClientDetail() {
   const { client, isPending } = useClient();
@@ -31,15 +30,17 @@ function ClientDetail() {
         </div>
 
         <div className="flex items-center gap-6">
-          <ConfirmDelete
-            id={"client"}
-            disabled={isDeleting}
-            onConfirm={() => {
+          <Button
+            variant={"destructive"}
+            onClick={() => {
               deleteClient(client.id);
               navigate(`/clients`);
             }}
-            resourceName={client.fullName}
-          />
+            disabled={isDeleting}
+            className="flex justify-start gap-2 w-full  cursor-pointer"
+          >
+            <HiTrash size={20} /> Delete
+          </Button>
           <Button variant={"outline"} onClick={moveBack}>
             &larr; Back
           </Button>

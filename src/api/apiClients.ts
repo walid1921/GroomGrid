@@ -1,12 +1,30 @@
+import { PAGE_SIZE } from "@/utils/constants";
 import supabase from "./supabase";
 
 // REMEMBER RLS POLICIES
 
+type ClientsTypes = {
+  search?: string;
+  page: number;
+};
+
 //! Get clients
-export async function getClients() {
-  const { data, error, count } = await supabase
-    .from("clients")
-    .select("*", { count: "exact" });
+export async function getClients({ search, page }: ClientsTypes) {
+  let query = supabase.from("clients").select("*", { count: "exact" });
+
+  //! Search by name or email
+  if (search) {
+    query = query.or(`fullName.ilike.%${search}%,email.ilike.%${search}%`);
+  }
+
+  //! Pagination
+  if (page) {
+    const from = (page - 1) * PAGE_SIZE;
+    const to = page * PAGE_SIZE - 1;
+    query = query.range(from, to);
+  }
+
+  const { data, error, count } = await query;
 
   if (error) {
     console.error(error);
