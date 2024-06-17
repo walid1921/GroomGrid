@@ -95,9 +95,9 @@ const ServiceTable = () => {
             </TableRow>
           </TableHeader>
 
-          {sortedServices?.map((service) => (
-            <TableBody key={service.id}>
-              <TableRow>
+          <TableBody>
+            {sortedServices?.map((service) => (
+              <TableRow key={service.id}>
                 <TableCell>
                   <img
                     src={service.image}
@@ -164,8 +164,8 @@ const ServiceTable = () => {
                   {/* ----------------------------- Menu ----------------------------- */}
                 </TableCell>
               </TableRow>
-            </TableBody>
-          ))}
+            ))}
+          </TableBody>
         </Table>
       </div>
     </Menus>
