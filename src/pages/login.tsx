@@ -1,7 +1,9 @@
+import LoginForm from "@/features/authentication/loginForm";
+
 function Login() {
   return (
-    <main className="min-h-screen flex items-center justify-center bg-background">
-      Login
+    <main className="min-h-screen  bg-background">
+      <LoginForm />
     </main>
   );
 }
