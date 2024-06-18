@@ -103,4 +103,16 @@
   .active {
     @apply text-primary bg-bgMain border sm:border-l-4 border-primary rounded-md   font-bold;
   }
+
+  @keyframes rotate {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+
+  .spinner-mini {
+    width: 2.4rem;
+    height: 2.4rem;
+    animation: rotate 1.5s infinite linear;
+  }
 }
