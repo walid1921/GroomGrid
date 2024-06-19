@@ -136,7 +136,7 @@ function BookingTable() {
                   <DropdownMenuTrigger>
                     <HiDotsVertical size={25} />
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent>
+                  <DropdownMenuContent align="end">
                     <DropdownMenuItem
                       className="flex justify-start gap-2 w-full cursor-pointer"
                       onClick={() => navigate(`/bookings/${booking.id}`)}

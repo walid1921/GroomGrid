@@ -1,11 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginUserSchema } from "@/validators/loginUserValidation";
 import { z } from "zod";
-import ClientFormInput from "./userFormInput";
+import ClientFormInput from "./clientFormInput";
 import { useLogin } from "./useLogin";
 import SpinnerMini from "@/components/ui/spinnerMini";
 
@@ -26,7 +25,8 @@ function LoginForm() {
   const onSubmit = ({ ...data }: InputType) => {
     if (!data.email || !data.password) return;
     login(data, {
-      onSettled: () => { // THIS IS A CALLBACK FUNCTION WHEN THE MUTATION IS SETTLED (SUCCESS OR ERROR) 
+      onSettled: () => {
+        // THIS IS A CALLBACK FUNCTION WHEN THE MUTATION IS SETTLED (SUCCESS OR ERROR)
         form.reset(
           {
             email: "",
@@ -73,17 +73,8 @@ function LoginForm() {
               <Button type="submit" className="w-full" disabled={isPending}>
                 {!isPending ? "Login" : <SpinnerMini />}
               </Button>
-              <Button variant="outline" className="w-full" disabled={isPending}>
-                Login with Google
-              </Button>
             </form>
           </Form>
-          <div className="mt-4 text-center text-sm">
-            Don&apos;t have an account?{" "}
-            <Link to="#" className="underline">
-              Sign up
-            </Link>
-          </div>
         </div>
       </div>
       <div className="hidden bg-muted lg:block">

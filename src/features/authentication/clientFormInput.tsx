@@ -6,13 +6,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormDescription,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { signupUserSchema } from "@/validators/singupUserValidation";
+import { loginUserSchema } from "@/validators/loginUserValidation";
 
-type InputType = z.infer<typeof signupUserSchema>;
+type InputType = z.infer<typeof loginUserSchema>;
 
-type userFormInputProps = {
+type clientFormInputProps = {
   name: FieldPath<InputType>;
   label: string;
   placeholder?: string;
@@ -22,7 +23,7 @@ type userFormInputProps = {
   formControl?: Control<InputType, unknown>;
 };
 
-const UserFormInput = ({
+const ClientFormInput = ({
   formControl,
   name,
   label,
@@ -30,7 +31,7 @@ const UserFormInput = ({
   inputType,
   disabled,
   autoComplete,
-}: userFormInputProps) => {
+}: clientFormInputProps) => {
   return (
     <FormField
       control={formControl}
@@ -55,4 +56,4 @@ const UserFormInput = ({
   );
 };
 
-export default UserFormInput;
+export default ClientFormInput;
