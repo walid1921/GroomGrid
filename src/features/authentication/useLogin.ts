@@ -8,7 +8,7 @@ export function useLogin() {
   const { mutate: login, isPending } = useMutation({
     mutationFn: ({ email, password }: { email: string; password: string }) =>
       loginApi({ email, password }),
-    onSuccess: (user) => {
+    onSuccess: () => {
       navigate("/dashboard");
       toast.success("Logged in successfully");
     },

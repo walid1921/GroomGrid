@@ -13,6 +13,7 @@ type InputType = z.infer<typeof loginUserSchema>;
 
 function LoginForm() {
   const { login, isPending } = useLogin();
+
   const form = useForm<InputType>({
     resolver: zodResolver(loginUserSchema),
     defaultValues: {
@@ -24,7 +25,20 @@ function LoginForm() {
   //! Submit form
   const onSubmit = ({ ...data }: InputType) => {
     if (!data.email || !data.password) return;
-    login(data);
+    login(data, {
+      onSettled: () => { // THIS IS A CALLBACK FUNCTION WHEN THE MUTATION IS SETTLED (SUCCESS OR ERROR) 
+        form.reset(
+          {
+            email: "",
+            password: "",
+          },
+          {
+            keepValues: false,
+            keepDefaultValues: false,
+          }
+        );
+      },
+    });
   };
 
   return (
