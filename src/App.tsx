@@ -16,6 +16,7 @@ import { ThemeProvider } from "./components/theme-provider";
 import Booking from "./pages/booking";
 import CheckedIn from "./pages/checkedIn";
 import Client from "./pages/client";
+import ProtectedRoute from "./components/protectedRoute"; // this is a custom component  to protect routes from unauthenticated users
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,7 +33,13 @@ const App = () => {
         <ReactQueryDevtools initialIsOpen={true} />
         <BrowserRouter>
           <Routes>
-            <Route element={<AppLayout />}>
+            <Route
+              element={
+                <ProtectedRoute>
+                  <AppLayout />
+                </ProtectedRoute>
+              }
+            >
               <Route index element={<Navigate replace to="dashboard" />} />
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="bookings" element={<Bookings />} />
