@@ -111,8 +111,8 @@
   }
 
   .spinner-mini {
-    width: 2.4rem;
-    height: 2.4rem;
+    width: 1.2rem;
+    height: 1.2rem;
     animation: rotate 1.5s infinite linear;
   }
 }
