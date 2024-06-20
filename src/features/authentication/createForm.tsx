@@ -16,7 +16,8 @@ import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
 import UserFormInput from "./userFormInput";
-import { signupUserSchema } from "@/validators/singupUserValidation";
+import { signupUserSchema } from "@/validators/signupUserValidation";
+import useSignup from "./useSignup";
 
 type InputType = z.infer<typeof signupUserSchema>;
 
@@ -43,9 +44,20 @@ export function CreateForm({
     },
   });
 
+  const { signup, isPending } = useSignup();
+
   //! Submit form
-  const onSubmit = ({ ...data }: InputType) => {
-    console.log(data);
+
+  const onSubmit = ({ fullName, email, password }: InputType) => {
+    console.log({ fullName, email, password });
+    signup(
+      { fullName, email, password },
+      {
+        onSettled: () => {
+          form.reset();
+        },
+      }
+    );
   };
 
   return (
@@ -78,7 +90,7 @@ export function CreateForm({
                 label="Full Name"
                 autoComplete="name"
                 formControl={form.control}
-                // disabled={isPending}
+                disabled={isPending}
               />
               <UserFormInput
                 name="email"
@@ -86,7 +98,7 @@ export function CreateForm({
                 label="Email"
                 autoComplete="username"
                 formControl={form.control}
-                // disabled={isPending}
+                disabled={isPending}
               />
               <UserFormInput
                 name="password"
@@ -94,7 +106,7 @@ export function CreateForm({
                 label="Password"
                 autoComplete="new-password"
                 formControl={form.control}
-                // disabled={isPending}
+                disabled={isPending}
               />
               <UserFormInput
                 name="passwordConfirmation"
@@ -102,11 +114,11 @@ export function CreateForm({
                 label="Repeat password"
                 autoComplete="new-password"
                 formControl={form.control}
-                // disabled={isPending}
+                disabled={isPending}
               />
 
               <SheetClose className="mt-10">
-                <Button type="submit" >
+                <Button type="submit" disabled={isPending}>
                   Create New User
                 </Button>
               </SheetClose>

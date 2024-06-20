@@ -43,3 +43,31 @@ export async function logout() {
     throw new Error("An error occurred while logging out");
   }
 }
+
+//! Signup new user
+
+type SignupData = {
+  fullName: string;
+  email: string;
+  password: string;
+};
+
+export async function signup({ fullName, email, password }: SignupData) {
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: {
+        fullName,
+        avatar: "",
+      },
+    },
+  });
+
+  if (error) {
+    console.error(error);
+    throw new Error("An error occurred while signing up");
+  }
+
+  return data;
+}

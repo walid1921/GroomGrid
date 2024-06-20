@@ -8,7 +8,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { signupUserSchema } from "@/validators/singupUserValidation";
+import { signupUserSchema } from "@/validators/signupUserValidation";
 
 type InputType = z.infer<typeof signupUserSchema>;
 
