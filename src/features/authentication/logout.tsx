@@ -9,12 +9,15 @@ import {
 import { DropdownMenuLabel } from "@radix-ui/react-dropdown-menu";
 import { CircleUser } from "lucide-react";
 import { useLogout } from "./useLogout";
-import { HiArrowRightOnRectangle } from "react-icons/hi2";
+import { HiArrowRightOnRectangle, HiOutlineCog6Tooth, HiOutlineUser } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 import SpinnerMini from "@/components/ui/spinnerMini";
+import { useUser } from "./useUser";
 
 const Logout = () => {
   const { logout, isPending } = useLogout();
+  const { user } = useUser();
+  const { fullName, avatar } = user?.user_metadata;
 
   const navigate = useNavigate();
 
@@ -22,29 +25,44 @@ const Logout = () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="secondary" size="icon" className="rounded-full">
-          <CircleUser className="h-5 w-5" />
+          {avatar ? (
+            <img src={avatar} alt={`Avatar of ${fullName}`} />
+          ) : (
+            <CircleUser className="h-5 w-5" />
+          )}
+
           <span className="sr-only">Toggle user menu</span>
         </Button>
+        
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel className="flex justify-center items-center">
-          My Account
+          {fullName}
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem
-          className="flex justify-center items-center"
+          className="flex justify-start items-center"
           onClick={() => {
             navigate("/settings");
           }}
         >
-          Settings
+        <span className="flex gap-2">
+            <HiOutlineCog6Tooth size={20} /> Settings
+          </span>
         </DropdownMenuItem>
-        <DropdownMenuItem className="flex justify-center items-center">
-          Support
+        <DropdownMenuItem
+          onClick={() => {
+            navigate("/account");
+          }}
+          className="flex justify-start items-center"
+        >
+          <span className="flex gap-2">
+            <HiOutlineUser size={20} /> Account
+          </span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
-          className="flex justify-center items-center"
+          className="flex justify-start items-center"
           disabled={isPending}
           onClick={() => logout()}
         >
