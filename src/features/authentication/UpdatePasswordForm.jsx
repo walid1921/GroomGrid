@@ -60,6 +60,8 @@ function UpdatePasswordForm() {
         <Button disabled={isUpdating}>Update password</Button>
       </FormRow>
     </Form>
+
+    
   );
 }
 

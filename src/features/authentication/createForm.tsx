@@ -49,7 +49,6 @@ export function CreateForm({
   //! Submit form
 
   const onSubmit = ({ fullName, email, password }: InputType) => {
-    console.log({ fullName, email, password });
     signup(
       { fullName, email, password },
       {

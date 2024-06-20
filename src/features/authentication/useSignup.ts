@@ -9,6 +9,7 @@ function useSignup() {
       toast.success(
         "User signed up! Please check your email to verify your account"
       );
+      
     },
     onError: (error) => {
       console.error(error);
