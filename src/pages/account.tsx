@@ -1,4 +1,5 @@
 import { Row } from "@/components/row";
+import { TabsAccount } from "@/components/tabsAccount";
 import { UpdateUserData } from "@/features/authentication/updateUserData";
 
 function Account() {
@@ -10,6 +11,9 @@ function Account() {
         <Row variant={"vertical"}>
           <h3 className="text-center">Update user data</h3>
           <UpdateUserData />
+        </Row>
+        <Row variant={"vertical"}>
+          <TabsAccount />
         </Row>
 
         <Row variant={"vertical"}>

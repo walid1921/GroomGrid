@@ -38,7 +38,7 @@ const ClientTable = () => {
           placeholder="Search clients"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="max-w-sm "
+          className="max-w-sm bg-transparent border-gray-500"
         />
       </div>
 

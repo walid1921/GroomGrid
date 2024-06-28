@@ -81,16 +81,17 @@ export async function updateUser({
   avatar?: File | null;
 }) {
   // 1. Update password or full name
-  let updateData: any = {};
-  if (password) updateData = { password };
+  let updateData: any = {};  
+  if (password) updateData = { password }; 
   if (fullName) updateData = { data: { fullName } };
 
-  const { data, error } = await supabase.auth.updateUser(updateData);
+  const { data, error } = await supabase.auth.updateUser(updateData); 
 
   if (error) throw new Error(error.message);
-  if (!avatar) return data;
+  if (!avatar) return data; 
 
-  // 2. Upload the avatar image
+
+  // 3. but if there is an avatar then we here upload that
   const file = `avatar-${data.user.id}-${Math.random()}`;
 
   const { error: storageError } = await supabase.storage

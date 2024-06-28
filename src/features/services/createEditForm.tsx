@@ -114,7 +114,7 @@ export function CreateEditForm({
           <Button
             size="sm"
             variant="ghost"
-            className={`flex justify-start text-left gap-2  ${bgPrimary}`}
+            className={`flex justify-start text-left gap-2 hover:text-primary-foreground  border border-[#3ecf8e4d] hover:bg-[#3ecf8e80] ${bgPrimary}`}
           >
             {icon} {text}
           </Button>
@@ -188,7 +188,11 @@ export function CreateEditForm({
               />
 
               <SheetClose className="mt-10">
-                <Button type="submit" disabled={isWorking}>
+                <Button
+                  type="submit"
+                  disabled={isWorking}
+                  className="hover:text-primary-foreground  border border-[#3ecf8e4d] hover:bg-[#3ecf8e80]"
+                >
                   {isEditSession ? "Save Changes" : "Create New Service"}
                 </Button>
               </SheetClose>
