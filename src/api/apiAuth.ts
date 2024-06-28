@@ -81,17 +81,16 @@ export async function updateUser({
   avatar?: File | null;
 }) {
   // 1. Update password or full name
-  let updateData: any = {};  
-  if (password) updateData = { password }; 
+  let updateData: any = {};
+  if (password) updateData = { password };
   if (fullName) updateData = { data: { fullName } };
 
-  const { data, error } = await supabase.auth.updateUser(updateData); 
+  const { data, error } = await supabase.auth.updateUser(updateData);
 
   if (error) throw new Error(error.message);
-  if (!avatar) return data; 
+  if (!avatar) return data;
 
-
-  // 3. but if there is an avatar then we here upload that
+  // 2. but if there is an avatar then we here upload that
   const file = `avatar-${data.user.id}-${Math.random()}`;
 
   const { error: storageError } = await supabase.storage
@@ -103,7 +102,7 @@ export async function updateUser({
   const { data: updatedUser, error: updateError } =
     await supabase.auth.updateUser({
       data: {
-        avatar: `https://dwnblfbgetdoixzeonca.supabase.co/storage/v1/object/public/avatars/${file}`,
+        avatar: `${supabaseUrl}/storage/v1/object/public/avatars/${file}`,
       },
     });
   if (updateError) throw new Error(updateError.message);

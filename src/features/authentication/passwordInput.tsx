@@ -8,9 +8,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { updateUserSchema } from "@/validators/updateUserValidation";
+import { updatePasswordSchema } from "@/validators/updatePasswordValidation";
 
-type InputType = z.infer<typeof updateUserSchema>;
+type InputType = z.infer<typeof updatePasswordSchema>;
 
 type UserFormInputProps = {
   name: FieldPath<InputType>;
@@ -23,7 +23,7 @@ type UserFormInputProps = {
   formControl: Control<InputType>;
 };
 
-const UpdateUserInput = ({
+const PasswordInput = ({
   formControl,
   name,
   label,
@@ -31,9 +31,7 @@ const UpdateUserInput = ({
   inputType,
   disabled,
   autoComplete,
-  accept,
 }: UserFormInputProps) => {
-  const isFileInput = accept?.includes("image") || accept === "image/*";
   const { field } = useController({
     name,
     control: formControl,
@@ -47,22 +45,13 @@ const UpdateUserInput = ({
         <FormItem>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            {isFileInput ? (
-              <Input
-                type="file"
-                accept={accept}
-                disabled={disabled}
-                onChange={(e) => field.onChange(e.target.files[0])}
-              />
-            ) : (
-              <Input
-                autoComplete={autoComplete}
-                type={inputType || "text"}
-                placeholder={placeholder}
-                disabled={disabled}
-                {...field}
-              />
-            )}
+            <Input
+              autoComplete={autoComplete}
+              type={inputType || "text"}
+              placeholder={placeholder}
+              disabled={disabled}
+              {...field}
+            />
           </FormControl>
           <FormMessage />
         </FormItem>
@@ -71,4 +60,4 @@ const UpdateUserInput = ({
   );
 };
 
-export default UpdateUserInput;
+export default PasswordInput;

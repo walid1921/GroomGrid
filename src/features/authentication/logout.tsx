@@ -9,7 +9,11 @@ import {
 import { DropdownMenuLabel } from "@radix-ui/react-dropdown-menu";
 import { CircleUser } from "lucide-react";
 import { useLogout } from "./useLogout";
-import { HiArrowRightOnRectangle, HiOutlineCog6Tooth, HiOutlineUser } from "react-icons/hi2";
+import {
+  HiArrowRightOnRectangle,
+  HiOutlineCog6Tooth,
+  HiOutlineUser,
+} from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 import SpinnerMini from "@/components/ui/spinnerMini";
 import { useUser } from "./useUser";
@@ -26,17 +30,18 @@ const Logout = () => {
       <DropdownMenuTrigger asChild>
         <Button variant="secondary" size="icon" className="rounded-full">
           {avatar ? (
-            <img src={avatar} alt={`Avatar of ${fullName}`} />
+            <img
+              src={avatar}
+              alt={`Avatar of ${fullName}`}
+              className="h-full w-full rounded-full object-cover"
+            />
           ) : (
             <CircleUser className="h-5 w-5" />
           )}
-
-          <span className="sr-only">Toggle user menu</span>
         </Button>
-        
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuLabel className="flex justify-center items-center">
+        <DropdownMenuLabel className="flex justify-center items-center py-1">
           {fullName}
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
@@ -46,7 +51,7 @@ const Logout = () => {
             navigate("/settings");
           }}
         >
-        <span className="flex gap-2">
+          <span className="flex gap-2">
             <HiOutlineCog6Tooth size={20} /> Settings
           </span>
         </DropdownMenuItem>

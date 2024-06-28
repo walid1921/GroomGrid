@@ -17,7 +17,7 @@ function LoginForm() {
     resolver: zodResolver(loginUserSchema),
     defaultValues: {
       email: "walid@example.com",
-      password: "walid1921",
+      password: "13456789",
     },
   });
 
