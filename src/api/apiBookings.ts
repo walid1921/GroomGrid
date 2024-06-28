@@ -2,6 +2,7 @@
 import { PAGE_SIZE } from "@/utils/constants";
 import supabase from "./supabase";
 import { getToday } from "@/utils/helpers";
+import { Type } from "lucide-react";
 
 type BookingsTypes = {
   filter: {
@@ -72,8 +73,9 @@ export async function getBooking(id: number) {
 }
 
 // Returns all BOOKINGS that are were created after the given date. Useful to get bookings created in the last 30 days, for example.
+// date should be ISOString
 
-export async function getBookingsAfterDate(date) {
+export async function getBookingsAfterDate(date: string) {
   const { data, error } = await supabase
     .from("bookings")
     .select("created_at, totalPrice, extrasPrice")
@@ -89,21 +91,21 @@ export async function getBookingsAfterDate(date) {
 }
 
 // Returns all STAYS that are were created after the given date
-// export async function getStaysAfterDate(date) {
-//   const { data, error } = await supabase
-//     .from("bookings")
-//     // .select('*')
-//     .select("*, guests(fullName)")
-//     .gte("startDate", date)
-//     .lte("startDate", getToday());
 
-//   if (error) {
-//     console.error(error);
-//     throw new Error("Bookings could not get loaded");
-//   }
+export async function getStaysAfterDate(date) {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select("*, clients(fullName)")
+    .gte("startTime", date)
+    .lte("startTime", getToday());
 
-//   return data;
-// }
+  if (error) {
+    console.error(error);
+    throw new Error("Bookings could not get loaded");
+  }
+
+  return data;
+}
 
 // Activity means that there is a check in or a check out today
 // export async function getStaysTodayActivity() {
