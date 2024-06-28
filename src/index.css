@@ -101,7 +101,7 @@
   }
 
   .active {
-    @apply  bg-bgMain border sm:border-l-4 border-[#3ecf8e4d] rounded-md   font-bold;
+    @apply  bg-bgMain border sm:border-l-4 border-[#3ecf8e80] rounded-md   font-bold;
   }
 
   @keyframes rotate {

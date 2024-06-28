@@ -1,29 +1,15 @@
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Button } from "@/components/ui/button";
 import { Row } from "@/components/row";
+import DashboardFilter from "@/features/dashboard/dashboardFilter";
+import DashboardLayout from "@/features/dashboard/dashboardLayout";
 
 function Dashboard() {
   return (
     <>
-      <Row variant="vertical">
+      <Row>
         <h1>Dashboard</h1>
-        <p className="muted">safasf</p>
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button>Hover</Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Add to library</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        <DashboardFilter />
       </Row>
+      <DashboardLayout />
     </>
   );
 }

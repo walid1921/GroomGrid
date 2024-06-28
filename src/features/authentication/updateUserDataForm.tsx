@@ -11,7 +11,7 @@ import useUpdateUser from "./useUpdateUser";
 
 type InputType = z.infer<typeof updateUserSchema>;
 
-export function UpdateUserData() {
+export function UpdateUserDataForm() {
   const { user } = useUser();
 
   const currentFullName = user?.user_metadata?.fullName ?? "";
@@ -37,7 +37,11 @@ export function UpdateUserData() {
       },
       {
         onSuccess: () => {
-          form.reset();
+          form.reset({
+            fullName: currentFullName,
+            email: email,
+            avatar: null,
+          });
         },
       }
     );
@@ -47,7 +51,7 @@ export function UpdateUserData() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-8 mt-10"
+        className="flex flex-col gap-8 "
       >
         <UpdateUserInput
           name="email"
@@ -73,7 +77,11 @@ export function UpdateUserData() {
           disabled={isUpdating}
         />
 
-        <Button type="submit" disabled={isUpdating}>
+        <Button
+          type="submit"
+          disabled={isUpdating}
+          className="border border-[#3ecf8e4d] hover:bg-[#3ecf8e80]"
+        >
           Update User Data
         </Button>
       </form>

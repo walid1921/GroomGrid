@@ -66,7 +66,7 @@ export function CreateForm({
           <Button
             size="sm"
             variant="ghost"
-            className={`flex justify-start text-left gap-2  ${bgPrimary}`}
+            className={`flex justify-start text-left gap-2 hover:text-primary-foreground  border border-[#3ecf8e4d] hover:bg-[#3ecf8e80] ${bgPrimary}`}
           >
             {icon} {text}
           </Button>
@@ -117,7 +117,7 @@ export function CreateForm({
               />
 
               <SheetClose className="mt-10">
-                <Button type="submit" disabled={isPending}>
+                <Button type="submit" disabled={isPending} className="hover:text-primary-foreground  border border-[#3ecf8e4d] hover:bg-[#3ecf8e80]">
                   Create New User
                 </Button>
               </SheetClose>
