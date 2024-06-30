@@ -1,7 +1,7 @@
 import { HiArrowCircleLeft } from "react-icons/hi";
 import MainNav from "./mainNav";
 import Logo from "./ui/logo";
-import Uploader from "@/data/uploader";
+// import Uploader from "@/data/uploader";
 
 const Sidebar = () => {
   return (
@@ -14,7 +14,7 @@ const Sidebar = () => {
       <Logo />
       <MainNav />
 
-      <Uploader />
+      {/* <Uploader /> */}
     </aside>
   );
 };
