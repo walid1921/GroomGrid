@@ -3,7 +3,21 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCheckout } from "./useCheckout";
 import { Button } from "@/components/ui/button";
 
-const TodayItem = ({ activity }) => {
+type ActivityType = {
+  id: string;
+  status: "unconfirmed" | "checked-in";
+  clients: {
+    fullName: string;
+  };
+  startTime: string;
+  endTime: string;
+};
+
+type TodayItemProps = {
+  activity: ActivityType;
+};
+
+const TodayItem = ({ activity }: TodayItemProps) => {
   const { id, status, clients, startTime, endTime } = activity;
   const { checkout, isCheckingOut } = useCheckout();
 
@@ -28,21 +42,18 @@ const TodayItem = ({ activity }) => {
       <span>{clients.fullName}</span>
 
       {status === "unconfirmed" && (
-        <Button
-          onClick={() => navigate(`/checkin/${id}`)}
-          size={"sm"}
-        >
+        <Button onClick={() => navigate(`/checkin/${id}`)} size={"sm"}>
           <span>check in</span>
         </Button>
       )}
       {status === "checked-in" && (
         <Button
-          onClick={() => checkout({ bookingId: id })}
+          onClick={() => checkout({ bookingId: Number(id) })}
           disabled={isCheckingOut}
           size={"sm"}
           variant={`secondary`}
         >
-         <span>check out</span>
+          <span>check out</span>
         </Button>
       )}
     </li>

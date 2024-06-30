@@ -89,8 +89,10 @@ export async function getBookingsAfterDate(date: string) {
 }
 
 // Returns all STAYS that are were created after the given date
-
-export async function getStaysAfterDate(date) {
+type getStaysAfterDateTypes = {
+  date: string;
+};
+export async function getStaysAfterDate(date: getStaysAfterDateTypes) {
   const { data, error } = await supabase
     .from("bookings")
     .select("*, clients(fullName)")
@@ -111,31 +113,24 @@ export async function getStaysTodayActivity() {
   const todayEnd = getToday({ end: true }); // End of today
 
   const { data, error } = await supabase
-    .from('bookings')
-    .select('*, clients(fullName)')
-    .or(`and(status.eq.unconfirmed,startTime.gte.${todayStart},startTime.lte.${todayEnd}),and(status.eq.checked-in,endTime.gte.${todayStart},endTime.lte.${todayEnd})`)
-    .order('created_at');
-
+    .from("bookings")
+    .select("*, clients(fullName)")
+    .or(
+      `and(status.eq.unconfirmed,startTime.gte.${todayStart},startTime.lte.${todayEnd}),and(status.eq.checked-in,endTime.gte.${todayStart},endTime.lte.${todayEnd})`
+    )
+    .order("created_at");
 
   if (error) {
-    console.error('Supabase error:', error);
-    throw new Error('Bookings could not get loaded');
+    console.error("Supabase error:", error);
+    throw new Error("Bookings could not get loaded");
   }
-  
+
   return data;
 }
 
 //! Update a booking
-// type updateBookingTypes = {
-//   id: number;
-//   obj: {
-//     status: string;
-//     isPaid: boolean;
-//     product: { hasProduct: boolean; extrasPrice: number; totalPrice: number };
-//   };
-// };
 
-export async function updateBooking(id, obj) {
+export async function updateBooking(id : number, obj : any) {
   const { data, error } = await supabase
     .from("bookings")
     .update(obj)
