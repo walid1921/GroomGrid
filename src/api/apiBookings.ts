@@ -1,8 +1,6 @@
-// import { getToday } from "../utils/helpers";
 import { PAGE_SIZE } from "@/utils/constants";
 import supabase from "./supabase";
 import { getToday } from "@/utils/helpers";
-import { Type } from "lucide-react";
 
 type BookingsTypes = {
   filter: {
@@ -108,25 +106,24 @@ export async function getStaysAfterDate(date) {
 }
 
 // Activity means that there is a check in or a check out today
-// export async function getStaysTodayActivity() {
-//   const { data, error } = await supabase
-//     .from("bookings")
-//     .select("*, guests(fullName, nationality, countryFlag)")
-//     .or(
-//       `and(status.eq.unconfirmed,startDate.eq.${getToday()}),and(status.eq.checked-in,endDate.eq.${getToday()})`
-//     )
-//     .order("created_at");
+export async function getStaysTodayActivity() {
+  const todayStart = getToday(); // Start of today
+  const todayEnd = getToday({ end: true }); // End of today
 
-// Equivalent to this. But by querying this, we only download the data we actually need, otherwise we would need ALL bookings ever created
-// (stay.status === 'unconfirmed' && isToday(new Date(stay.startDate))) ||
-// (stay.status === 'checked-in' && isToday(new Date(stay.endDate)))
+  const { data, error } = await supabase
+    .from('bookings')
+    .select('*, clients(fullName)')
+    .or(`and(status.eq.unconfirmed,startTime.gte.${todayStart},startTime.lte.${todayEnd}),and(status.eq.checked-in,endTime.gte.${todayStart},endTime.lte.${todayEnd})`)
+    .order('created_at');
 
-//   if (error) {
-//     console.error(error);
-//     throw new Error("Bookings could not get loaded");
-//   }
-//   return data;
-// }
+
+  if (error) {
+    console.error('Supabase error:', error);
+    throw new Error('Bookings could not get loaded');
+  }
+  
+  return data;
+}
 
 //! Update a booking
 // type updateBookingTypes = {
