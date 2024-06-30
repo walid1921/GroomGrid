@@ -18,7 +18,7 @@ export async function getSettings() {
 
 //! Update settings
 // We expect a newSetting object that looks like {setting: newValue}
-export async function updateSetting(newSetting) {
+export async function updateSetting(newSetting: string) {
   const { data, error } = await supabase
     .from("settings")
     .update(newSetting)

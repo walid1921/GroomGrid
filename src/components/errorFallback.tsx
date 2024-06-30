@@ -1,6 +1,11 @@
 import { Button } from "@/components/ui/button";
 
-const ErrorFallback = ({ error, resetErrorBoundary }) => {
+type ErrorFallbackProps = {
+  error: Error;
+  resetErrorBoundary: () => void;
+};
+
+const ErrorFallback = ({ error, resetErrorBoundary }: ErrorFallbackProps) => {
   return (
     <main className="h-screen bg-gray-50 flex items-center justify-center p-12">
       <div className="bg-white border border-gray-100 rounded-md p-12 flex flex-col items-center text-center ">
