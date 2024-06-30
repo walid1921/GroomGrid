@@ -38,11 +38,6 @@ const navLinks = [
     icon: HiOutlineUsers,
     to: "/users",
   },
-  {
-    name: "Settings",
-    icon: HiOutlineCog6Tooth,
-    to: "/settings",
-  },
 ];
 
 export default function MainNav() {
@@ -51,12 +46,13 @@ export default function MainNav() {
   const { count: countClients } = useClients(""); // We are not using the search parameter here because we want to get the total number of clients, regardless of the search query. thats why we are passing an empty string to the useClients hook. This way, the search parameter will be ignored and all clients will be returned.
 
   return (
-    <nav>
-      <ul className="flex flex-col gap-7">
-        {navLinks.map((link) => (
-          <li key={link.to}>
+    <nav className="h-full">
+      <ul className="flex flex-col justify-between h-full">
+        <li className="flex flex-col gap-7">
+          {navLinks.map((link) => (
             <NavLink
               to={link.to}
+              key={link.to}
               className="flex items-center gap-3 hover:bg-bgMain hover:rounded-md py-2 px-4 "
             >
               <link.icon size={25} />
@@ -69,8 +65,17 @@ export default function MainNav() {
                 {link.name === "Bookings" && <span>{countBookings}</span>}
               </div>
             </NavLink>
-          </li>
-        ))}
+          ))}
+        </li>
+        <NavLink
+          to={"/settings"}
+          className="flex items-center gap-3 hover:bg-bgMain hover:rounded-md py-2 px-4 "
+        >
+          <HiOutlineCog6Tooth size={25} />
+          <div className="text-[14px] flex justify-between items-center w-full">
+            Settings
+          </div>
+        </NavLink>
       </ul>
     </nav>
   );
