@@ -59,27 +59,15 @@ const SalesChart = ({ bookings, numDays }) => {
   });
 
   return (
-    <div className="col-span-2 bg-background p-6 rounded-lg shadow">
-      <h2 className="text-lg font-semibold  mb-6">
-        Sales from {format(allDates.at(0), "MMM dd yyyy")} &mdash; {format(allDates.at(-1), "MMM dd yyyy")}
-      </h2>
+    <div className="bg-background p-4 sm:p-6 rounded-lg shadow-md col-span-1 lg:col-span-2">
+      <h4 className="text-lg sm:text-2xl font-semibold mb-6">
+        Sales from {format(allDates[0], "MMM dd yyyy")} &mdash; {format(allDates[allDates.length - 1], "MMM dd yyyy")}
+      </h4>
       <ResponsiveContainer width="100%" height={400}>
-        <AreaChart
-          data={data}
-          width={500}
-          height={400}
-          margin={{
-            top: 10,
-            right: 30,
-            left: 0,
-            bottom: 0,
-          }}
-        >
-          <XAxis dataKey="label" />
-          <YAxis unit={"€"} />
-          <Tooltip
-            contentStyle={{ backgroundColor: "#1f2937", color: "#f9fafb" }}
-          />
+        <AreaChart data={data} className="">
+          <XAxis dataKey="label" className="text-[10px] sm:text-sm" />
+          <YAxis unit="€" className="text-[10px] sm:text-sm" />
+          <Tooltip contentStyle={{ backgroundColor: "#1f2937", color: "#f9fafb" }} />
           <Area
             type="monotone"
             dataKey="totalSales"

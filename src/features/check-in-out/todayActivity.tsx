@@ -7,17 +7,15 @@ const Today = () => {
   const { isPending, activities } = useTodayActivity();
 
   return (
-    <div className="bg-background rounded-md p-8 flex flex-col gap-6 col-span-1 pt-6">
+    <div className="bg-background rounded-md p-6 flex flex-col gap-4 col-span-1 pt-6 shadow-md">
       <Row>
-        <h2>Today Activities</h2>
+        <h4 className="text-lg sm:text-2xl font-semibold mb-2">Today</h4>
       </Row>
-
       {!isPending ? (
         activities?.length > 0 ? (
-          <ul className="overflow-scroll overflow-x-hidden scrollbar-none">
+          <ul className="overflow-y-auto">
             {activities.map((activity) => (
               <TodayItem key={activity.id} activity={activity} />
-              
             ))}
           </ul>
         ) : (
