@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useCheckout } from "../check-in-out/useCheckout";
 import { HiTrash } from "react-icons/hi";
 import useDeleteBooking from "./ useDeleteBooking";
+import Empty from "@/components/ui/Empty";
 
 function BookingDetail() {
   const { booking, isPending } = useBooking();
@@ -21,6 +22,7 @@ function BookingDetail() {
   const navigate = useNavigate();
 
   if (isPending) return <Spinner />;
+  if (!booking) return <Empty resourceName="Booking" />; // this when i changed in the url to a non-existing booking id it will show this message instead of an error message from the server side or a blank page 
 
   return (
     <>

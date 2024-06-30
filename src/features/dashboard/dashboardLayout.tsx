@@ -12,7 +12,7 @@ function DashboardLayout() {
   if (isPending1 || isPending2) return <Spinner />;
 
   return (
-    <div className="grid grid-cols-3 grid-rows-[auto_34rem_auto] gap-[2.4rem] ">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <Stats bookings={bookings} confirmedStays={confirmedStays} />
       <Today />
       <SalesChart bookings={bookings} numDays={numDays} />

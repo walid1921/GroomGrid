@@ -29,7 +29,7 @@ const Stats = ({ bookings, confirmedStays }) => {
       />
       <Stat
         title="Check-ins"
-        color="indigo"
+        color="yellow"
         icon={<HiOutlineCalendarDays size={30} />}
         value={numCheckins}
       />
