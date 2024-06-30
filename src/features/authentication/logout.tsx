@@ -21,9 +21,13 @@ import { useUser } from "./useUser";
 const Logout = () => {
   const { logout, isPending } = useLogout();
   const { user } = useUser();
-  const { fullName, avatar } = user?.user_metadata;
+  
 
   const navigate = useNavigate();
+
+  // const { fullName, avatar } = user?.user_metadata;    it was like this before
+  const fullName = user?.user_metadata?.fullName;
+  const avatar = user?.user_metadata?.avatar;
 
   return (
     <DropdownMenu>

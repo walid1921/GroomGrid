@@ -6,7 +6,16 @@ import {
 import Stat from "./stat";
 import { formatCurrency } from "@/utils/helpers";
 
-const Stats = ({ bookings, confirmedStays }) => {
+type StatsProps = {
+  bookings: {
+    totalPrice: number;
+  }[];
+  confirmedStays: {
+    id: number;
+  }[];
+};
+
+const Stats = ({ bookings, confirmedStays } : StatsProps) => {
   const numBookings = bookings?.length;
 
   const sales = bookings.reduce((acc, cur) => acc + cur.totalPrice, 0);
@@ -33,7 +42,6 @@ const Stats = ({ bookings, confirmedStays }) => {
         icon={<HiOutlineCalendarDays size={30} />}
         value={numCheckins}
       />
-
     </>
   );
 };

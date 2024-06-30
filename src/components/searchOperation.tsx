@@ -1,14 +1,17 @@
 import { useSearchParams } from "react-router-dom";
 import { Input } from "./ui/input";
+import { useState } from "react";
 
 const SearchOperation = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
-  const handleChange = (value: string) => {
-    searchParams.set(value); // filterName is the key and value can be (all, option 1, option 2...) this will Update the URL search parameter with the new filter value
-    if (searchParams.get("page")) searchParams.set("page", "1");
-    setSearchParams(searchParams);
-  };
+  const [query, setQuery] = useState(searchParams.get("search") || "");
+
+  // const handleChange = (value: string) => {
+  //   searchParams.set(value); // filterName is the key and value can be (all, option 1, option 2...) this will Update the URL search parameter with the new filter value
+  //   if (searchParams.get("page")) searchParams.set("page", "1");
+  //   setSearchParams(searchParams);
+  // };
 
   return (
     <Input

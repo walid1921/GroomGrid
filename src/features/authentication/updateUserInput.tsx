@@ -52,7 +52,13 @@ const UpdateUserInput = ({
                 type="file"
                 accept={accept}
                 disabled={disabled}
-                onChange={(e) => field.onChange(e.target.files[0])}
+                // onChange={(e) => field.onChange(e.target.files[0])}   it was like this before
+                onChange={(e) => {
+                  const files = e.target.files;
+                  if (files && files[0]) {
+                    field.onChange(files[0]);
+                  }
+                }}
               />
             ) : (
               <Input

@@ -3,7 +3,7 @@ import ClientTable from "@/features/clients/clientTable";
 import useClients from "@/features/clients/useClients";
 
 const clients = () => {
-  const { count: countClients } = useClients();
+  const { count: countClients } = useClients("");
 
   return (
     <>
