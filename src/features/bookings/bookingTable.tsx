@@ -18,7 +18,6 @@ import {
 import Menus from "@/components/ui/menus";
 import Empty from "@/components/ui/Empty";
 import { format, isToday } from "date-fns";
-import useBookings from "./useBookings";
 import { formatCurrency, formatDistanceFromNow } from "@/utils/helpers";
 import Spinner from "@/components/ui/spinner";
 import PaginationOpr from "@/components/paginationOpr";
@@ -38,32 +37,34 @@ type BookingType = {
   totalPrice: number;
   services: {
     name: string;
-  }[];
+  };
   clients: {
-    created_at?: string;
     fullName: string;
     email: string;
     phoneNumber: string;
-    observations?: string;
-  }[];
+  };
 };
 
-function BookingTable() {
-  const {
-    bookings,
-    count,
-    error,
-    isPending,
-  }: {
-    bookings: BookingType[];
-    count: number;
-    error: Error | null;
-    isPending: boolean;
-  } = useBookings(); // It uses the useBookings hook to fetch the bookings data
+type BookingTableProps = {
+  bookings: BookingType[];
+  countBookings: number;
+  error: Error | null;
+  isPending: boolean;
+};
+
+function BookingTable({
+  bookings,
+  countBookings,
+  error,
+  isPending,
+}: BookingTableProps) {
+  // const { bookings, count, error, isPending } = useBookings(); // It uses the useBookings hook to fetch the bookings data
 
   const navigate = useNavigate();
   const { checkout, isCheckingOut } = useCheckout();
   const { isDeleting, deleteBooking } = useDeleteBooking();
+
+  console.log("bookings", bookings);
 
   //! Conditional Rendering: Spinner, Empty, Error, and Table
   if (isPending) return <Spinner />;
@@ -191,7 +192,7 @@ function BookingTable() {
         </Table>
       )}
 
-      <PaginationOpr count={count ?? 0} />
+      <PaginationOpr count={countBookings ?? 0} />
     </Menus>
   );
 }

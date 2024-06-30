@@ -1,18 +1,20 @@
 import { Row } from "@/components/row";
 import FilterOperations from "@/components/filterOperations";
 import SortBy from "@/components/sortBy";
-import BookingTable from "@/features/bookings/bookingTable";
 import useBookings from "@/features/bookings/useBookings";
+import BookingTable from "@/features/bookings/bookingTable";
 
 function Bookings() {
-  const { count : countBookings } = useBookings();
+  const { bookings, count: countBookings, error, isPending } = useBookings();
 
   return (
     <>
       <Row className="flex-col sm:flex-row items-start gap-[1.6rem]">
         <h1>
           All bookings
-          <span className="font-normal text-[16px] sm:hidden ml-3">({countBookings})</span>
+          <span className="font-normal text-[16px] sm:hidden ml-3">
+            ({countBookings})
+          </span>
         </h1>
         <div className="flex items-center gap-4 ">
           <FilterOperations
@@ -38,7 +40,13 @@ function Bookings() {
         </div>
       </Row>
 
-      <BookingTable />
+      <BookingTable
+        /* @ts-ignore */
+        bookings={bookings}
+        countBookings={countBookings}
+        error={error}
+        isPending={isPending}
+      />
     </>
   );
 }

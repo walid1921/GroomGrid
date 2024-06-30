@@ -29,14 +29,14 @@ function useBookings() {
   //! Query
   const {
     isPending,
-    data,
+    data = { data: [], count: 0 },
     error,
   } = useQuery({
     queryKey: ["bookings", filter, sortBy, page],
     queryFn: () => getBookings({ filter, sortBy, page }),
   });
 
-  const bookings = data?.data ?? [];
+  const bookings = data?.data ;
   const count = data?.count ?? 0;
 
   //! Pre-fetching
