@@ -1,17 +1,24 @@
-import styled from "styled-components";
+import { format } from "date-fns";
 
-const StyledTodayItem = styled.li`
-  display: grid;
-  grid-template-columns: 9rem 2rem 1fr 7rem 9rem;
-  gap: 1.2rem;
-  align-items: center;
+const TodayItem = ({ activity }) => {
+  const { status, clients, startTime, endTime } = activity;
 
-  font-size: 1.4rem;
-  padding: 0.8rem 0;
-  border-bottom: 1px solid var(--color-grey-100);
+  return (
+    <li className="flex justify-start gap-5 items-center text-sm py-4 border-b border-gray-700 first:border-t">
+      {status === "unconfirmed" && (
+        <span className="text-blue-200 bg-[#267fec7d] border border-[#599ef37d] font-bold px-3 py-[5px] rounded-full">
+          Arriving at {format(new Date(startTime), "p")} -{" "}
+          {format(new Date(endTime), "p")}
+        </span>
+      )}
+      {status === "checked-in" && (
+        <span className="text-[#a0dfc6] bg-[#33bb8e1a] border border-[#0b6b41] font-bold px-3 py-[5px] rounded-full">
+          Departing
+        </span>
+      )}
+      <div>{clients.fullName}</div>
+    </li>
+  );
+};
 
-  &:first-child {
-    border-top: 1px solid var(--color-grey-100);
-  }
-`;
-
+export default TodayItem;
