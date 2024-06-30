@@ -1,5 +1,6 @@
 import supabase, { supabaseUrl } from "./supabase";
 
+//! Login user
 export async function login({
   email,
   password,
@@ -20,6 +21,7 @@ export async function login({
   return { data };
 }
 
+//! Get current user
 export async function getCurrentUser() {
   const { data: session } = await supabase.auth.getSession();
   if (!session.session) return null;
@@ -34,6 +36,7 @@ export async function getCurrentUser() {
   return data?.user;
 }
 
+//! Logout user
 export async function logout() {
   const { error } = await supabase.auth.signOut();
   if (error) {
@@ -43,7 +46,6 @@ export async function logout() {
 }
 
 //! Signup new user
-
 type SignupData = {
   fullName: string;
   email: string;

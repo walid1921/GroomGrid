@@ -50,10 +50,6 @@ function CheckinBooking() {
       bookingId: booking.id,
       product,
     });
-    console.log({
-        bookingId: Number(booking.id),
-        product,
-      });
   }
 
   return (

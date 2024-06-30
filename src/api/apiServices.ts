@@ -1,13 +1,5 @@
 import supabase, { supabaseUrl } from "./supabase";
 
-type NewServiceType = {
-  name: string;
-  description: string;
-  regularPrice: string;
-  discount: string;
-  image: string;
-};
-
 //! Get all services
 export async function getServices() {
   const { data, error, count } = await supabase
@@ -23,6 +15,14 @@ export async function getServices() {
 }
 
 //! Create service
+type NewServiceType = {
+  name: string;
+  description: string;
+  regularPrice: string;
+  discount: string;
+  image: string;
+};
+
 export async function createService(newService: NewServiceType) {
   let imagePath = newService.image;
   if (!imagePath.startsWith(supabaseUrl)) {
