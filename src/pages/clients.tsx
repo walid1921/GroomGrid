@@ -1,9 +1,6 @@
 import { Row } from "@/components/row";
-import SortBy from "@/components/sortBy";
 import ClientTable from "@/features/clients/clientTable";
-import { CreateForm } from "@/features/clients/createForm";
 import useClients from "@/features/clients/useClients";
-import { HiPlus } from "react-icons/hi";
 
 const clients = () => {
   const { count: countClients } = useClients();

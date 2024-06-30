@@ -30,15 +30,24 @@ import { useCheckout } from "../check-in-out/useCheckout";
 import useDeleteBooking from "./ useDeleteBooking";
 import ConfirmDelete from "@/components/confirmDelete";
 
-type BookingTypes = {
+interface Client {
+  fullName: string;
+  email: string;
+  phoneNumber: string;
+}
+interface Services {
+  name: string;
+}
+
+interface Booking {
   id: number;
   startTime: string;
   endTime: string;
   status: string;
   totalPrice: number;
-  services: { name: string }[];
-  clients: { fullName: string; email: string; phoneNumber: string }[];
-};
+  services: Services[];
+  clients: Client[];
+}
 
 function BookingTable() {
   const {
@@ -47,7 +56,7 @@ function BookingTable() {
     error,
     count,
   }: {
-    bookings: BookingTypes[] | undefined;
+    bookings: Booking[] | undefined;
     isPending: boolean;
     error: Error | null;
     count: number | null | undefined;
@@ -94,7 +103,7 @@ function BookingTable() {
           {bookings?.map((booking) => (
             <TableRow key={booking.id}>
               <TableCell className="font-medium text-start">
-                {booking.services?.name}
+                {booking.services.name}
               </TableCell>
 
               <TableCell
