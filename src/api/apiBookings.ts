@@ -89,10 +89,8 @@ export async function getBookingsAfterDate(date: string) {
 }
 
 // Returns all STAYS that are were created after the given date
-type getStaysAfterDateTypes = {
-  date: string;
-};
-export async function getStaysAfterDate(date: getStaysAfterDateTypes) {
+
+export async function getStaysAfterDate(date: string) {
   const { data, error } = await supabase
     .from("bookings")
     .select("*, clients(fullName)")
@@ -130,7 +128,7 @@ export async function getStaysTodayActivity() {
 
 //! Update a booking
 
-export async function updateBooking(id : number, obj : any) {
+export async function updateBooking(id: number, obj: any) {
   const { data, error } = await supabase
     .from("bookings")
     .update(obj)

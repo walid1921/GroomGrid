@@ -79,12 +79,9 @@ async function createBookings() {
 
   const finalBookings = bookings.map((booking) => {
     // Here relying on the order of services, as they don't have and ID yet
-    const service = services.at(booking.serviceId - 1);
-    const numNights = subtractDates(booking.endTime, booking.startTime);
-    const servicePrice = numNights * (service.regularPrice - service.discount);
-    const extrasPrice = booking.hasProduct
-      ? numNights * 15 * booking.numClients
-      : 0; // hardcoded product price
+    const service = services[booking.serviceId - 1];
+    const servicePrice = service.regularPrice;
+    const extrasPrice = booking.hasProduct ? 22 : 0; // hardcoded product price
     const totalPrice = servicePrice + extrasPrice;
 
     let status;
@@ -117,13 +114,9 @@ async function createBookings() {
     };
   });
 
-  console.log(finalBookings);
-
   const { error } = await supabase.from("bookings").insert(finalBookings);
   if (error) console.log(error.message);
 }
-
-
 
 function Uploader() {
   const [isLoading, setIsLoading] = useState(false);

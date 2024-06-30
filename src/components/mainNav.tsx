@@ -48,7 +48,7 @@ const navLinks = [
 export default function MainNav() {
   const { count: countServices } = useServices();
   const { count: countBookings } = useBookings();
-  const { count: countClients } = useClients();
+  const { count: countClients } = useClients(""); // We are not using the search parameter here because we want to get the total number of clients, regardless of the search query. thats why we are passing an empty string to the useClients hook. This way, the search parameter will be ignored and all clients will be returned.
 
   return (
     <nav>

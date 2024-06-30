@@ -1,6 +1,6 @@
 import { add } from "date-fns";
 
-function fromToday(numDays, withTime = false) {
+function fromToday(numDays: number, withTime = false) {
   const date = add(new Date(), { days: numDays });
   if (!withTime) date.setUTCHours(0, 0, 0, 0);
   return date.toISOString().slice(0, -1);
@@ -29,7 +29,7 @@ export const bookings = [
     hasProduct: true,
     observations: "",
     isPaid: true,
-    numClients: 2,
+    numClients: 1,
   },
   {
     created_at: fromToday(-27, true),
@@ -40,7 +40,7 @@ export const bookings = [
     hasProduct: false,
     observations: "",
     isPaid: false,
-    numClients: 2,
+    numClients: 1,
   },
 
   // SERVICE 002
@@ -53,7 +53,7 @@ export const bookings = [
     hasProduct: false,
     observations: "",
     isPaid: true,
-    numClients: 2,
+    numClients: 1,
   },
   {
     created_at: fromToday(-2, true),
@@ -64,7 +64,7 @@ export const bookings = [
     hasProduct: true,
     observations: "",
     isPaid: true,
-    numClients: 2,
+    numClients: 1,
   },
   {
     created_at: fromToday(-5, true),
@@ -75,7 +75,7 @@ export const bookings = [
     hasProduct: true,
     observations: "",
     isPaid: false,
-    numClients: 2,
+    numClients: 1,
   },
 
   // SERVICE 003
@@ -88,7 +88,7 @@ export const bookings = [
     hasProduct: true,
     observations: "",
     isPaid: true,
-    numClients: 4,
+    numClients: 1,
   },
   {
     created_at: fromToday(-2, true),
@@ -99,7 +99,7 @@ export const bookings = [
     hasProduct: false,
     observations: "We will be bringing our small dog with us",
     isPaid: true,
-    numClients: 3,
+    numClients: 1,
   },
   {
     created_at: fromToday(-14, true),
@@ -110,7 +110,7 @@ export const bookings = [
     hasProduct: true,
     observations: "",
     isPaid: true,
-    numClients: 4,
+    numClients: 1,
   },
 
   // SERVICE 004
@@ -123,7 +123,7 @@ export const bookings = [
     hasProduct: true,
     observations: "",
     isPaid: true,
-    numClients: 4,
+    numClients: 1,
   },
   {
     created_at: fromToday(-1, true),
@@ -134,7 +134,7 @@ export const bookings = [
     hasProduct: true,
     observations: "",
     isPaid: false,
-    numClients: 4,
+    numClients: 1,
   },
   {
     created_at: fromToday(-3, true),
@@ -158,7 +158,7 @@ export const bookings = [
     hasProduct: true,
     observations: "",
     isPaid: false,
-    numClients: 5,
+    numClients: 1,
   },
   {
     created_at: fromToday(-6, true),
@@ -169,7 +169,7 @@ export const bookings = [
     hasProduct: true,
     observations: "",
     isPaid: true,
-    numClients: 4,
+    numClients: 1,
   },
   {
     created_at: fromToday(-4, true),
@@ -180,7 +180,7 @@ export const bookings = [
     hasProduct: false,
     observations: "",
     isPaid: true,
-    numClients: 6,
+    numClients: 1,
   },
 
   // SERVICE 006
@@ -194,7 +194,7 @@ export const bookings = [
     observations:
       "We will be checking in late, around midnight. Hope that's okay :)",
     isPaid: true,
-    numClients: 6,
+    numClients: 1,
   },
   {
     created_at: fromToday(-16, true),
@@ -205,7 +205,7 @@ export const bookings = [
     hasProduct: true,
     observations: "I will need a rollaway bed for one of the guests",
     isPaid: true,
-    numClients: 4,
+    numClients: 1,
   },
   {
     created_at: fromToday(-18, true),
@@ -216,7 +216,7 @@ export const bookings = [
     hasProduct: true,
     observations: "",
     isPaid: true,
-    numClients: 6,
+    numClients: 1,
   },
 
   // SERVICE 007
@@ -229,7 +229,7 @@ export const bookings = [
     hasProduct: false,
     observations: "",
     isPaid: false,
-    numClients: 8,
+    numClients: 1,
   },
   {
     created_at: fromToday(-7, true),
@@ -240,7 +240,7 @@ export const bookings = [
     hasProduct: true,
     observations: "",
     isPaid: true,
-    numClients: 7,
+    numClients: 1,
   },
   {
     created_at: fromToday(-55, true),
@@ -251,7 +251,7 @@ export const bookings = [
     hasProduct: true,
     observations: "",
     isPaid: true,
-    numClients: 6,
+    numClients: 1,
   },
 
   // SERVICE 008
@@ -265,7 +265,7 @@ export const bookings = [
     observations:
       "My wife has a gluten allergy so I would like to request a gluten-free breakfast if possible",
     isPaid: true,
-    numClients: 9,
+    numClients: 1,
   },
   {
     created_at: fromToday(0, true),
@@ -277,7 +277,7 @@ export const bookings = [
     observations:
       "I am celebrating my anniversary, can you arrange for any special amenities or decorations?",
     isPaid: true,
-    numClients: 10,
+    numClients: 1,
   },
   {
     created_at: fromToday(-10, true),
@@ -288,6 +288,6 @@ export const bookings = [
     hasProduct: false,
     observations: "",
     isPaid: true,
-    numClients: 7,
+    numClients: 1,
   },
 ];

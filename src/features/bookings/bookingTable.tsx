@@ -29,25 +29,8 @@ import { HiArrowDownOnSquare, HiArrowUpOnSquare } from "react-icons/hi2";
 import { useCheckout } from "../check-in-out/useCheckout";
 import useDeleteBooking from "./ useDeleteBooking";
 import ConfirmDelete from "@/components/confirmDelete";
+import { BookingType } from "@/types/typeBookings";
 
-interface Client {
-  fullName: string;
-  email: string;
-  phoneNumber: string;
-}
-interface Services {
-  name: string;
-}
-
-interface Booking {
-  id: number;
-  startTime: string;
-  endTime: string;
-  status: string;
-  totalPrice: number;
-  services: Services[];
-  clients: Client[];
-}
 
 function BookingTable() {
   const {
@@ -56,7 +39,7 @@ function BookingTable() {
     error,
     count,
   }: {
-    bookings: Booking[] | undefined;
+    bookings: BookingType[] | undefined;
     isPending: boolean;
     error: Error | null;
     count: number | null | undefined;

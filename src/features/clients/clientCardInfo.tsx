@@ -7,15 +7,17 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-
-type ClientCardInfoTypes = {
-  fullName: string;
-  email: string;
-  phoneNumber: string;
-  observations: string;
+type ClientCardInfoProps = {
+  client: {
+    created_at: string;
+    fullName: string;
+    email: string;
+    phoneNumber: string;
+    observations: string;
+  };
 };
 
-const ClientCardInfo = ({ client }: ClientCardInfoTypes) => {
+const ClientCardInfo = ({ client }: ClientCardInfoProps) => {
   const { created_at, fullName, email, phoneNumber, observations } = client;
 
   const mailto = `mailto:${email}`;
