@@ -1,10 +1,5 @@
 import supabase from "./supabase";
 
-// type updateSettingType = {
-//   productPrice: string;
-//   value: string;
-// };
-
 //! Get settings
 export async function getSettings() {
   const { data, error } = await supabase.from("settings").select("*").single();

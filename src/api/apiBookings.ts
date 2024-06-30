@@ -2,6 +2,7 @@ import { PAGE_SIZE } from "@/utils/constants";
 import supabase from "./supabase";
 import { getToday } from "@/utils/helpers";
 
+//! Get bookings
 type BookingsTypes = {
   filter: {
     method: "eq" | "gte" | "lte" | "neq" | "gt" | "lt"; // all the possible methods
@@ -70,6 +71,7 @@ export async function getBooking(id: number) {
   return data;
 }
 
+//! Get bookings after date
 // Returns all BOOKINGS that are were created after the given date. Useful to get bookings created in the last 30 days, for example.
 // date should be ISOString
 
@@ -88,8 +90,8 @@ export async function getBookingsAfterDate(date: string) {
   return data;
 }
 
+//! Get stays after date
 // Returns all STAYS that are were created after the given date
-
 export async function getStaysAfterDate(date: string) {
   const { data, error } = await supabase
     .from("bookings")
@@ -105,6 +107,7 @@ export async function getStaysAfterDate(date: string) {
   return data;
 }
 
+//! Get stays today
 // Activity means that there is a check in or a check out today
 export async function getStaysTodayActivity() {
   const todayStart = getToday(); // Start of today
@@ -127,7 +130,6 @@ export async function getStaysTodayActivity() {
 }
 
 //! Update a booking
-
 export async function updateBooking(id: number, obj: any) {
   const { data, error } = await supabase
     .from("bookings")
@@ -144,7 +146,6 @@ export async function updateBooking(id: number, obj: any) {
 }
 
 //! Delete a booking
-
 export async function deleteBooking(id: number) {
   // REMEMBER RLS POLICIES
   const { data, error } = await supabase.from("bookings").delete().eq("id", id);
