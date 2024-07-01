@@ -29,6 +29,7 @@ import useCreateService from "./useCreateService";
 import { useSearchParams } from "react-router-dom";
 import Empty from "@/components/ui/Empty";
 import ConfirmDelete from "@/components/confirmDelete";
+import DivAnimation from "@/components/divAnimation";
 
 const ServiceTable = () => {
   //! Fetching services + Filtering
@@ -76,7 +77,7 @@ const ServiceTable = () => {
 
   return (
     <Menus>
-      <div className="w-full">
+      <DivAnimation className="w-full">
         <Table>
           <TableCaption>A list of your recent services.</TableCaption>
           <TableHeader>
@@ -167,7 +168,7 @@ const ServiceTable = () => {
             ))}
           </TableBody>
         </Table>
-      </div>
+      </DivAnimation>
     </Menus>
   );
 };

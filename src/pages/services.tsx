@@ -5,6 +5,8 @@ import FilterOperations from "@/components/filterOperations";
 import { HiPlus } from "react-icons/hi";
 import SortBy from "@/components/sortBy";
 import useServices from "@/features/services/useServices";
+import TitleAnimation from "@/components/titleAnimation";
+import DivAnimation from "@/components/divAnimation";
 
 // import { getServices } from "@/services/apiServices";
 
@@ -21,15 +23,15 @@ function Services() {
   return (
     <>
       <Row className="flex-col sm:flex-row items-start gap-[1.6rem]">
-        <h1>
+        <TitleAnimation>
           Services{" "}
           <span className="font-normal text-[16px] sm:hidden ml-3">
             ({countServices})
           </span>
-        </h1>
-        <div className="flex items-center gap-4 ">
+        </TitleAnimation>
+        <DivAnimation className="flex items-center gap-4 ">
           <CreateEditForm
-            bgPrimary="bg-primary "
+            text="New service"
             icon={<HiPlus size={20} />}
             title="Create a new service"
             description="Please fill out the form below to create a new service. Once
@@ -54,7 +56,7 @@ function Services() {
               },
             ]}
           />
-        </div>
+        </DivAnimation>
       </Row>
       <Row variant="vertical">
         <ServiceTable />

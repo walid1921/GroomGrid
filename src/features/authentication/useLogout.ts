@@ -9,7 +9,7 @@ export function useLogout() {
     mutationFn: logoutApi,
     onSuccess: () => {
       queryClient.removeQueries(); // Remove all queries from the cache when the user logs out to avoid showing stale data when the user logs back in again in the future
-      navigate("/login", { replace: true });
+      navigate("/hero", { replace: true });
     },
   });
 

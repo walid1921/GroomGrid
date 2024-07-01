@@ -1,13 +1,10 @@
-import { ModeToggle } from "@/components/mode-toggle";
+import TitleAnimation from "@/components/titleAnimation";
 import UpdateSettingsForm from "@/features/settings/UpdateSettingsForm";
 
 function Settings() {
   return (
     <>
-      <div className="sm:hidden fixed right-6">
-        <ModeToggle />
-      </div>
-      <h1>Settings</h1>
+      <TitleAnimation>Settings</TitleAnimation>
       <UpdateSettingsForm />
     </>
   );

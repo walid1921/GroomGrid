@@ -12,6 +12,7 @@ import { useCheckout } from "../check-in-out/useCheckout";
 import { HiTrash } from "react-icons/hi";
 import useDeleteBooking from "./ useDeleteBooking";
 import Empty from "@/components/ui/Empty";
+import DivAnimation from "@/components/divAnimation";
 
 function BookingDetail() {
   const { booking, isPending } = useBooking();
@@ -22,10 +23,10 @@ function BookingDetail() {
   const navigate = useNavigate();
 
   if (isPending) return <Spinner />;
-  if (!booking) return <Empty resourceName="Booking" />; // this when i changed in the url to a non-existing booking id it will show this message instead of an error message from the server side or a blank page 
+  if (!booking) return <Empty resourceName="Booking" />; // this when i changed in the url to a non-existing booking id it will show this message instead of an error message from the server side or a blank page
 
   return (
-    <>
+    <DivAnimation className="flex flex-col gap-10">
       <Row className="flex-col sm:flex-row justify-between items-start gap-6 sm:gap-0">
         <div className="flex flex-col gap-3 items-start ">
           <div className="flex items-center gap-3">
@@ -46,13 +47,16 @@ function BookingDetail() {
 
         <div className="flex items-center gap-6">
           {booking.status === "unconfirmed" && (
-            <Button onClick={() => navigate(`/checkin/${booking?.id}`)}>
+            <Button
+              className="flex justify-start text-left gap-2"
+              onClick={() => navigate(`/checkin/${booking?.id}`)}
+            >
               <HiArrowDownOnSquare size={25} /> Check in
             </Button>
           )}
           {booking.status === "checked-in" && (
             <Button
-              className="flex justify-start gap-2 w-full cursor-pointer"
+              className="flex justify-start text-left gap-2"
               onClick={() => {
                 checkout({ bookingId: booking.id });
                 navigate(`/bookings`);
@@ -80,7 +84,7 @@ function BookingDetail() {
       </Row>
 
       <BookingCardInfo booking={booking} />
-    </>
+    </DivAnimation>
   );
 }
 

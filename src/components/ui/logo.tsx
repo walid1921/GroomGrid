@@ -1,6 +1,6 @@
 const Logo = () => {
   return (
-    <div className="text-center">
+    <div className="text-center ">
       <div className="w-auto">
         <img src="/logoMain.svg" alt="logo" />
       </div>

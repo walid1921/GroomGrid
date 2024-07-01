@@ -1,18 +1,19 @@
 import { HiPlus } from "react-icons/hi";
 import { CreateForm } from "./createForm";
+import DivAnimation from "@/components/divAnimation";
 
 const UsersTable = () => {
   return (
     <>
-      <div className="flex gap-4 justify-end">
+      <DivAnimation className="flex gap-4 justify-end">
         <CreateForm
-          bgPrimary="bg-primary "
+          text="New user"
           icon={<HiPlus size={20} />}
           title="Create a new user"
           observations="Please fill out the form below to create a new user. Once
               submitted, the user will be added to your account."
         />
-      </div>
+      </DivAnimation>
     </>
   );
 };

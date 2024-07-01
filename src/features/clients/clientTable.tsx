@@ -16,6 +16,7 @@ import { useState } from "react";
 import PaginationOpr from "@/components/paginationOpr";
 import { CreateForm } from "./createForm";
 import { HiPlus } from "react-icons/hi";
+import DivAnimation from "@/components/divAnimation";
 
 const ClientTable = () => {
   //! Search query
@@ -26,9 +27,9 @@ const ClientTable = () => {
 
   return (
     <>
-      <div className="flex gap-4 justify-end">
+      <DivAnimation className="flex gap-4 justify-end">
         <CreateForm
-          bgPrimary="bg-primary "
+          text="New client"
           icon={<HiPlus size={20} />}
           title="Create a new client"
           observations="Please fill out the form below to create a new client. Once
@@ -40,10 +41,10 @@ const ClientTable = () => {
           onChange={(e) => setQuery(e.target.value)}
           className="max-w-sm bg-transparent border-gray-500"
         />
-      </div>
+      </DivAnimation>
 
       <Menus>
-        <div className="w-full">
+        <DivAnimation className="w-full">
           {isPending && <Spinner />}
           {error && (
             <p className="text-red-500 flex justify-center items-center my-[4.8rem] h-full mx-auto">
@@ -90,8 +91,10 @@ const ClientTable = () => {
               </TableBody>
             </Table>
           )}
-        </div>
-        <PaginationOpr count={count ?? 0} />
+        </DivAnimation>
+        <DivAnimation className="">
+          <PaginationOpr count={count ?? 0} />
+        </DivAnimation>
       </Menus>
     </>
   );

@@ -28,6 +28,7 @@ import { HiArrowDownOnSquare, HiArrowUpOnSquare } from "react-icons/hi2";
 import { useCheckout } from "../check-in-out/useCheckout";
 import useDeleteBooking from "./ useDeleteBooking";
 import ConfirmDelete from "@/components/confirmDelete";
+import DivAnimation from "@/components/divAnimation";
 
 type BookingType = {
   id: number;
@@ -192,7 +193,10 @@ function BookingTable({
         </Table>
       )}
 
-      <PaginationOpr count={countBookings ?? 0} />
+      <DivAnimation className="">
+        {" "}
+        <PaginationOpr count={countBookings ?? 0} />
+      </DivAnimation>
     </Menus>
   );
 }
