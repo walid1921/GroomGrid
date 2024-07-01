@@ -33,11 +33,6 @@ const navLinks = [
     icon: HiOutlineUserGroup,
     to: "/clients",
   },
-  {
-    name: "Users",
-    icon: HiOutlineUsers,
-    to: "/users",
-  },
 ];
 
 export default function MainNav() {
