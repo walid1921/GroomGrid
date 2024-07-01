@@ -33,6 +33,19 @@ const Hero = () => {
         </div>
       </section>
 
+      <footer className="py-5">
+        <div className="container flex items-center justify-center gap-4">
+
+          <span className="text-muted-foreground">
+            © 2021 GroomGrid All rights reserved. Made with ❤️ by Walid . Follow
+            me on Instagram{" "}
+            <Link className="underline text-primary" to={""}>
+              {" "}
+              @dev.n.des
+            </Link>
+          </span>
+        </div>
+      </footer>
     </MainAnimation>
   );
 };
