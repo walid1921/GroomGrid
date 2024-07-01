@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
 import { useMoveBack } from "../../hooks/useMoveBack";
 import { Row } from "@/components/row";
 import Spinner from "@/components/ui/spinner";

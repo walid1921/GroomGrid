@@ -2,7 +2,6 @@ import HeroNav from "@/components/heroNav";
 import MainAnimation from "@/components/mainAnimation";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
-import Features from "./features";
 
 const Hero = () => {
   const navigate = useNavigate();

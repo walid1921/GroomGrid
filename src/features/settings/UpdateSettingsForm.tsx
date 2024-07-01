@@ -16,7 +16,6 @@ import {
   FormMessage,
   FormDescription,
 } from "@/components/ui/form";
-import { motion } from "framer-motion";
 import DivAnimation from "@/components/divAnimation";
 
 const formSchema = z.object({

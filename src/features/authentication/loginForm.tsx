@@ -7,7 +7,6 @@ import { z } from "zod";
 import ClientFormInput from "./clientFormInput";
 import { useLogin } from "./useLogin";
 import SpinnerMini from "@/components/ui/spinnerMini";
-import Logo from "@/components/ui/logo";
 import LogoSmall from "@/components/ui/logoSmall";
 
 type InputType = z.infer<typeof loginUserSchema>;

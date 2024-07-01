@@ -144,7 +144,6 @@ const ServiceTable = () => {
                       </DropdownMenuItem>
 
                       <CreateEditForm
-                        bgPrimary="w-full"
                         serviceToEdit={service}
                         icon={<HiPencil size={20} />}
                         text="Edit"
