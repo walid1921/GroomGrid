@@ -5,7 +5,6 @@ import {
   HiOutlineHome,
   HiOutlineScissors,
   HiOutlineUserGroup,
-  HiOutlineUsers,
 } from "react-icons/hi2";
 import useServices from "@/features/services/useServices";
 import useBookings from "@/features/bookings/useBookings";
