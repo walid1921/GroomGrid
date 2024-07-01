@@ -43,8 +43,8 @@ function LoginForm() {
   };
 
   return (
-    <div className="w-full lg:grid lg:min-h-[600px] xl:min-h-[800px]">
-      <div className="flex items-center justify-center py-12">
+    <div className="mt-6 md:mt-0">
+      <div className="flex items-center justify-center md:py-12 ">
         <div className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2  text-center">
             <div className="flex items-center justify-center gap-4">
