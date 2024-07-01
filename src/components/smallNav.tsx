@@ -4,7 +4,6 @@ import {
   HiOutlineHome,
   HiOutlineScissors,
   HiOutlineUserGroup,
-  HiOutlineUsers,
 } from "react-icons/hi2";
 import { NavLink } from "react-router-dom";
 
