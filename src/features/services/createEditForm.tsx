@@ -45,7 +45,6 @@ type serviceToEditProps = {
 };
 
 export function CreateEditForm({
-  bgPrimary,
   icon,
   text,
   title,
@@ -63,7 +62,6 @@ export function CreateEditForm({
   text?: string;
   title: string;
   description: string;
-  bgPrimary?: string;
   serviceToEdit?: serviceToEditProps;
 }) {
   const { id: editId, ...editValues } = serviceToEdit;
@@ -111,11 +109,7 @@ export function CreateEditForm({
     <>
       <Sheet>
         <SheetTrigger asChild>
-          <Button
-            size="sm"
-            variant="ghost"
-            className={`flex justify-start text-left gap-2 hover:text-primary-foreground  border border-[#3ecf8e4d] hover:bg-[#3ecf8e80] ${bgPrimary}`}
-          >
+          <Button className="flex justify-start text-left gap-2">
             {icon} {text}
           </Button>
         </SheetTrigger>

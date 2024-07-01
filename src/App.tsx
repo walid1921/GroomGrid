@@ -1,4 +1,10 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 import Dashboard from "./pages/dashboard";
 import PageNotFound from "./pages/pageNotFound";
 import Login from "./pages/login";
@@ -16,7 +22,10 @@ import { ThemeProvider } from "./components/theme-provider";
 import Booking from "./pages/booking";
 import CheckedIn from "./pages/checkedIn";
 import Client from "./pages/client";
-import ProtectedRoute from "./components/protectedRoute"; // this is a custom component  to protect routes from unauthenticated users
+import ProtectedRoute from "./components/protectedRoute"; // this is a custom component to protect routes from unauthenticated users
+import Hero from "./pages/hero";
+import { AnimatePresence } from "framer-motion";
+import Features from "./pages/features";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,36 +35,48 @@ const queryClient = new QueryClient({
   },
 });
 
+const AnimatedRoutes = () => {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route
+          element={
+            <ProtectedRoute>
+              <AppLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<Navigate replace to="dashboard" />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="bookings" element={<Bookings />} />
+          <Route path="bookings/:bookingId" element={<Booking />} />
+          <Route path="checkin/:bookingId" element={<CheckedIn />} />
+          <Route path="services" element={<Services />} />
+          <Route path="clients" element={<Clients />} />
+          <Route path="clients/:clientId" element={<Client />} />
+          <Route path="users" element={<Users />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="account" element={<Account />} />
+        </Route>
+
+        <Route path="hero" element={<Hero />} />
+        <Route path="features" element={<Features />} />
+        <Route path="login" element={<Login />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+    </AnimatePresence>
+  );
+};
+
 const App = () => {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={true} />
         <BrowserRouter>
-          <Routes>
-            <Route
-              element={
-                <ProtectedRoute>
-                  <AppLayout />
-                </ProtectedRoute>
-              }
-            >
-              <Route index element={<Navigate replace to="dashboard" />} />
-              <Route path="dashboard" element={<Dashboard />} />
-              <Route path="bookings" element={<Bookings />} />
-              <Route path="bookings/:bookingId" element={<Booking />} />
-              <Route path="checkin/:bookingId" element={<CheckedIn />} />
-              <Route path="services" element={<Services />} />
-              <Route path="clients" element={<Clients />} />
-              <Route path="clients/:clientId" element={<Client />} />
-              <Route path="users" element={<Users />} />
-              <Route path="settings" element={<Settings />} />
-              <Route path="account" element={<Account />} />
-            </Route>
-
-            <Route path="login" element={<Login />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
+          <AnimatedRoutes />
         </BrowserRouter>
 
         <Toaster

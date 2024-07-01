@@ -7,6 +7,7 @@ import useDeleteClient from "./useDeleteClient";
 import ClientCardInfo from "./clientCardInfo";
 import useClient from "./useClient";
 import { HiTrash } from "react-icons/hi";
+import DivAnimation from "@/components/divAnimation";
 
 function ClientDetail() {
   const { client, isPending } = useClient();
@@ -19,7 +20,7 @@ function ClientDetail() {
   if (isPending) return <Spinner />;
 
   return (
-    <>
+    <DivAnimation className="flex flex-col gap-10">
       <Row className="flex-col sm:flex-row justify-between items-start gap-6 sm:gap-0">
         <div className="flex flex-col gap-3 items-start ">
           <div className="flex items-center gap-3">
@@ -48,7 +49,7 @@ function ClientDetail() {
       </Row>
 
       <ClientCardInfo client={client} />
-    </>
+    </DivAnimation>
   );
 }
 

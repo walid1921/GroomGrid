@@ -16,6 +16,7 @@ import {
   FormMessage,
   FormDescription,
 } from "@/components/ui/form";
+import DivAnimation from "@/components/divAnimation";
 
 const formSchema = z.object({
   productPrice: z.string().min(0, { message: "Price must be greater than 0" }),
@@ -44,7 +45,7 @@ function UpdateSettingsForm() {
   }
 
   return (
-    <>
+    <DivAnimation className="">
       {isLoading ? (
         <Spinner />
       ) : (
@@ -77,7 +78,7 @@ function UpdateSettingsForm() {
           </form>
         </Form>
       )}
-    </>
+    </DivAnimation>
   );
 }
 

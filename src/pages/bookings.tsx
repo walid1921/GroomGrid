@@ -3,6 +3,8 @@ import FilterOperations from "@/components/filterOperations";
 import SortBy from "@/components/sortBy";
 import useBookings from "@/features/bookings/useBookings";
 import BookingTable from "@/features/bookings/bookingTable";
+import TitleAnimation from "@/components/titleAnimation";
+import DivAnimation from "@/components/divAnimation";
 
 function Bookings() {
   const { bookings, count: countBookings, error, isPending } = useBookings();
@@ -10,13 +12,13 @@ function Bookings() {
   return (
     <>
       <Row className="flex-col sm:flex-row items-start gap-[1.6rem]">
-        <h1>
+        <TitleAnimation>
           All bookings
           <span className="font-normal text-[16px] sm:hidden ml-3">
             ({countBookings})
           </span>
-        </h1>
-        <div className="flex items-center gap-4 ">
+        </TitleAnimation>
+        <DivAnimation className="flex items-center gap-4 ">
           <FilterOperations
             filterName="status"
             options={[
@@ -37,7 +39,7 @@ function Bookings() {
               { value: "totalPrice-asc", label: "Low price" },
             ]}
           />
-        </div>
+        </DivAnimation>
       </Row>
 
       <BookingTable

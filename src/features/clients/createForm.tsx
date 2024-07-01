@@ -23,7 +23,6 @@ import ClientFormInput from "./clientFormInput";
 type InputType = z.infer<typeof createClientSchema>;
 
 export function CreateForm({
-  bgPrimary,
   icon,
   text,
   title,
@@ -33,7 +32,6 @@ export function CreateForm({
   text?: string;
   title: string;
   observations: string;
-  bgPrimary?: string;
 }) {
   const form = useForm<InputType>({
     resolver: zodResolver(createClientSchema),
@@ -57,11 +55,7 @@ export function CreateForm({
     <>
       <Sheet>
         <SheetTrigger asChild>
-          <Button
-            size="sm"
-            variant="ghost"
-            className={`flex justify-start text-left gap-2 hover:text-primary-foreground  border border-[#3ecf8e4d] hover:bg-[#3ecf8e80] ${bgPrimary}`}
-          >
+          <Button className="flex justify-start text-left gap-2">
             {icon} {text}
           </Button>
         </SheetTrigger>
@@ -106,7 +100,7 @@ export function CreateForm({
               />
 
               <SheetClose className="mt-10">
-                <Button type="submit" disabled={isCreating} className="hover:text-primary-foreground  border border-[#3ecf8e4d] hover:bg-[#3ecf8e80]">
+                <Button type="submit" disabled={isCreating}>
                   Create New Client
                 </Button>
               </SheetClose>

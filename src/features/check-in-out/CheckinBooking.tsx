@@ -10,6 +10,7 @@ import UseSettings from "../settings/useSettings";
 import UpdateSettingsForm from "../settings/UpdateSettingsForm";
 import { format } from "date-fns";
 import { useChecking } from "./useChecking";
+import DivAnimation from "@/components/divAnimation";
 
 function CheckinBooking() {
   const moveBack = useMoveBack();
@@ -53,7 +54,7 @@ function CheckinBooking() {
   }
 
   return (
-    <>
+    <DivAnimation className="flex flex-col gap-10">
       <Row className="flex-col sm:flex-row justify-between items-start gap-6 sm:gap-0">
         <div className="flex flex-col gap-3 items-start ">
           <h1 className="flex flex-col sm:flex-row sm:gap-2 text-3xl sm:text-4xl">
@@ -93,7 +94,7 @@ function CheckinBooking() {
         hasProduct={booking?.hasProduct}
         optionalProductPrice={optionalProductPrice}
       />
-    </>
+    </DivAnimation>
   );
 }
 
