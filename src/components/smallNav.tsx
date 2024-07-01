@@ -31,11 +31,6 @@ const navLinks = [
     to: "/clients",
   },
   {
-    name: "Users",
-    icon: HiOutlineUsers,
-    to: "/users",
-  },
-  {
     name: "Settings",
     icon: HiOutlineCog6Tooth,
     to: "/settings",

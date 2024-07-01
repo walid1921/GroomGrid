@@ -112,7 +112,7 @@ const ServiceTable = () => {
                 <TableCell>{formatCurrency(service.regularPrice)}</TableCell>
                 <TableCell
                   className={`${
-                    service.discount > 0 ? "text-primary font-bold" : ""
+                    service.discount > 0 ? "text-[#3ecf8e80] font-bold" : ""
                   }`}
                 >
                   {service.discount ? formatCurrency(service.discount) : "-"}

@@ -8,18 +8,20 @@ function Login() {
   const navigate = useNavigate();
 
   return (
-    <MainAnimation className="min-h-screen  bg-background">
+    <MainAnimation className="h-screen pb-8 pt-6 bg-background">
       <Button
         variant={"ghost"}
         size={"sm"}
-        className="mt-6 ml-12 gap-2"
+        className="md:mt-6 md:ml-12 ml-4 gap-2"
         onClick={() => navigate(-1)}
       >
         {" "}
         <HiMiniChevronLeft size={20} />
         Back
       </Button>
-      <LoginForm />
+      <div className="h-[90%] flex justify-center items-center">
+        <LoginForm />
+      </div>
     </MainAnimation>
   );
 }

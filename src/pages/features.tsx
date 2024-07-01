@@ -11,7 +11,7 @@ const Features = () => {
       <Button
         variant={"ghost"}
         size={"sm"}
-        className="mt-6 ml-12 gap-2"
+        className="md:mt-6 md:ml-12 ml-4 gap-2"
         onClick={() => navigate(-1)}
       >
         {" "}
@@ -19,16 +19,16 @@ const Features = () => {
         Back
       </Button>
 
-      <div className="flex flex-col h-full items-center gap-10 justify-center container">
+      <div className="flex flex-col h-full items-center gap-10 justify-center md:container">
         {" "}
-        <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
+        <div className="mx-auto mt-6 md:mt-0 flex max-w-[58rem] flex-col items-center space-y-4 text-center">
           <h2 className="text-3xl md:text-6xl border-none">Features</h2>
-          <p className="max-w-[70%] text-muted-foreground sm:leading-7 sm:text-lg">
+          <p className="md:max-w-[70%] text-muted-foreground sm:leading-7 sm:text-lg">
             Discover the powerful capabilities that streamline your barbershop
             operations. From seamless booking management to client interactions.
           </p>
         </div>
-        <div className="w-[40%]">
+        <div className="md:w-[40%] w-full px-8">
           <FeaturesAccordion />
         </div>
       </div>

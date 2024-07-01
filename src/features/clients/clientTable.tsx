@@ -75,7 +75,7 @@ const ClientTable = () => {
                   <TableRow key={client.id}>
                     <TableCell
                       onClick={() => navigate(`/clients/${client.id}`)}
-                      className="flex flex-col gap-1 text-start cursor-pointer hover:text-primary"
+                      className="flex flex-col gap-1 text-start cursor-pointer hover:text-[#3ecf8e80]"
                     >
                       <span className="font-bold">{client.fullName}</span>
                       <span>{client.email}</span>

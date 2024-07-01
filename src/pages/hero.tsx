@@ -16,12 +16,12 @@ const Hero = () => {
             to={"www.google.com"}
             className="text-sm py-1 px-4 bg-bgMain rounded-2xl "
           >
-            Follow along on Twitter
+            Stay Updated on Our Latest News
           </Link>
-          <h1 className="text-4x  md:text-6xl lg:text-7xl ">
+          <h1 className="text-3xl  md:text-6xl lg:text-7xl mt-6 ">
             Your One-Stop Solution for Easy Bookings
           </h1>
-          <p className="leading-normal sm:leading-8 text-muted-foreground sm:text-xl  max-w-[30rem]">
+          <p className="leading-normal sm:leading-8 text-muted-foreground sm:text-xl text-sm  max-w-[30rem] w-[75%] md:w-full">
             From service appointments to personal engagements, our platform has
             you covered every step of the way.
           </p>
@@ -34,12 +34,14 @@ const Hero = () => {
       </section>
 
       <footer className="py-5">
-        <div className="container flex items-center justify-center gap-4">
-
+        <div className="container text-sm  text-center flex items-center justify-center gap-4">
           <span className="text-muted-foreground">
             © 2021 GroomGrid All rights reserved. Made with ❤️ by Walid . Follow
             me on Instagram{" "}
-            <Link className="underline text-primary" to={""}>
+            <Link
+              className="underline text-[#3ecf8e80]"
+              to={"https://www.instagram.com/dev.n.des?igsh=bzd1M3d4eW9uaHIw"}
+            >
               {" "}
               @dev.n.des
             </Link>
