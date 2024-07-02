@@ -45,7 +45,7 @@ const ServiceFormInput = ({
             />
           </FormControl>
           {description && (
-            <FormDescription className="text-[12px]">
+            <FormDescription className="sm:text-[12px] pt-0 text-[10px]">
               {description}
             </FormDescription>
           )}

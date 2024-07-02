@@ -133,7 +133,7 @@ export function CreateEditForm({
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="flex flex-col gap-8 mt-10"
+              className="flex flex-col gap-3 sm:gap-8 mt-10"
             >
               <FormField
                 control={form.control}
@@ -191,7 +191,7 @@ export function CreateEditForm({
                 formControl={form.control}
               />
 
-              <SheetClose className="mt-10">
+              <SheetClose className="sm:mt-10 mt-4">
                 <Button
                   type="submit"
                   disabled={isWorking}
