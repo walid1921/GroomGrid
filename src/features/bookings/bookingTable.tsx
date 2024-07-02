@@ -32,6 +32,7 @@ import DivAnimation from "@/components/divAnimation";
 
 type BookingType = {
   id: number;
+  date: string;
   startTime: string;
   endTime: string;
   status: string;
@@ -130,9 +131,9 @@ function BookingTable({
                           : formatDistanceFromNow(booking.startTime)}
                       </span>
                       <span>
-                        {format(new Date(booking.startTime), "MMM dd yyyy")}{" "}
+                        {format(new Date(booking.startTime), "MMM dd yyyy, HH:mm")}{" "}
                         &mdash;{" "}
-                        {format(new Date(booking.endTime), "MMM dd yyyy")}
+                        {format(new Date(booking.endTime), "MMM dd yyyy, HH:mm")}
                       </span>
                     </div>
                   </TableCell>

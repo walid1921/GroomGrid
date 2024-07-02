@@ -20,12 +20,17 @@ export const formatDistanceFromNow = (dateStr: string): string =>
 // Supabase needs an ISO date string. However, that string will be different on every render because the MS or SEC have changed, which isn't good. So we use this trick to remove any time
 export const getToday = function (options: { end?: boolean } = {}): string {
   const today = new Date();
+  const timezoneOffset = today.getTimezoneOffset();
+  console.log("today", today);
 
   // This is necessary to compare with created_at from Supabase, because it it not at 0.0.0.0, so we need to set the date to be END of the day when we compare it with earlier dates
   if (options?.end)
     // Set to the last second of the day
-    today.setUTCHours(23, 59, 59, 999);
-  else today.setUTCHours(0, 0, 0, 0);
+    today.setHours(23, 59, 59, 999);
+  else today.setHours(0, 0, 0, 0);
+
+  today.setMinutes(today.getMinutes() - timezoneOffset);
+
   return today.toISOString();
 };
 

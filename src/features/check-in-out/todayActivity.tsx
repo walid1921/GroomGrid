@@ -5,6 +5,9 @@ import TodayItem from "./todayItem";
 
 const Today = () => {
   const { isPending, activities } = useTodayActivity();
+  
+
+  console.log(activities);
 
   const activitiesLength = activities?.length ?? 0;
 
