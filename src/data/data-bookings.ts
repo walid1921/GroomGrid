@@ -2,16 +2,18 @@ import { add } from "date-fns";
 
 function fromToday(numDays: number, withTime = false) {
   const date = add(new Date(), { days: numDays });
+  console.log(date);
   if (!withTime) date.setUTCHours(0, 0, 0, 0);
   return date.toISOString().slice(0, -1);
 }
 
+
 export const bookings = [
   // SERVICE 001
   {
-    created_at: fromToday(-20, true),
-    startTime: fromToday(0),
-    endTime: fromToday(7),
+    created_at: fromToday(-1, true),
+    startTime: fromToday(0 ,true),
+    endTime: fromToday(1),
     serviceId: 1,
     clientId: 2,
     hasProduct: true,

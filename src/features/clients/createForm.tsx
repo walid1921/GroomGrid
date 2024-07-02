@@ -69,7 +69,7 @@ export function CreateForm({
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="flex flex-col gap-8 mt-10"
+              className="flex flex-col gap-3 sm:gap-8 mt-10"
             >
               <ClientFormInput
                 name="fullName"
@@ -99,7 +99,7 @@ export function CreateForm({
                 formControl={form.control}
               />
 
-              <SheetClose className="mt-10">
+              <SheetClose className="sm:mt-10 mt-4">
                 <Button type="submit" disabled={isCreating}>
                   Create New Client
                 </Button>

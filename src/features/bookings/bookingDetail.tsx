@@ -45,7 +45,7 @@ function BookingDetail() {
           </div>
         </div>
 
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-3 sm:gap-6">
           {booking.status === "unconfirmed" && (
             <Button
               className="flex justify-start text-left gap-2"
