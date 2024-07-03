@@ -12,16 +12,14 @@ function DashboardLayout() {
 
   if (isPending1 || isPending2) return <Spinner />;
 
-  const bookingsData = bookings ?? [];
+  const todaysBookings = bookings ?? [];
   const confirmedStaysData = confirmedStays ?? [];
 
   return (
-    <DivAnimation
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-    >
-      <Stats bookings={bookingsData} confirmedStays={confirmedStaysData} />
+    <DivAnimation className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <Stats bookings={todaysBookings} confirmedStays={confirmedStaysData} />
       <Today />
-      <SalesChart bookings={bookingsData} numDays={numDays} />
+      <SalesChart bookings={todaysBookings} numDays={numDays} />
     </DivAnimation>
   );
 }

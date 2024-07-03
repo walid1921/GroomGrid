@@ -1,6 +1,7 @@
 import { PAGE_SIZE } from "@/utils/constants";
 import supabase from "./supabase";
 import { getToday } from "@/utils/helpers";
+import { endOfDay } from "date-fns";
 
 //! Get bookings
 type BookingsTypes = {
@@ -76,16 +77,19 @@ export async function getBooking(id: number) {
 // date should be ISOString
 
 export async function getBookingsAfterDate(date: string) {
+  const endOfToday = endOfDay(new Date()).toISOString();
+
   const { data, error } = await supabase
     .from("bookings")
-    .select("created_at, totalPrice, extrasPrice")
-    .gte("created_at", date)
-    .lte("created_at", getToday({ end: true }));
+    .select("*")
+    .gte("startTime", date)
+    .lte("startTime", endOfToday);
 
   if (error) {
     console.error(error);
     throw new Error("Bookings could not get loaded");
   }
+
 
   return data;
 }
@@ -93,11 +97,12 @@ export async function getBookingsAfterDate(date: string) {
 //! Get stays after date
 // Returns all STAYS that are were created after the given date
 export async function getStaysAfterDate(date: string) {
+  const endOfToday = endOfDay(new Date()).toISOString();
   const { data, error } = await supabase
     .from("bookings")
     .select("*, clients(fullName)")
     .gte("startTime", date)
-    .lte("startTime", getToday());
+    .lte("startTime", endOfToday);
 
   if (error) {
     console.error(error);

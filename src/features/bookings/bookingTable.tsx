@@ -32,6 +32,7 @@ import DivAnimation from "@/components/divAnimation";
 
 type BookingType = {
   id: number;
+  date: string;
   startTime: string;
   endTime: string;
   status: string;
@@ -65,7 +66,10 @@ function BookingTable({
   const { checkout, isCheckingOut } = useCheckout();
   const { isDeleting, deleteBooking } = useDeleteBooking();
 
-  console.log("bookings", bookings);
+  const today = new Date();
+  const timezoneOffset = today.getTimezoneOffset();
+  today.setMinutes(today.getMinutes() - timezoneOffset);
+  const todayTime = today.toISOString();
 
   //! Conditional Rendering: Spinner, Empty, Error, and Table
   if (isPending) return <Spinner />;
@@ -130,9 +134,15 @@ function BookingTable({
                           : formatDistanceFromNow(booking.startTime)}
                       </span>
                       <span>
-                        {format(new Date(booking.startTime), "MMM dd yyyy")}{" "}
+                        {format(
+                          new Date(booking.startTime),
+                          "MMM dd yyyy, HH:mm"
+                        )}{" "}
                         &mdash;{" "}
-                        {format(new Date(booking.endTime), "MMM dd yyyy")}
+                        {format(
+                          new Date(booking.endTime),
+                          "MMM dd yyyy, HH:mm"
+                        )}
                       </span>
                     </div>
                   </TableCell>
@@ -157,14 +167,15 @@ function BookingTable({
                         >
                           <HiEye size={20} /> See details
                         </DropdownMenuItem>
-                        {booking.status === "unconfirmed" && (
-                          <DropdownMenuItem
-                            className="flex justify-start gap-2 w-full cursor-pointer"
-                            onClick={() => navigate(`/checkin/${booking.id}`)}
-                          >
-                            <HiArrowDownOnSquare size={20} /> Check in
-                          </DropdownMenuItem>
-                        )}
+                        {booking.status === "unconfirmed" &&
+                          booking.startTime < todayTime && (
+                            <DropdownMenuItem
+                              className="flex justify-start gap-2 w-full cursor-pointer"
+                              onClick={() => navigate(`/checkin/${booking.id}`)}
+                            >
+                              <HiArrowDownOnSquare size={20} /> Check in
+                            </DropdownMenuItem>
+                          )}
                         {booking.status === "checked-in" && (
                           <DropdownMenuItem
                             className="flex justify-start gap-2 w-full cursor-pointer"

@@ -21,6 +21,12 @@ const TodayItem = ({ activity }: TodayItemProps) => {
   const { id, status, clients, startTime, endTime } = activity;
   const { checkout, isCheckingOut } = useCheckout();
 
+  const today = new Date();
+  const timezoneOffset = today.getTimezoneOffset();
+  today.setMinutes(today.getMinutes() - timezoneOffset);
+  const todayTime = today.toISOString();
+
+
   const navigate = useNavigate();
 
   return (
@@ -41,7 +47,7 @@ const TodayItem = ({ activity }: TodayItemProps) => {
       )}
       <span>{clients.fullName}</span>
 
-      {status === "unconfirmed" && (
+      {status === "unconfirmed" && startTime < todayTime && (
         <Button onClick={() => navigate(`/checkin/${id}`)} size={"sm"}>
           <span>check in</span>
         </Button>
