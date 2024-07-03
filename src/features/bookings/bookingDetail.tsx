@@ -19,6 +19,11 @@ function BookingDetail() {
   const { checkout, isCheckingOut } = useCheckout();
   const { isDeleting, deleteBooking } = useDeleteBooking();
 
+  const today = new Date();
+  const timezoneOffset = today.getTimezoneOffset();
+  today.setMinutes(today.getMinutes() - timezoneOffset);
+  const todayTime = today.toISOString();
+
   const moveBack = useMoveBack();
   const navigate = useNavigate();
 
@@ -46,14 +51,15 @@ function BookingDetail() {
         </div>
 
         <div className="flex items-center gap-3 sm:gap-6">
-          {booking.status === "unconfirmed" && (
-            <Button
-              className="flex justify-start text-left gap-2"
-              onClick={() => navigate(`/checkin/${booking?.id}`)}
-            >
-              <HiArrowDownOnSquare size={25} /> Check in
-            </Button>
-          )}
+          {booking.status === "unconfirmed" &&
+            booking?.startTime < todayTime && (
+              <Button
+                className="flex justify-start text-left gap-2"
+                onClick={() => navigate(`/checkin/${booking?.id}`)}
+              >
+                <HiArrowDownOnSquare size={25} /> Check in
+              </Button>
+            )}
           {booking.status === "checked-in" && (
             <Button
               className="flex justify-start text-left gap-2"

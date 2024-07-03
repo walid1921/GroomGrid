@@ -20,25 +20,37 @@ type SalesChartProps = {
     created_at: string;
     totalPrice: number;
     extrasPrice: number;
+    startTime: string;
   }[];
 
   numDays: number;
 };
 
 const SalesChart = ({ bookings, numDays }: SalesChartProps) => {
+  let startDate: Date;
+  let endDate: Date;
+
+  if (numDays === 0) {
+    startDate = subDays(new Date(), 1) // Start of today //! Fix this  subDays(new Date(), numDays - 2);
+    endDate = new Date(); // End of today
+  } else {
+    startDate = subDays(new Date(), numDays - 1);
+    endDate = new Date();
+  }
+
   const allDates = eachDayOfInterval({
-    start: subDays(new Date(), numDays - 1),
-    end: new Date(),
+    start: startDate,
+    end: endDate,
   });
 
   const data = allDates.map((date) => {
     return {
       label: format(date, "MMM dd"),
       totalSales: bookings
-        .filter((booking) => isSameDay(date, new Date(booking.created_at)))
+        .filter((booking) => isSameDay(date, new Date(booking.startTime)))
         .reduce((acc, cur) => acc + cur.totalPrice, 0),
       extrasSales: bookings
-        .filter((booking) => isSameDay(date, new Date(booking.created_at)))
+        .filter((booking) => isSameDay(date, new Date(booking.startTime)))
         .reduce((acc, cur) => acc + cur.extrasPrice, 0),
     };
   });

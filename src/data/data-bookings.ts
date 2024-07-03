@@ -32,6 +32,18 @@ export const bookings = [
     numClients: 1,
   },
   {
+    created_at: fromToday(-1, true),
+    startTime: combineDateAndTime(fromToday(0, false), formatTime(10, 0)),
+    endTime: combineDateAndTime(fromToday(0, false), formatTime(10, 30)),
+    serviceId: 1,
+    clientId: 2,
+    hasProduct: false,
+    observations:
+      "I come 3min late.",
+    isPaid: false,
+    numClients: 1,
+  },
+  {
     created_at: fromToday(-33, true),
     startTime: combineDateAndTime(fromToday(-23, false), formatTime(10, 0)),
     endTime: combineDateAndTime(fromToday(-23, false), formatTime(10, 30)),
@@ -39,7 +51,7 @@ export const bookings = [
     clientId: 3,
     hasProduct: false,
     observations: "",
-    isPaid: true,
+    isPaid: false,
     numClients: 1,
   },
   {
@@ -63,7 +75,7 @@ export const bookings = [
     clientId: 5,
     hasProduct: false,
     observations: "",
-    isPaid: true,
+    isPaid: false,
     numClients: 1,
   },
   {
@@ -74,7 +86,7 @@ export const bookings = [
     clientId: 6,
     hasProduct: false,
     observations: "",
-    isPaid: true,
+    isPaid: false,
     numClients: 1,
   },
   {
@@ -98,7 +110,7 @@ export const bookings = [
     clientId: 8,
     hasProduct: false,
     observations: "",
-    isPaid: true,
+    isPaid: false,
     numClients: 1,
   },
   {
@@ -108,19 +120,30 @@ export const bookings = [
     serviceId: 3,
     clientId: 9,
     hasProduct: false,
-    observations: "We will be bringing our small dog with us",
-    isPaid: true,
+    observations: "I will be bringing our small dog with us",
+    isPaid: false,
+    numClients: 1,
+  },
+  {
+    created_at: fromToday(-5, true),
+    startTime: combineDateAndTime(fromToday(1, false), formatTime(15, 0)),
+    endTime: combineDateAndTime(fromToday(1, false), formatTime(15, 30)),
+    serviceId: 3,
+    clientId: 6,
+    hasProduct: false,
+    observations: "I will be bringing our small baby with us",
+    isPaid: false,
     numClients: 1,
   },
   {
     created_at: fromToday(-14, true),
-    startTime: combineDateAndTime(fromToday(-14, false), formatTime(17, 0)),
-    endTime: combineDateAndTime(fromToday(-14, false), formatTime(17, 30)),
+    startTime: combineDateAndTime(fromToday(1, false), formatTime(17, 0)),
+    endTime: combineDateAndTime(fromToday(1, false), formatTime(17, 30)),
     serviceId: 3,
     clientId: 10,
     hasProduct: false,
     observations: "",
-    isPaid: true,
+    isPaid: false,
     numClients: 1,
   },
 
@@ -138,8 +161,8 @@ export const bookings = [
   },
   {
     created_at: fromToday(-1, true),
-    startTime: combineDateAndTime(fromToday(12, false), formatTime(19, 0)),
-    endTime: combineDateAndTime(fromToday(12, false), formatTime(19, 30)),
+    startTime: combineDateAndTime(fromToday(1, false), formatTime(19, 0)),
+    endTime: combineDateAndTime(fromToday(1, false), formatTime(19, 30)),
     serviceId: 4,
     clientId: 12,
     hasProduct: false,
@@ -153,9 +176,9 @@ export const bookings = [
     endTime: combineDateAndTime(fromToday(18, false), formatTime(20, 30)),
     serviceId: 4,
     clientId: 13,
-    hasProduct: false,
+    hasProduct: true,
     observations: "",
-    isPaid: true,
+    isPaid: false,
     numClients: 1,
   },
 ];
@@ -191,7 +214,7 @@ export const bookings = [
 //     clientId: 3,
 //     hasProduct: true,
 //     observations: "",
-//     isPaid: true,
+//     isPaid: false,
 //     numClients: 1,
 //   },
 //   {
@@ -215,7 +238,7 @@ export const bookings = [
 //     clientId: 5,
 //     hasProduct: false,
 //     observations: "",
-//     isPaid: true,
+//     isPaid: false,
 //     numClients: 1,
 //   },
 //   {
@@ -226,7 +249,7 @@ export const bookings = [
 //     clientId: 6,
 //     hasProduct: true,
 //     observations: "",
-//     isPaid: true,
+//     isPaid: false,
 //     numClients: 1,
 //   },
 //   {
@@ -250,7 +273,7 @@ export const bookings = [
 //     clientId: 8,
 //     hasProduct: true,
 //     observations: "",
-//     isPaid: true,
+//     isPaid: false,
 //     numClients: 1,
 //   },
 //   {
@@ -261,7 +284,7 @@ export const bookings = [
 //     clientId: 9,
 //     hasProduct: false,
 //     observations: "We will be bringing our small dog with us",
-//     isPaid: true,
+//     isPaid: false,
 //     numClients: 1,
 //   },
 //   {
@@ -272,7 +295,7 @@ export const bookings = [
 //     clientId: 10,
 //     hasProduct: true,
 //     observations: "",
-//     isPaid: true,
+//     isPaid: false,
 //     numClients: 1,
 //   },
 
@@ -285,7 +308,7 @@ export const bookings = [
 //     clientId: 11,
 //     hasProduct: true,
 //     observations: "",
-//     isPaid: true,
+//     isPaid: false,
 //     numClients: 1,
 //   },
 //   {
@@ -307,7 +330,7 @@ export const bookings = [
 //     clientId: 13,
 //     hasProduct: false,
 //     observations: "",
-//     isPaid: true,
+//     isPaid: false,
 //     numClients: 1,
 //   },
 
@@ -331,7 +354,7 @@ export const bookings = [
 //     clientId: 15,
 //     hasProduct: true,
 //     observations: "",
-//     isPaid: true,
+//     isPaid: false,
 //     numClients: 1,
 //   },
 //   {
@@ -342,7 +365,7 @@ export const bookings = [
 //     clientId: 16,
 //     hasProduct: false,
 //     observations: "",
-//     isPaid: true,
+//     isPaid: false,
 //     numClients: 1,
 //   },
 
@@ -356,7 +379,7 @@ export const bookings = [
 //     hasProduct: false,
 //     observations:
 //       "We will be checking in late, around midnight. Hope that's okay :)",
-//     isPaid: true,
+//     isPaid: false,
 //     numClients: 1,
 //   },
 //   {
@@ -367,7 +390,7 @@ export const bookings = [
 //     clientId: 18,
 //     hasProduct: true,
 //     observations: "I will need a rollaway bed for one of the guests",
-//     isPaid: true,
+//     isPaid: false,
 //     numClients: 1,
 //   },
 //   {
@@ -378,7 +401,7 @@ export const bookings = [
 //     clientId: 19,
 //     hasProduct: true,
 //     observations: "",
-//     isPaid: true,
+//     isPaid: false,
 //     numClients: 1,
 //   },
 
@@ -402,7 +425,7 @@ export const bookings = [
 //     clientId: 21,
 //     hasProduct: true,
 //     observations: "",
-//     isPaid: true,
+//     isPaid: false,
 //     numClients: 1,
 //   },
 //   {
@@ -413,7 +436,7 @@ export const bookings = [
 //     clientId: 22,
 //     hasProduct: true,
 //     observations: "",
-//     isPaid: true,
+//     isPaid: false,
 //     numClients: 1,
 //   },
 
@@ -427,7 +450,7 @@ export const bookings = [
 //     hasProduct: true,
 //     observations:
 //       "My wife has a gluten allergy so I would like to request a gluten-free breakfast if possible",
-//     isPaid: true,
+//     isPaid: false,
 //     numClients: 1,
 //   },
 //   {
@@ -439,7 +462,7 @@ export const bookings = [
 //     hasProduct: true,
 //     observations:
 //       "I am celebrating my anniversary, can you arrange for any special amenities or decorations?",
-//     isPaid: true,
+//     isPaid: false,
 //     numClients: 1,
 //   },
 //   {
@@ -450,7 +473,7 @@ export const bookings = [
 //     clientId: 24,
 //     hasProduct: false,
 //     observations: "",
-//     isPaid: true,
+//     isPaid: false,
 //     numClients: 1,
 //   },
 // ];
