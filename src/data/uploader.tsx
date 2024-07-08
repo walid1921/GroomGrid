@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { isFuture, isPast, isToday } from "date-fns";
-import { clients } from "./data-clients";
 import { services } from "./data-services";
 import { bookings } from "./data-bookings";
 import { Button } from "@/components/ui/button";

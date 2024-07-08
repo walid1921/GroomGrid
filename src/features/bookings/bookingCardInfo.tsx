@@ -43,7 +43,6 @@ const BookingCardInfo = ({ booking }: BookingCardInfoTypes) => {
     created_at,
     startTime,
     endTime,
-    numClients,
     servicePrice,
     extrasPrice,
     totalPrice,
