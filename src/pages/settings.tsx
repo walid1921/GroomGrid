@@ -7,7 +7,7 @@ import DivAnimation from "@/components/divAnimation";
 function Settings() {
   return (
     <>
-      <Row>
+      <Row className="flex-col sm:flex-row items-start gap-[1.6rem]">
         <TitleAnimation>Settings</TitleAnimation>
         <DivAnimation className="flex gap-5">
           <CreateUser />

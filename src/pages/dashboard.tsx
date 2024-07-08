@@ -11,11 +11,10 @@ function Dashboard() {
   const navigate = useNavigate();
   return (
     <>
-      <Row>
+      <Row className="flex-col sm:flex-row items-start gap-[1.6rem]">
         <TitleAnimation>Dashboard</TitleAnimation>
         <DivAnimation className="flex gap-5 items-center">
           <Button
-            size={"sm"}
             className="flex gap-2"
             onClick={() => navigate("/bookings/createBooking")}
           >
