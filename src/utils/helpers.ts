@@ -21,7 +21,6 @@ export const formatDistanceFromNow = (dateStr: string): string =>
 export const getToday = function (options: { end?: boolean } = {}): string {
   const today = new Date();
   const timezoneOffset = today.getTimezoneOffset();
-  console.log("today", today);
 
   // This is necessary to compare with created_at from Supabase, because it it not at 0.0.0.0, so we need to set the date to be END of the day when we compare it with earlier dates
   if (options?.end)

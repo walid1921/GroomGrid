@@ -1,16 +1,21 @@
 import TitleAnimation from "@/components/titleAnimation";
-import UsersTable from "@/features/authentication/usersTable";
-import UpdateSettingsForm from "@/features/settings/UpdateSettingsForm";
 import { Row } from "@/components/row";
-
+import { WorkingTimeTable } from "@/features/workingTime/workingTimeTable";
+import CreateUser from "@/features/authentication/createUser";
+import UpdatePriceForm from "@/features/settings/updatePriceForm";
+import DivAnimation from "@/components/divAnimation";
 function Settings() {
   return (
     <>
-      <TitleAnimation>Settings</TitleAnimation>
-      <Row variant="vertical">
-        <UsersTable />
+      <Row>
+        <TitleAnimation>Settings</TitleAnimation>
+        <DivAnimation className="flex gap-5">
+          <CreateUser />
+          <UpdatePriceForm />
+        </DivAnimation>
       </Row>
-      <UpdateSettingsForm />
+
+      <WorkingTimeTable />
     </>
   );
 }

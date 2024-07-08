@@ -5,9 +5,14 @@ import useBookings from "@/features/bookings/useBookings";
 import BookingTable from "@/features/bookings/bookingTable";
 import TitleAnimation from "@/components/titleAnimation";
 import DivAnimation from "@/components/divAnimation";
+import { HiPlus } from "react-icons/hi";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router";
 
 function Bookings() {
   const { bookings, count: countBookings, error, isPending } = useBookings();
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -19,6 +24,10 @@ function Bookings() {
           </span>
         </TitleAnimation>
         <DivAnimation className="flex items-center gap-4 ">
+          <Button onClick={() => navigate("createBooking")}>
+            {" "}
+            <HiPlus size={20} />
+          </Button>
           <FilterOperations
             filterName="status"
             options={[

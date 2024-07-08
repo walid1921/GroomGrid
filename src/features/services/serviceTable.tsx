@@ -3,7 +3,6 @@ import { HiSquare2Stack } from "react-icons/hi2";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -79,7 +78,6 @@ const ServiceTable = () => {
     <Menus>
       <DivAnimation className="w-full">
         <Table>
-          <TableCaption>A list of your recent services.</TableCaption>
           <TableHeader>
             <TableRow>
               <TableHead className="w-[100px] font-bold text-[15px]">
