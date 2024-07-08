@@ -59,7 +59,7 @@ const BookingCardInfo = ({ booking }: BookingCardInfoTypes) => {
       <CardHeader>
         <CardTitle className="flex text-lg sm:text-2xl sm:items-center gap-4">
           <HiOutlineCalendarDays size={30} />
-          {numClients} client coming for a {serviceName}
+          {booking.clients.fullName} is coming for a {serviceName}
         </CardTitle>
         <CardDescription className="text-[12px] sm:text-sm">
           {format(new Date(startTime), "EEE, MMM dd yyyy")} (
@@ -114,7 +114,6 @@ const BookingCardInfo = ({ booking }: BookingCardInfoTypes) => {
                 Total price : {formatCurrency(totalPrice)}
               </p>
               <span>
-                
                 {hasProduct &&
                   ` (${formatCurrency(servicePrice)} service + ${formatCurrency(
                     extrasPrice

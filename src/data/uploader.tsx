@@ -29,16 +29,6 @@ async function deleteBookings() {
   if (error) console.log(error.message);
 }
 
-//! Create all
-async function createClients() {
-  const { error } = await supabase.from("clients").insert(clients);
-  if (error) console.log(error.message);
-}
-
-async function createServices() {
-  const { error } = await supabase.from("services").insert(services);
-  if (error) console.log(error.message);
-}
 
 async function createBookings() {
   // Bookings need a clientId and a serviceId. We can't tell Supabase IDs for each object, it will calculate them on its own. So it might be different for different people, especially after multiple uploads. Therefore, we need to first get all clientIds and serviceIds, and then replace the original IDs in the booking data with the actual ones from the DB
@@ -128,8 +118,6 @@ function Uploader() {
     await deleteServices();
 
     // Bookings need to be created LAST
-    await createClients();
-    await createServices();
     await createBookings();
 
     setIsLoading(false);

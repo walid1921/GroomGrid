@@ -35,6 +35,18 @@ export async function getClients({ search, page }: ClientsTypes) {
   return { data, count };
 }
 
+//! get all clients without pagination
+export async function getAllClients() {
+  const { data, error } = await supabase.from("clients").select("*");
+
+  if (error) {
+    console.error(error);
+    throw new Error("An error occurred while fetching clients");
+  }
+
+  return data;
+}
+
 //! Get a single client
 export async function getClient(id: number) {
   const { data, error } = await supabase

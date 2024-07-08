@@ -1,7 +1,7 @@
-import { PAGE_SIZE } from "@/utils/constants";
 import supabase from "./supabase";
-import { getToday } from "@/utils/helpers";
 import { endOfDay } from "date-fns";
+import { PAGE_SIZE } from "@/utils/constants";
+import { getToday } from "@/utils/helpers";
 
 //! Get bookings
 type BookingsTypes = {
@@ -21,7 +21,7 @@ export async function getBookings({ filter, sortBy, page }: BookingsTypes) {
   let query = supabase
     .from("bookings")
     .select(
-      "id, created_at, startTime, endTime, numClients, status, totalPrice, services(name), clients(fullName, email, phoneNumber)",
+      "id, created_at, startTime, endTime, status, totalPrice, services(name), clients(fullName, email, phoneNumber)",
       { count: "exact" }
     );
 
@@ -90,7 +90,6 @@ export async function getBookingsAfterDate(date: string) {
     throw new Error("Bookings could not get loaded");
   }
 
-
   return data;
 }
 
@@ -158,6 +157,17 @@ export async function deleteBooking(id: number) {
   if (error) {
     console.error(error);
     throw new Error("Booking could not be deleted");
+  }
+  return data;
+}
+
+//! Create a booking
+export async function createBooking(obj: any) {
+  const { data, error } = await supabase.from("bookings").insert(obj);
+
+  if (error) {
+    console.error(error);
+    throw new Error("Booking could not be created");
   }
   return data;
 }

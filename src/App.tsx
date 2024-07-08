@@ -24,6 +24,7 @@ import ProtectedRoute from "./components/protectedRoute"; // this is a custom co
 import Hero from "./pages/hero";
 import { AnimatePresence } from "framer-motion";
 import Features from "./pages/features";
+import CreateBooking from "./pages/createBooking";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,7 +35,7 @@ const queryClient = new QueryClient({
 });
 
 const AnimatedRoutes = () => {
-  const location = useLocation();
+  const location = useLocation(); 
 
   return (
     <AnimatePresence mode="wait">
@@ -50,6 +51,7 @@ const AnimatedRoutes = () => {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="bookings" element={<Bookings />} />
           <Route path="bookings/:bookingId" element={<Booking />} />
+          <Route path="bookings/createBooking" element={<CreateBooking />} />
           <Route path="checkin/:bookingId" element={<CheckedIn />} />
           <Route path="services" element={<Services />} />
           <Route path="clients" element={<Clients />} />

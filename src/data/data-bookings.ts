@@ -29,7 +29,6 @@ export const bookings = [
     observations:
       "I have a gluten allergy and would like to request a gluten-free breakfast.",
     isPaid: false,
-    numClients: 1,
   },
   {
     created_at: fromToday(-1, true),
@@ -41,7 +40,6 @@ export const bookings = [
     observations:
       "I come 3min late.",
     isPaid: false,
-    numClients: 1,
   },
   {
     created_at: fromToday(-33, true),
@@ -52,7 +50,6 @@ export const bookings = [
     hasProduct: false,
     observations: "",
     isPaid: false,
-    numClients: 1,
   },
   {
     created_at: fromToday(-27, true),
@@ -63,7 +60,6 @@ export const bookings = [
     hasProduct: false,
     observations: "",
     isPaid: false,
-    numClients: 1,
   },
 
   // SERVICE 002
@@ -76,7 +72,6 @@ export const bookings = [
     hasProduct: false,
     observations: "",
     isPaid: false,
-    numClients: 1,
   },
   {
     created_at: fromToday(-2, true),
@@ -87,7 +82,6 @@ export const bookings = [
     hasProduct: false,
     observations: "",
     isPaid: false,
-    numClients: 1,
   },
   {
     created_at: fromToday(-5, true),
@@ -98,7 +92,6 @@ export const bookings = [
     hasProduct: false,
     observations: "",
     isPaid: false,
-    numClients: 1,
   },
 
   // SERVICE 003
@@ -111,7 +104,6 @@ export const bookings = [
     hasProduct: false,
     observations: "",
     isPaid: false,
-    numClients: 1,
   },
   {
     created_at: fromToday(-1, true),
@@ -122,7 +114,6 @@ export const bookings = [
     hasProduct: false,
     observations: "I will be bringing our small dog with us",
     isPaid: false,
-    numClients: 1,
   },
   {
     created_at: fromToday(-5, true),
@@ -133,7 +124,6 @@ export const bookings = [
     hasProduct: false,
     observations: "I will be bringing our small baby with us",
     isPaid: false,
-    numClients: 1,
   },
   {
     created_at: fromToday(-14, true),
@@ -144,7 +134,6 @@ export const bookings = [
     hasProduct: false,
     observations: "",
     isPaid: false,
-    numClients: 1,
   },
 
   // SERVICE 004
@@ -157,7 +146,6 @@ export const bookings = [
     hasProduct: false,
     observations: "",
     isPaid: true,
-    numClients: 1,
   },
   {
     created_at: fromToday(-1, true),
@@ -168,7 +156,6 @@ export const bookings = [
     hasProduct: false,
     observations: "",
     isPaid: false,
-    numClients: 1,
   },
   {
     created_at: fromToday(-3, true),
@@ -179,7 +166,6 @@ export const bookings = [
     hasProduct: true,
     observations: "",
     isPaid: false,
-    numClients: 1,
   },
 ];
 
@@ -204,7 +190,6 @@ export const bookings = [
 //     observations:
 //       "I have a gluten allergy and would like to request a gluten-free breakfast.",
 //     isPaid: false,
-//     numClients: 1,
 //   },
 //   {
 //     created_at: fromToday(-33, true),
@@ -215,7 +200,6 @@ export const bookings = [
 //     hasProduct: true,
 //     observations: "",
 //     isPaid: false,
-//     numClients: 1,
 //   },
 //   {
 //     created_at: fromToday(-27, true),
@@ -226,7 +210,6 @@ export const bookings = [
 //     hasProduct: false,
 //     observations: "",
 //     isPaid: false,
-//     numClients: 1,
 //   },
 
 //   // SERVICE 002
@@ -239,7 +222,6 @@ export const bookings = [
 //     hasProduct: false,
 //     observations: "",
 //     isPaid: false,
-//     numClients: 1,
 //   },
 //   {
 //     created_at: fromToday(-2, true),
@@ -250,7 +232,6 @@ export const bookings = [
 //     hasProduct: true,
 //     observations: "",
 //     isPaid: false,
-//     numClients: 1,
 //   },
 //   {
 //     created_at: fromToday(-5, true),
@@ -261,7 +242,6 @@ export const bookings = [
 //     hasProduct: true,
 //     observations: "",
 //     isPaid: false,
-//     numClients: 1,
 //   },
 
 //   // SERVICE 003
@@ -274,7 +254,6 @@ export const bookings = [
 //     hasProduct: true,
 //     observations: "",
 //     isPaid: false,
-//     numClients: 1,
 //   },
 //   {
 //     created_at: fromToday(-2, true),
@@ -285,7 +264,6 @@ export const bookings = [
 //     hasProduct: false,
 //     observations: "We will be bringing our small dog with us",
 //     isPaid: false,
-//     numClients: 1,
 //   },
 //   {
 //     created_at: fromToday(-14, true),
@@ -296,7 +274,6 @@ export const bookings = [
 //     hasProduct: true,
 //     observations: "",
 //     isPaid: false,
-//     numClients: 1,
 //   },
 
 //   // SERVICE 004
@@ -309,7 +286,6 @@ export const bookings = [
 //     hasProduct: true,
 //     observations: "",
 //     isPaid: false,
-//     numClients: 1,
 //   },
 //   {
 //     created_at: fromToday(-1, true),
@@ -320,7 +296,6 @@ export const bookings = [
 //     hasProduct: true,
 //     observations: "",
 //     isPaid: false,
-//     numClients: 1,
 //   },
 //   {
 //     created_at: fromToday(-3, true),
@@ -331,7 +306,6 @@ export const bookings = [
 //     hasProduct: false,
 //     observations: "",
 //     isPaid: false,
-//     numClients: 1,
 //   },
 
 //   // SERVICE 005
@@ -344,7 +318,6 @@ export const bookings = [
 //     hasProduct: true,
 //     observations: "",
 //     isPaid: false,
-//     numClients: 1,
 //   },
 //   {
 //     created_at: fromToday(-6, true),
@@ -355,7 +328,6 @@ export const bookings = [
 //     hasProduct: true,
 //     observations: "",
 //     isPaid: false,
-//     numClients: 1,
 //   },
 //   {
 //     created_at: fromToday(-4, true),
@@ -366,7 +338,6 @@ export const bookings = [
 //     hasProduct: false,
 //     observations: "",
 //     isPaid: false,
-//     numClients: 1,
 //   },
 
 //   // SERVICE 006
@@ -380,7 +351,6 @@ export const bookings = [
 //     observations:
 //       "We will be checking in late, around midnight. Hope that's okay :)",
 //     isPaid: false,
-//     numClients: 1,
 //   },
 //   {
 //     created_at: fromToday(-16, true),
@@ -391,7 +361,6 @@ export const bookings = [
 //     hasProduct: true,
 //     observations: "I will need a rollaway bed for one of the guests",
 //     isPaid: false,
-//     numClients: 1,
 //   },
 //   {
 //     created_at: fromToday(-18, true),
@@ -402,7 +371,6 @@ export const bookings = [
 //     hasProduct: true,
 //     observations: "",
 //     isPaid: false,
-//     numClients: 1,
 //   },
 
 //   // SERVICE 007
@@ -415,7 +383,6 @@ export const bookings = [
 //     hasProduct: false,
 //     observations: "",
 //     isPaid: false,
-//     numClients: 1,
 //   },
 //   {
 //     created_at: fromToday(-7, true),
@@ -426,7 +393,6 @@ export const bookings = [
 //     hasProduct: true,
 //     observations: "",
 //     isPaid: false,
-//     numClients: 1,
 //   },
 //   {
 //     created_at: fromToday(-55, true),
@@ -437,7 +403,6 @@ export const bookings = [
 //     hasProduct: true,
 //     observations: "",
 //     isPaid: false,
-//     numClients: 1,
 //   },
 
 //   // SERVICE 008
@@ -451,7 +416,6 @@ export const bookings = [
 //     observations:
 //       "My wife has a gluten allergy so I would like to request a gluten-free breakfast if possible",
 //     isPaid: false,
-//     numClients: 1,
 //   },
 //   {
 //     created_at: fromToday(0, true),
@@ -463,7 +427,6 @@ export const bookings = [
 //     observations:
 //       "I am celebrating my anniversary, can you arrange for any special amenities or decorations?",
 //     isPaid: false,
-//     numClients: 1,
 //   },
 //   {
 //     created_at: fromToday(-10, true),
@@ -474,6 +437,5 @@ export const bookings = [
 //     hasProduct: false,
 //     observations: "",
 //     isPaid: false,
-//     numClients: 1,
 //   },
 // ];
