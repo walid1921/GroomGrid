@@ -10,15 +10,15 @@ const CreateBooking = () => {
   const navigate = useNavigate();
   return (
     <>
-      <Row className="flex items-center flex-col sm:flex-row">
+      <Row className="flex-col sm:flex-row items-start gap-[1.6rem]">
         <TitleAnimation>Create a Booking</TitleAnimation>{" "}
         <Button className="flex gap-2" onClick={() => navigate("/clients")}>
           {" "}
-          <HiPlus size={20} /> Client
+          <HiPlus size={20} /> New client
         </Button>
       </Row>
 
-      <DivAnimation className="">
+      <DivAnimation className="mb-16">
         <CreateBookingForm />
       </DivAnimation>
     </>

@@ -29,7 +29,6 @@ import Spinner from "@/components/ui/spinner";
 import useCreateBooking from "./useCreateBooking";
 import { useWorkingTime } from "../workingTime/useWorkingTime";
 import { Textarea } from "@/components/ui/textarea";
-
 const FormSchema = z.object({
   clientId: z.string().nonempty("Client is required."),
   serviceId: z.string().nonempty("Service is required."),
@@ -213,7 +212,7 @@ export function CreateBookingForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-6 flex flex-col justify-center w-[50%]"
+        className="space-y-6 flex flex-col justify-center "
       >
         <FormField
           control={form.control}
