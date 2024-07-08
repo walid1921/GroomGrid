@@ -29,6 +29,8 @@ import Spinner from "@/components/ui/spinner";
 import useCreateBooking from "./useCreateBooking";
 import { useWorkingTime } from "../workingTime/useWorkingTime";
 import { Textarea } from "@/components/ui/textarea";
+import useUnconfirmedBookings from "./useUnconfirmedBookings";
+import toast from "react-hot-toast";
 const FormSchema = z.object({
   clientId: z.string().nonempty("Client is required."),
   serviceId: z.string().nonempty("Service is required."),
@@ -72,14 +74,11 @@ function filterAvailableSlots(
   slots: Date[],
   bookedSlots: { start: Date; end: Date }[]
 ) {
-  return slots.filter(
-    (slot) =>
-      !bookedSlots.some(
-        (booked) =>
-          slot.getTime() >= booked.start.getTime() &&
-          slot.getTime() < booked.end.getTime()
-      )
-  );
+  return slots.filter((slot) => {
+    return !bookedSlots.some((booked) => {
+      return slot >= booked.start && slot < booked.end;
+    });
+  });
 }
 
 export function CreateBookingForm() {
@@ -102,19 +101,31 @@ export function CreateBookingForm() {
 
   const [date, setDate] = useState<Date | null>(null);
   const [availableSlots, setAvailableSlots] = useState<Date[]>([]);
-  const [bookedSlots] = useState([
-    {
-      start: new Date("2024-07-11T15:00:00"),
-      end: new Date("2024-07-11T15:30:00"),
-    },
-    {
-      start: new Date("2024-07-11T17:00:00"),
-      end: new Date("2024-07-11T18:00:00"),
-    },
-  ]);
 
+  const [bookedSlots, setBookedSlots] = useState<{ start: Date; end: Date }[]>(
+    []
+  );
   const [serviceTime, setServiceTime] = useState(30); // Default service time in minutes
 
+  const { unconfirmedBookings } = useUnconfirmedBookings();
+
+  useEffect(() => {
+    async function fetchBookedSlots() {
+      try {
+        // Replace this with your own logic to fetch unconfirmed bookings
+        const formattedBookedSlots =
+          unconfirmedBookings?.map((booking) => ({
+            start: new Date(booking.startTime),
+            end: new Date(booking.endTime),
+          })) || []; // Ensure default value is an empty array if unconfirmedBookings is undefined
+        setBookedSlots(formattedBookedSlots);
+      } catch (error) {
+        console.error("Error fetching booked slots:", error);
+      }
+    }
+
+    fetchBookedSlots();
+  }, [unconfirmedBookings]);
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -190,9 +201,21 @@ export function CreateBookingForm() {
         totalPrice,
       };
 
-      console.log("Booking data:", bookingData);
+      const isAlreadyBooked = bookedSlots.some(
+        (booked) =>
+          utcStartTime.getTime() >= booked.start.getTime() &&
+          utcStartTime.getTime() < booked.end.getTime()
+      );
+
+      if (isAlreadyBooked) {
+        toast.error(
+          "This time slot is already booked. Please select another time."
+        );
+        return;
+      }
 
       await createBooking(bookingData);
+
       form.reset();
     } catch (error) {
       console.error("Error creating booking:", error);
@@ -293,8 +316,7 @@ export function CreateBookingForm() {
               <FormLabel>Pick a date and time</FormLabel>
               <FormControl>
                 <ReactDatePicker
-                  className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50
-                   "
+                  className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                   placeholderText="Select a date and time"
                   selected={date}
                   onChange={(selectedDate) => {

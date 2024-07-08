@@ -56,6 +56,21 @@ export async function getBookings({ filter, sortBy, page }: BookingsTypes) {
   return { data, count };
 }
 
+//! Get only unconfirmed bookings 
+export async function getUnconfirmedBookings() {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select("*")
+    .eq("status", "unconfirmed").order('created_at', { ascending: false });
+
+  if (error) {
+    console.error(error);
+    throw new Error("Bookings could not get loaded");
+  }
+
+  return data;
+}
+
 //! Get a single booking
 export async function getBooking(id: number) {
   const { data, error } = await supabase
