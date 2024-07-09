@@ -30,7 +30,7 @@ const TodayItem = ({ activity }: TodayItemProps) => {
   const navigate = useNavigate();
 
   return (
-    <li className="flex justify-start gap-2 sm:gap-2 items-center text-sm py-4 border-b border-gray-700 first:border-t">
+    <li className="flex justify-start gap-2 sm:gap-2 items-center text-[10px] sm:text-sm py-4 border-b border-gray-700 first:border-t">
       {status === "unconfirmed" && (
         <Link
           to={`/checkin/${id}`}

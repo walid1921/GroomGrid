@@ -1,10 +1,10 @@
-import { getStaysTodayActivity } from "@/api/apiBookings";
+import { getStaysActivityByDate } from "@/api/apiBookings";
 import { useQuery } from "@tanstack/react-query";
 
-export function useTodayActivity() {
+export function useTodayActivity(date?: Date) {
   const { isPending, data: activities } = useQuery({
-    queryFn: getStaysTodayActivity,
-    queryKey: ["todayActivity"],
+    queryFn: () => getStaysActivityByDate(date),
+    queryKey: ["todayActivity", date],
   });
 
   return { isPending, activities };

@@ -56,12 +56,13 @@ export async function getBookings({ filter, sortBy, page }: BookingsTypes) {
   return { data, count };
 }
 
-//! Get only unconfirmed bookings 
+//! Get only unconfirmed bookings
 export async function getUnconfirmedBookings() {
   const { data, error } = await supabase
     .from("bookings")
     .select("*")
-    .eq("status", "unconfirmed").order('created_at', { ascending: false });
+    .eq("status", "unconfirmed")
+    .order("created_at", { ascending: false });
 
   if (error) {
     console.error(error);
@@ -127,10 +128,11 @@ export async function getStaysAfterDate(date: string) {
 }
 
 //! Get stays today
-// Activity means that there is a check in or a check out today
-export async function getStaysTodayActivity() {
-  const todayStart = getToday(); // Start of today
-  const todayEnd = getToday({ end: true }); // End of today
+
+// Adjusted function to get stays activity for a specific date
+export async function getStaysActivityByDate(date?: Date) {
+  const todayStart = date ? new Date(date.setHours(0, 0, 0, 0)).toISOString() : getToday();
+  const todayEnd = date ? new Date(date.setHours(23, 59, 59, 999)).toISOString() : getToday({ end: true });
 
   const { data, error } = await supabase
     .from("bookings")
