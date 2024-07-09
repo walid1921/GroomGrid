@@ -37,7 +37,10 @@ export async function getClients({ search, page }: ClientsTypes) {
 
 //! get all clients without pagination
 export async function getAllClients() {
-  const { data, error } = await supabase.from("clients").select("*");
+  const { data, error } = await supabase
+    .from("clients")
+    .select("*")
+    .order("fullName", { ascending: true });
 
   if (error) {
     console.error(error);
