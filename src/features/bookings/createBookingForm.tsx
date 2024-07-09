@@ -29,6 +29,8 @@ import Spinner from "@/components/ui/spinner";
 import useCreateBooking from "./useCreateBooking";
 import { useWorkingTime } from "../workingTime/useWorkingTime";
 import { Textarea } from "@/components/ui/textarea";
+import useUnconfirmedBookings from "./useUnconfirmedBookings";
+import toast from "react-hot-toast";
 const FormSchema = z.object({
   clientId: z.string().nonempty("Client is required."),
   serviceId: z.string().nonempty("Service is required."),
@@ -102,16 +104,35 @@ export function CreateBookingForm() {
 
   const [date, setDate] = useState<Date | null>(null);
   const [availableSlots, setAvailableSlots] = useState<Date[]>([]);
-  const [bookedSlots] = useState([
-    {
-      start: new Date("2024-07-11T15:00:00"),
-      end: new Date("2024-07-11T15:30:00"),
-    },
-    {
-      start: new Date("2024-07-11T17:00:00"),
-      end: new Date("2024-07-11T18:00:00"),
-    },
-  ]);
+
+  const [bookedSlots, setBookedSlots] = useState<{ start: Date; end: Date }[]>(
+    []
+  );
+
+  const { unconfirmedBookings } = useUnconfirmedBookings();
+
+  useEffect(() => {
+    // Fetch unconfirmed bookings when component mounts or dependencies change
+    async function fetchBookedSlots() {
+      try {
+        // Replace this with your own logic to fetch unconfirmed bookings
+        // Assuming this function fetches unconfirmed bookings from Supabase
+        const formattedBookedSlots = unconfirmedBookings?.map(
+          (booking: any) => ({
+            start: new Date(booking.startTime),
+            end: new Date(booking.endTime),
+          })
+        );
+        setBookedSlots(formattedBookedSlots || []);
+      } catch (error) {
+        console.error("Error fetching booked slots:", error);
+      }
+    }
+
+    fetchBookedSlots();
+  }, [unconfirmedBookings]);
+
+  console.log("bookedSlots", bookedSlots);
 
   const [serviceTime, setServiceTime] = useState(30); // Default service time in minutes
 
@@ -190,9 +211,21 @@ export function CreateBookingForm() {
         totalPrice,
       };
 
-      console.log("Booking data:", bookingData);
+      const isAlreadyBooked = bookedSlots.some(
+        (booked) =>
+          utcStartTime.getTime() >= booked.start.getTime() &&
+          utcStartTime.getTime() < booked.end.getTime()
+      );
+
+      if (isAlreadyBooked) {
+        toast.error(
+          "This time slot is already booked. Please select another time."
+        );
+        return;
+      }
 
       await createBooking(bookingData);
+
       form.reset();
     } catch (error) {
       console.error("Error creating booking:", error);
