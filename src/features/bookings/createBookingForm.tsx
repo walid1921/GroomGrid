@@ -123,7 +123,7 @@ export function CreateBookingForm() {
             end: new Date(booking.endTime),
           })
         );
-        setBookedSlots(formattedBookedSlots);
+        setBookedSlots(formattedBookedSlots || []);
       } catch (error) {
         console.error("Error fetching booked slots:", error);
       }
