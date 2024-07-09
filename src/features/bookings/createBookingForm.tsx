@@ -74,11 +74,14 @@ function filterAvailableSlots(
   slots: Date[],
   bookedSlots: { start: Date; end: Date }[]
 ) {
-  return slots.filter((slot) => {
-    return !bookedSlots.some((booked) => {
-      return slot >= booked.start && slot < booked.end;
-    });
-  });
+  return slots.filter(
+    (slot) =>
+      !bookedSlots.some(
+        (booked) =>
+          slot.getTime() >= booked.start.getTime() &&
+          slot.getTime() < booked.end.getTime()
+      )
+  );
 }
 
 export function CreateBookingForm() {
@@ -105,19 +108,21 @@ export function CreateBookingForm() {
   const [bookedSlots, setBookedSlots] = useState<{ start: Date; end: Date }[]>(
     []
   );
-  const [serviceTime, setServiceTime] = useState(30); // Default service time in minutes
 
   const { unconfirmedBookings } = useUnconfirmedBookings();
 
   useEffect(() => {
+    // Fetch unconfirmed bookings when component mounts or dependencies change
     async function fetchBookedSlots() {
       try {
         // Replace this with your own logic to fetch unconfirmed bookings
-        const formattedBookedSlots =
-          unconfirmedBookings?.map((booking) => ({
+        // Assuming this function fetches unconfirmed bookings from Supabase
+        const formattedBookedSlots = unconfirmedBookings?.map(
+          (booking: any) => ({
             start: new Date(booking.startTime),
             end: new Date(booking.endTime),
-          })) || []; // Ensure default value is an empty array if unconfirmedBookings is undefined
+          })
+        );
         setBookedSlots(formattedBookedSlots);
       } catch (error) {
         console.error("Error fetching booked slots:", error);
@@ -126,6 +131,11 @@ export function CreateBookingForm() {
 
     fetchBookedSlots();
   }, [unconfirmedBookings]);
+
+  console.log("bookedSlots", bookedSlots);
+
+  const [serviceTime, setServiceTime] = useState(30); // Default service time in minutes
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -316,7 +326,8 @@ export function CreateBookingForm() {
               <FormLabel>Pick a date and time</FormLabel>
               <FormControl>
                 <ReactDatePicker
-                  className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50
+                   "
                   placeholderText="Select a date and time"
                   selected={date}
                   onChange={(selectedDate) => {
