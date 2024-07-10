@@ -12,7 +12,9 @@ function useCreateClient() {
       toast.success("New client added successfully");
     },
     onError: (error) => {
-      toast.error("An error occurred while adding client");
+      toast.error(
+        "An error occurred while adding client. Please make sure the email is unique."
+      );
       console.error(error);
     },
   });

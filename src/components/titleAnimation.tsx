@@ -16,6 +16,7 @@ const TitleAnimation = ({ children }: PageTransitionWrapperProps) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={easeInOutTransition}
+      className="text-2xl sm:text-4xl font-semibold "
     >
       {children}
     </motion.h1>

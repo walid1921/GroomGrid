@@ -1,5 +1,6 @@
 import { PAGE_SIZE } from "@/utils/constants";
 import supabase from "./supabase";
+import { createClientSchema } from "@/validators/createClientValidation";
 
 // REMEMBER RLS POLICIES
 
@@ -66,6 +67,21 @@ export async function getClient(id: number) {
   return data;
 }
 
+//! Function to check if an email already exists
+async function doesEmailExist(email: string): Promise<boolean> {
+  const { data, error } = await supabase
+    .from("clients")
+    .select("id")
+    .eq("email", email);
+
+  if (error) {
+    console.error("Error checking email existence:", error);
+    throw new Error("Could not verify email existence.");
+  }
+
+  return data.length > 0;
+}
+
 //! Create client
 type NewClientType = {
   fullName: string;
@@ -75,6 +91,16 @@ type NewClientType = {
 };
 
 export async function createClient(newClient: NewClientType) {
+  // Check if email already exists
+  const emailExists = await doesEmailExist(newClient.email);
+  if (emailExists) {
+    throw new Error("Email already exists.");
+  }
+
+  // Validate client data using Zod schema
+  createClientSchema.parse(newClient);
+
+  // Proceed to create the client in the database
   const { data, error } = await supabase
     .from("clients")
     .insert([newClient])
@@ -82,8 +108,8 @@ export async function createClient(newClient: NewClientType) {
     .single();
 
   if (error) {
-    console.error(error);
-    throw new Error("An error occurred while creating client");
+    console.error("Error creating client:", error);
+    throw new Error("An error occurred while creating the client.");
   }
 
   return data;

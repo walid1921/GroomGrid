@@ -56,7 +56,7 @@ const UpdatePriceForm = () => {
     <Sheet>
       <SheetTrigger asChild>
         <Button className="flex gap-2">
-          <HiPencil size={20} /> Product Price
+          <HiPencil size={16} /> Product Price
         </Button>
       </SheetTrigger>
       <SheetContent>

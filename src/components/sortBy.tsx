@@ -24,7 +24,7 @@ const SortBy = ({ options, ...props }: SortByTypes) => {
 
   return (
     <Select value={currentSort} onValueChange={handleChange}>
-      <SelectTrigger className="w-[150px] bg-transparent">
+      <SelectTrigger className="w-[150px] bg-transparent h-8 px-2 py-2 sm:h-10 sm:px-4 sm:py-2">
         <SelectValue placeholder="Sort" className="text-white" />
       </SelectTrigger>
       <SelectContent {...props}>

@@ -131,8 +131,12 @@ export async function getStaysAfterDate(date: string) {
 
 // Adjusted function to get stays activity for a specific date
 export async function getStaysActivityByDate(date?: Date) {
-  const todayStart = date ? new Date(date.setHours(0, 0, 0, 0)).toISOString() : getToday();
-  const todayEnd = date ? new Date(date.setHours(23, 59, 59, 999)).toISOString() : getToday({ end: true });
+  const todayStart = date
+    ? new Date(date.setHours(0, 0, 0, 0)).toISOString()
+    : getToday();
+  const todayEnd = date
+    ? new Date(date.setHours(23, 59, 59, 999)).toISOString()
+    : getToday({ end: true });
 
   const { data, error } = await supabase
     .from("bookings")
