@@ -28,7 +28,7 @@ const FilterOperations = ({ filterName, options }: FilterOperationsTypes) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className=" gap-2 px-4 ">
+        <Button variant="outline" size="sm" className=" gap-2 h-8 px-2 py-2 sm:h-10 sm:px-4 sm:py-2 ">
           <ListFilter className="h-4 w-4" />
           <span>Filter</span>
         </Button>

@@ -9,14 +9,7 @@ import { FilterByDate } from "@/components/filterByDate";
 const Today = () => {
   const [date, setDate] = useState<Date | undefined>(new Date() || undefined);
   const { isPending, activities } = useTodayActivity(date);
-
-  // Default to today's date if no date is selected initially
-  // React.useEffect(() => {
-  //   if (!date) {
-  //     setDate(new Date()); // Set default date to today
-  //   }
-  // }, []);
-
+  
   const activitiesLength = activities?.length ?? 0;
 
   return (

@@ -49,6 +49,7 @@ export function CreateForm({
   //! Submit form
   const onSubmit = (data: InputType) => {
     createClient(data);
+    form.reset();
   };
 
   return (
