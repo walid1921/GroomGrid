@@ -51,7 +51,7 @@ const Hero = () => {
       <div className="absolute top-[250px]  h-full -z-20 overflow-hidden w-[1000px] sm:w-full">
         <img src={oooscillate} alt="" />
       </div>
-      <div className="absolute -bottom-[300px] w-[600px] h-[400px] bg-[#3ecf8e80] rounded-full blur-[250px] overflow-hidden -z-20"></div>
+      <div className="absolute -bottom-[100px] sm:-bottom-[300px] w-[600px] h-[400px] bg-[#3ecf8e80] rounded-full blur-[250px] overflow-hidden -z-20"></div>
     </MainAnimation>
   );
 };
