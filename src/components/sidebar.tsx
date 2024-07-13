@@ -15,15 +15,17 @@ const Sidebar = () => {
         </button>
       </div>
       <Logo />
-      <MainNav />
+      <div className="flex flex-col h-full gap-5">
+        <MainNav />
 
-      <Button
-        className="flex gap-2"
-        onClick={() => navigate("/bookings/createBooking")}
-      >
-        {" "}
-        <HiPlus size={20} /> Add booking
-      </Button>
+        <Button
+          className="flex gap-2"
+          onClick={() => navigate("/bookings/createBooking")}
+        >
+          {" "}
+          <HiPlus size={20} /> Add booking
+        </Button>
+      </div>
     </aside>
   );
 };
