@@ -132,7 +132,6 @@ export function CreateBookingForm() {
     fetchBookedSlots();
   }, [unconfirmedBookings]);
 
-  console.log("bookedSlots", bookedSlots);
 
   const [serviceTime, setServiceTime] = useState(30); // Default service time in minutes
 

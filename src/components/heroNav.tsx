@@ -25,10 +25,10 @@ const HeroNav = () => {
             Features
           </Link>
           <Link
-            to={"https://github.com/walid1921/GroomGrid.git"}
+            to={""}
             className="hover:text-white cursor-pointer "
           >
-            Documentation
+            About us
           </Link>
         </ul>
       </div>

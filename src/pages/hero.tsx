@@ -16,7 +16,7 @@ const Hero = () => {
           <p className="text-sm py-1 px-4 bg-bgMain rounded-2xl ">
             Stay Updated on Our Latest News
           </p>
-          <h1 className="text-3xl  md:text-6xl lg:text-7xl mt-6 ">
+          <h1 className="text-3xl  md:text-6xl lg:text-7xl mt-6">
             Your One-Stop <span className="text-[#3ecf8e80]">Solution</span> for
             Easy Bookings
           </h1>
