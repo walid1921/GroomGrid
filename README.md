@@ -59,6 +59,8 @@ Is an Internal task management Application to manage everything in the Barbersho
 
 ## Application plan
 
+![diagram-export-14-07-2024-12_01_08](https://github.com/user-attachments/assets/d19d0b76-7419-4862-8758-b88d514fbd3e)
+
 ## 🔄 Project Process
 
 Initial Meeting with Client:
