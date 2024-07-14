@@ -99,9 +99,9 @@ Deployment:
 
 ## 🎯 Learning
 
-Learned how to work on a big project in depth. This large project was challenging, especially working on making complex components reusable, as well as how to make data interact with each other. Additionally, learned the importance of keeping the code clean and organized for future improvements or projects. Developing it using TypeScript was beneficial for avoiding bugs. 
-Learned most of the important methods from Supabase, including CRUD principles, filtering, sorting, searching, authentication (login - logout, signup new user, update user data), image storage, and user management. 
-Learned the difference between client-side and server-side data, which is valuable when working with big data for app performance.
+- Learned how to work on a big project in depth. This large project was challenging, especially working on making complex components reusable, as well as how to make data interact with each other. Additionally, learned the importance of keeping the code clean and organized for future improvements or projects. Developing it using TypeScript was beneficial for avoiding bugs. 
+- Learned most of the important methods from Supabase, including CRUD principles, filtering, sorting, searching, authentication (login - logout, signup new user, update user data), image storage, and user management. 
+- Learned the difference between client-side and server-side data, which is valuable when working with big data for app performance.
 
 ## ✨ Improvement
 
