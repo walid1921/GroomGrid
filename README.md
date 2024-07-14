@@ -105,7 +105,7 @@ Deployment:
 
 ## ✨ Improvement
 
-the app still need more imporovement and funcyionalities to be added for a better use
+the app still need more improvement and functionalities to be added for a better use
 
 - After creating a booking, the selected client should receive an email with their booking details.
 - Build a calendar for easy reading and managing all bookings.
