@@ -5,6 +5,8 @@ Is an Internal task management Application to manage everything in the Barbersho
 
 ## 📹 Video
 
+https://github.com/user-attachments/assets/d868bdc2-feca-43da-9d9a-d2d4a53b3506
+
 - Check it out live here [GroomGrid](https://www.groomgrid.de).
 
 ## 🛠️ Technologies & Tools Used
