@@ -35,14 +35,13 @@ const Hero = () => {
       <footer className="py-5">
         <div className="container text-sm  text-center flex items-center justify-center gap-4">
           <span className="text-muted-foreground">
-            © 2024 GroomGrid All rights reserved. Made with ❤️ by Walid . Follow
-            me on Instagram{" "}
+            © 2024 GroomGrid All rights reserved.
             <Link
               className="underline text-[#3ecf8e80]"
-              to={"https://www.instagram.com/dev.n.des?igsh=bzd1M3d4eW9uaHIw"}
+              to={"https://www.instagram.com/houseofkingsbarbershop?igsh=MWE4ZW8ycHBnd2I0bg=="}
             >
               {" "}
-              @dev.n.des
+              @houseofkingsbarbershop
             </Link>
           </span>
         </div>
