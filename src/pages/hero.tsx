@@ -3,6 +3,9 @@ import MainAnimation from "@/components/mainAnimation";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 import oooscillate from "/oooscillate.svg";
+import { RatingDrawer } from "@/components/ratingDrawer";
+import { cn } from "@/lib/utils";
+import AnimatedShinyText from "@/components/magicui/animated-shiny-text";
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -13,9 +16,17 @@ const Hero = () => {
 
       <section className=" flex flex-col h-full justify-center space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
         <div className="container flex flex-col justify-center text-center items-center gap-4 max-w-[64rem]">
-          <p className="text-sm py-1 px-4 bg-bgMain rounded-2xl ">
-            Stay Updated on Our Latest News
-          </p>
+          <div className="z-10 flex items-center justify-center">
+            <div
+              className={cn(
+                "group rounded-full border bg-neutral-100 text-base text-white transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 dark:bg-neutral-900 dark:hover:bg-neutral-800"
+              )}
+            >
+              <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400">
+                <span>✨ Stay Updated on our latest services</span>
+              </AnimatedShinyText>
+            </div>
+          </div>
           <h1 className="text-3xl  md:text-6xl lg:text-7xl mt-6">
             Your One-Stop <span className="text-[#3ecf8e80]">Solution</span> for
             Easy Bookings
@@ -29,6 +40,7 @@ const Hero = () => {
             {" "}
             Get Started{" "}
           </Button>
+          <RatingDrawer />
         </div>
       </section>
 
