@@ -1,6 +1,6 @@
 # GroomGrid
 
-GroomGrid is an internal task management application designed to manage all aspects of a barbershop, including services, bookings (organizing appointments), and clients (check-in and check-out).
+GroomGrid is an internal task management application designed to manage all aspects of a cleaning company, including services, bookings (organizing appointments), and clients (check-in and check-out).
 
 ## 📹 Video
 
@@ -23,7 +23,7 @@ https://github.com/user-attachments/assets/d868bdc2-feca-43da-9d9a-d2d4a53b3506
 
 1. **Authentication:**
 
-   - New users can only sign up within the application (to guarantee that only actual barbershop employees can get accounts).
+   - New users can only sign up within the application (to guarantee that only actual company employees can get accounts).
    - Users can upload an avatar, update their name, and change their password.
 
 2. **Services:**
@@ -52,7 +52,7 @@ https://github.com/user-attachments/assets/d868bdc2-feca-43da-9d9a-d2d4a53b3506
 
 6. **Dashboard:**
    - Statistics on recent bookings, sales, and check-ins, including filter functionality for the last 7, 30, and 90 days.
-   - A chart showing all daily barbershop sales, displaying both “total” and “extras” sales.
+   - A chart showing all daily company sales, displaying both “total” and “extras” sales.
    - A list of the current day’s bookings, including filtering functionality by date using a calendar.
 
 7. **Settings:**
