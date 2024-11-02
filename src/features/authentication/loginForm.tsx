@@ -48,7 +48,7 @@ function LoginForm() {
         <div className="mx-auto grid w-[350px] gap-6">
           <div className="grid gap-2  text-center">
             <div className="flex items-center justify-center gap-4">
-              <div className="w-[2rem] ">
+              <div>
                 <LogoSmall />
               </div>
               <h1 className="text-3xl font-bold">Login</h1>
