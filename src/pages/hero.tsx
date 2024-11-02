@@ -1,9 +1,9 @@
 import HeroNav from "@/components/heroNav";
 import MainAnimation from "@/components/mainAnimation";
 import { Button } from "@/components/ui/button";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import oooscillate from "/oooscillate.svg";
-import { RatingDrawer } from "@/components/ratingDrawer";
+// import { RatingDrawer } from "@/components/ratingDrawer";
 import { cn } from "@/lib/utils";
 import AnimatedShinyText from "@/components/magicui/animated-shiny-text";
 
@@ -38,29 +38,11 @@ const Hero = () => {
 
           <Button onClick={() => navigate("/login")} className="mt-10">
             {" "}
-            Get Started{" "}
+            Get Started
           </Button>
-          <RatingDrawer />
+          {/* <RatingDrawer />   its a review component, use it later */}
         </div>
       </section>
-
-      <footer className="py-5">
-        <div className="container text-sm  text-center flex items-center justify-center gap-4">
-          <span className="text-muted-foreground">
-            © 2024 GroomGrid All rights reserved -
-            <Link
-              className="underline text-[#3ecf8e80]"
-              to={
-                "https://www.instagram.com/houseofkingsbarbershop?igsh=MWE4ZW8ycHBnd2I0bg=="
-              }
-            >
-              {" "}
-              @houseofkingsbarbershop
-            </Link>
-            -
-          </span>
-        </div>
-      </footer>
 
       <div className="absolute top-[250px]  h-full -z-20 overflow-hidden w-[1000px] sm:w-full">
         <img src={oooscillate} alt="" />

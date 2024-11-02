@@ -5,7 +5,7 @@ const Spinner = () => {
     <div className="flex justify-center items-center my-[4.8rem] h-full mx-auto">
       <BeatLoader color="#289061" />
     </div>
-  );
+  )
 };
 
 export default Spinner;
