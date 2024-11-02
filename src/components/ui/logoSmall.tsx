@@ -1,8 +1,8 @@
 const LogoSmall = () => {
     return (
       <div className="text-center ">
-        <div className="w-12">
-          <img src="/logoTab.png" alt="logo" className=" rounded-md" />
+        <div className="w-10">
+          <img src="/logo.svg" alt="logo" />
         </div>
       </div>
     );
