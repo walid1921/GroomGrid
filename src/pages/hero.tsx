@@ -28,7 +28,7 @@ const Hero = () => {
             </div>
           </div>
           <h1 className="text-3xl  md:text-6xl lg:text-7xl mt-6">
-            Your One-Stop <span className="text-[#3ecf8e80]">Solution</span> for
+            Your One-Stop <span className="text-[#0078BD]">Solution</span> for
             Easy Bookings
           </h1>
           <p className="leading-normal   sm:leading-8 text-muted-foreground sm:text-xl text-sm  max-w-[30rem] w-[75%] md:w-full">
@@ -47,7 +47,7 @@ const Hero = () => {
       <div className="absolute top-[250px]  h-full -z-20 overflow-hidden w-[1000px] sm:w-full">
         <img src={oooscillate} alt="" />
       </div>
-      <div className="absolute -bottom-[100px] sm:-bottom-[300px] w-[600px] h-[400px] bg-[#3ecf8e80] rounded-full blur-[250px] overflow-hidden -z-20"></div>
+      <div className="absolute -bottom-[100px] sm:-bottom-[300px] w-[600px] h-[400px] bg-[#0078BD] rounded-full blur-[250px] overflow-hidden -z-20"></div>
     </MainAnimation>
   );
 };

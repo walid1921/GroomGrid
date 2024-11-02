@@ -81,8 +81,8 @@ const SalesChart = ({ bookings, numDays }: SalesChartProps) => {
             type="monotone"
             dataKey="extrasSales"
             name="Extras Sales"
-            stroke="#10B981"
-            fill="#10B981"
+            stroke="#0078BD"
+            fill="#0078BD"
             strokeWidth={2}
             unit="€"
           />

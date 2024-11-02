@@ -15,7 +15,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
 
-    --primary: 165 82% 35%;
+    --primary: 202 100% 37%;
     --primary-foreground: 355.7 100% 97.3%;
 
     --secondary: 240 4.8% 95.9%;
@@ -32,7 +32,6 @@
 
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
-    --ring: 142.1 76.2% 36.3%;
     --radius: 0.5rem;
   }
 
@@ -49,8 +48,8 @@
     --popover: 0, 0%, 9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 153.5deg 61.8% 21.6%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 202 100% 37%;
+    --primary-foreground: 355.7 100% 97.3%;
 
     --secondary: 240 4.8% 95.9%;
     --secondary-foreground: 240 5.9% 10%;
@@ -66,7 +65,6 @@
 
     --border: 240 5.9% 40%;
     --input: 240 5.9% 90%;
-    --ring: 142.1 76.2% 36.3%;
     --radius: 0.5rem;
   }
 }
@@ -101,7 +99,7 @@
   }
 
   .active {
-    @apply bg-bgMain border sm:border-l-4 border-[#3ecf8e80] rounded-md   font-bold;
+    @apply bg-bgMain border sm:border-l-4 border-[#0078BD] rounded-md   font-bold;
   }
 
   @keyframes rotate {
